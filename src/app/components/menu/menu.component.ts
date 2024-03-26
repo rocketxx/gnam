@@ -3,6 +3,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { RestaurantListComponent } from '../restaurant-list/restaurant-list.component';
+import { FoodTypes } from '../../models/Enum/foodTypes';
 @Component({
   selector: 'app-menu',
   standalone: true,
@@ -38,17 +39,19 @@ export class MenuComponent implements OnInit {
         label: 'Tutti i ristoranti',
         icon: 'pi pi-fw pi-power-off',
         routerLink: 'home',
+        queryParams : { value: FoodTypes.Tutti }
       },
       {
         label: 'Panino',
         icon: 'pi pi-fw pi-power-off',
         routerLink: 'home',
+        queryParams : { value: FoodTypes.Panino }
       },
       {
         label: 'Pizza',
         icon: 'pi pi-fw pi-power-off',
         routerLink: 'home',
-
+        queryParams : { value: FoodTypes.Pizza }
       }
     ];
   }
