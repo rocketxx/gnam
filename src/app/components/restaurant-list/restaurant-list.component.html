@@ -1,24 +1,22 @@
-<p>restaurant-list works!</p>
 {{TypeFood}}
 
+<div class="card-container">
     <div *ngFor="let item of items; let i = index">
-        <p-card header="{{item.name}}" subheader="{{item.status}}" [style]="{ width: '360px' }">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="{{item.image}}" />
-            </ng-template>
-            <p>
-                {{item.description}}
-            </p>
-            <!-- <p>
-                <p-tag severity="success" value={{item.status}}></p-tag>
-            </p> -->
-            <ng-template pTemplate="footer">
-                <p-button (onClick)="goTo()" label="Save" icon="pi pi-check"></p-button>
-                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-            </ng-template>
-        </p-card>
-
+      <p-card header="{{item.name}}" subheader="{{item.status}}" [style]="{ width: '360px' }">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="{{item.image}}" />
+        </ng-template>
+        <p>
+          {{item.description}}
+        </p>
+        <!-- <p>
+              <p-tag severity="success" value={{item.status}}></p-tag>
+          </p> -->
+        <ng-template pTemplate="footer">
+          <p-button (onClick)="goTo()" label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+        </ng-template>
+      </p-card>
     </div>
-
-
-      
+  </div>
+  

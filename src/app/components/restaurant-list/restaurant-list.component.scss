@@ -1,0 +1,14 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Aggiunge spazio tra le card */
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      flex-direction: column; /* Cambia la direzione del flessibile in colonna */
+      align-items: center; /* Allinea le card al centro quando in colonna */
+    }
+  }
+  
