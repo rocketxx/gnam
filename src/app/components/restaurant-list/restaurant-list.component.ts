@@ -3,21 +3,19 @@ import { FoodTypes } from '../../models/Enum/foodTypes';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { TagModule } from 'primeng/tag';
+import { RestaurantsService } from '../../services/restaurants.service';
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
-  imports: [CardModule,ButtonModule,CommonModule],
+  imports: [CardModule,ButtonModule,CommonModule,TagModule],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })
 export class RestaurantListComponent implements OnInit{
   @Input() TypeFood : FoodTypes = FoodTypes.Tutti
-  items: any[] = [
-    { imageUrl: 'url_immagine_1.jpg', description: 'Descrizione 1', status: 'Aperto' },
-    { imageUrl: 'url_immagine_2.jpg', description: 'Descrizione 2', status: 'Chiuso' },
-    // Aggiungi altri elementi se necessario
-  ];
-  constructor()
+  items: any[] = [];
+  constructor(private restaurant_service: RestaurantsService)
   {}
   ngOnInit(): void {
   this.LoadData(this.TypeFood);
@@ -32,7 +30,9 @@ export class RestaurantListComponent implements OnInit{
   }
 
   LoadData(type_food : FoodTypes) {
-    console.warn("Mock chiamata al servizio di caricament dati ..", type_food)
+    this.restaurant_service.getRistoranti().subscribe(response=>{
+      this.items = response;
+    })
   }
   
   goTo()
