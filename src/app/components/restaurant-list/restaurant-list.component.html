@@ -1,24 +1,14 @@
 <!-- {{TypeFood}} -->
 <div *ngIf="skeletonIsActive" class="skeleton-container">
-
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
-    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
 </div>
 
-<div *ngIf="!skeletonIsActive">
+<!-- <div *ngIf="!skeletonIsActive">
     <p-messages severity="info">
         <ng-template pTemplate>
-            <!-- <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" width="32" /> -->
             <div class="ml-2">Pubblica qui il tuo annuncio</div>
         </ng-template>
     </p-messages>
@@ -31,9 +21,6 @@
             <p>
               {{item.description}}
             </p>
-            <!-- <p>
-                  <p-tag severity="success" value={{item.status}}></p-tag>
-              </p> -->
             <ng-template pTemplate="footer">
               <p-button (onClick)="goTo()" label="Save" icon="pi pi-check"></p-button>
               <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
@@ -41,5 +28,5 @@
           </p-card>
         </div>
       </div>
-</div>
+</div> -->
   
