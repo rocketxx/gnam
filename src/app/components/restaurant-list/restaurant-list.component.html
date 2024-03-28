@@ -1,22 +1,45 @@
-{{TypeFood}}
+<!-- {{TypeFood}} -->
+<div *ngIf="skeletonIsActive" class="skeleton-container">
 
-<div class="card-container">
-    <div *ngFor="let item of items; let i = index">
-      <p-card header="{{item.name}}" subheader="{{item.status}}" [style]="{ width: '360px' }">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="{{item.image}}" />
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="4rem" borderRadius="16px"></p-skeleton>
+</div>
+
+<div *ngIf="!skeletonIsActive">
+    <p-messages severity="info">
+        <ng-template pTemplate>
+            <!-- <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" width="32" /> -->
+            <div class="ml-2">Pubblica qui il tuo annuncio</div>
         </ng-template>
-        <p>
-          {{item.description}}
-        </p>
-        <!-- <p>
-              <p-tag severity="success" value={{item.status}}></p-tag>
-          </p> -->
-        <ng-template pTemplate="footer">
-          <p-button (onClick)="goTo()" label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-        </ng-template>
-      </p-card>
-    </div>
-  </div>
+    </p-messages>
+    <div class="card-container">
+        <div *ngFor="let item of items; let i = index">
+          <p-card header="{{item.name}}" subheader="{{item.status}}" [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+              <img alt="Card" src="{{item.image}}" />
+            </ng-template>
+            <p>
+              {{item.description}}
+            </p>
+            <!-- <p>
+                  <p-tag severity="success" value={{item.status}}></p-tag>
+              </p> -->
+            <ng-template pTemplate="footer">
+              <p-button (onClick)="goTo()" label="Save" icon="pi pi-check"></p-button>
+              <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+</div>
   
