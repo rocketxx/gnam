@@ -1,17 +1,28 @@
 <div class="general-profile-container">
     <div class="profile-container">
-        <label for="nomeCognome" class="block text-900 font-medium mb-2">Nome e cognome</label>
+        <label for="nomeCognome" class="block text-900 font-medium mb-2">Nome</label>
         <input id="nomeCognome" type="text" placeholder="Nome e cognome" pInputText class="w-full mb-3" [(ngModel)]="utente_corrente.nome">
+        <label for="nomeCognome" class="block text-900 font-medium mb-2">Cognome</label>
+        <input id="nomeCognome" type="text" placeholder="Nome e cognome" pInputText class="w-full mb-3" [(ngModel)]="utente_corrente.cognome">
         <label for="telefono" class="block text-900 font-medium mb-2">Numero di telefono</label>
         <input id="telefono" type="text" placeholder="Numero di telefono" pInputText class="w-full mb-3" [(ngModel)]="utente_corrente.telefono">
+        <label for="indirizzi" class="block text-900 font-medium mb-2">Indirizzi salvati</label>
         
-        <label for="indirizzi" class="block text-900 font-medium mb-2">Indirizzi</label>
         <div *ngFor="let indirizzo of utente_corrente.indirizzi; let i = index" class="email-input mb-3">
-            <input [id]="'indirizzo' + i" type="text" placeholder="Indirizzo" [(ngModel)]="utente_corrente.indirizzi[i]" pInputText class="w-full mb-3">
+            <div class="button-container">
+
+                <input [id]="'indirizzo' + i" type="text" placeholder="Indirizzo" [(ngModel)]="utente_corrente.indirizzi[i]" pInputText class="w-full mb-3">
+                <p-button (click)="deleteIndirizzo(i)" icon="pi pi-times" [rounded]="true" [text]="true" severity="danger "></p-button>
+            </div>
         </div>
+
         <div class="button-container">
             <button (click)="addEmail()" pRipple pButton type="button" label="Aggiungi indirizzo" class="w-full"></button>
             <button (click)="salvaIndirizzi()" pRipple pButton type="button" label="Salva indirizzo" class="w-full"></button>
         </div>
     </div>
 </div>
+<!-- <div class="card">
+    <p-toast></p-toast>
+    <button type="button" pButton pRipple (click)="salvaIndirizzi()" label="Show" class="p-button-success"></button>
+</div> -->

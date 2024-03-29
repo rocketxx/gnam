@@ -7,23 +7,26 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Utente } from '../../models/utente';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule,],
+  imports: [ToastModule,CommonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule,],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss'
+  styleUrl: './profile-page.component.scss',
+  providers: [MessageService]
 })
 export class ProfilePageComponent implements OnInit{
 
-  emailAddresses: string[] =['example1@example.com', 'example2@example.com', 'example3@example.com']; 
+  emailAddresses: string[] =['example1@example.com']; 
     utente_corrente: Utente = {
     nome: '',
     cognome: '',
     telefono: '',
     indirizzi: []
   };
-
+  constructor(private messageService: MessageService){}
   ngOnInit(): void {
     this.loadUserInfo();
   }
@@ -33,7 +36,8 @@ export class ProfilePageComponent implements OnInit{
   }
   salvaIndirizzi()
   {
-    window.alert(this.emailAddresses)
+    // window.alert(this.emailAddresses)
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
   }
   loadUserInfo()
   {
@@ -43,5 +47,12 @@ export class ProfilePageComponent implements OnInit{
       telefono: '0123456789',
       indirizzi: this.emailAddresses
     };
+  }
+  deleteIndirizzo(index: any)
+  {
+    if (index === -1) {
+        return undefined;
+    }
+    return this.emailAddresses.splice(index, 1);
   }
 }
