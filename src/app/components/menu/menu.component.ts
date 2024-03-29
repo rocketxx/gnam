@@ -27,29 +27,29 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Carrello',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-shopping-cart',
         routerLink: 'cart'
       },
       {
         label: 'Ordini',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-history',
         routerLink: 'order'
       },
       {
         label: 'Tutti i ristoranti',
-        icon: 'pi pi-fw pi-power-off',
+        icon: 'pi pi-arrow-right',
         routerLink: 'home',
         queryParams : { value: FoodTypes.Tutti }
       },
       {
         label: 'Panino',
-        icon: 'pi pi-fw pi-power-off',
+        icon: 'pi pi-arrow-right',
         routerLink: 'home',
         queryParams : { value: FoodTypes.Panino }
       },
       {
         label: 'Pizza',
-        icon: 'pi pi-fw pi-power-off',
+        icon: 'pi pi-arrow-right',
         routerLink: 'home',
         queryParams : { value: FoodTypes.Pizza }
       }

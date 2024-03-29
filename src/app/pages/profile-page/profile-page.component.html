@@ -1,18 +1,22 @@
-<div class="profile-container">
-    <label for="email1" class="block text-900 font-medium mb-2">Nome e cognome</label>
-    <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
-    <label for="email1" class="block text-900 font-medium mb-2">Numero di telefono</label>
-    <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
-    
-    <!-- <div class="email-container"> -->
+<div class="general-profile-container">
+
+    <div class="profile-container">
+        <label for="email1" class="block text-900 font-medium mb-2">Nome e cognome</label>
+        <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+        <label for="email1" class="block text-900 font-medium mb-2">Numero di telefono</label>
+        <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+        
         <label for="email1" class="block text-900 font-medium mb-2">Indirizzi</label>
         <div *ngFor="let email of emailAddresses; let i = index" class="email-input mb-3">
-          <input [id]="'email' + i" type="text" placeholder="Email address" [(ngModel)]="emailAddresses[i]" pInputText class="w-full mb-3">
-          <div class="button-container">
-              <button *ngIf="i === emailAddresses.length - 1" (click)="addEmail()" pRipple pButton type="button" label="Aggiungi indirizzo" class="w-full"></button>
-              <button *ngIf="i === emailAddresses.length - 1"  pRipple pButton type="button" label="Salva indirizzo" class="w-full"></button>
-          </div>
+            <input [id]="'email' + i" type="text" placeholder="Email address" [(ngModel)]="emailAddresses[i]" pInputText class="w-full mb-3">
         </div>
-      <!-- </div> -->
-
+        <div class="button-container">
+            <button (click)="addEmail()" pRipple pButton type="button" label="Aggiungi indirizzo" class="w-full"></button>
+            <button (click)="salvaIndirizzi()" pRipple pButton type="button" label="Salva indirizzo" class="w-full"></button>
+        </div>
+    </div>
 </div>
+<!-- <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-search" />
+    <input type="text" pInputText placeholder="Search" />
+</p-iconField> -->

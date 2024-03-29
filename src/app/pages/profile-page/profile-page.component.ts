@@ -15,8 +15,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfilePageComponent {
   emailAddresses: string[] =['example1@example.com', 'example2@example.com', 'example3@example.com']; 
+  
   addEmail() {
     // this.emailAddresses.push();
     this.emailAddresses.push('');
+  }
+  salvaIndirizzi()
+  {
+    
   }
 }
