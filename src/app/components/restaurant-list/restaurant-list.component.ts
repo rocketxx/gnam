@@ -39,9 +39,10 @@ export class RestaurantListComponent implements OnInit{
     })
   }
   
-  goTo()
+  goTo(id: any)
   {
-    console.warn("Button clicked")
+    window.alert(id)
+    // console.log("Button clicked")
 
   }
   
