@@ -1,14 +1,13 @@
 <div class="general-profile-container">
-
     <div class="profile-container">
-        <label for="email1" class="block text-900 font-medium mb-2">Nome e cognome</label>
-        <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
-        <label for="email1" class="block text-900 font-medium mb-2">Numero di telefono</label>
-        <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+        <label for="nomeCognome" class="block text-900 font-medium mb-2">Nome e cognome</label>
+        <input id="nomeCognome" type="text" placeholder="Nome e cognome" pInputText class="w-full mb-3" [(ngModel)]="utente_corrente.nome">
+        <label for="telefono" class="block text-900 font-medium mb-2">Numero di telefono</label>
+        <input id="telefono" type="text" placeholder="Numero di telefono" pInputText class="w-full mb-3" [(ngModel)]="utente_corrente.telefono">
         
-        <label for="email1" class="block text-900 font-medium mb-2">Indirizzi</label>
-        <div *ngFor="let email of emailAddresses; let i = index" class="email-input mb-3">
-            <input [id]="'email' + i" type="text" placeholder="Email address" [(ngModel)]="emailAddresses[i]" pInputText class="w-full mb-3">
+        <label for="indirizzi" class="block text-900 font-medium mb-2">Indirizzi</label>
+        <div *ngFor="let indirizzo of utente_corrente.indirizzi; let i = index" class="email-input mb-3">
+            <input [id]="'indirizzo' + i" type="text" placeholder="Indirizzo" [(ngModel)]="utente_corrente.indirizzi[i]" pInputText class="w-full mb-3">
         </div>
         <div class="button-container">
             <button (click)="addEmail()" pRipple pButton type="button" label="Aggiungi indirizzo" class="w-full"></button>
@@ -16,7 +15,3 @@
         </div>
     </div>
 </div>
-<!-- <p-iconField iconPosition="left">
-    <p-inputIcon styleClass="pi pi-search" />
-    <input type="text" pInputText placeholder="Search" />
-</p-iconField> -->
