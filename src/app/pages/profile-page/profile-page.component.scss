@@ -1,0 +1,16 @@
+.profile-container {
+    // display: flex;
+    // flex-wrap: wrap;
+    padding-top: 10px;
+    justify-content: space-between;
+    gap: 20px; /* Aggiunge spazio tra le card */
+  }
+  
+  .button-container {
+    display: flex;
+  }
+  
+  .button-container button {
+    margin-right: 10px; /* Aggiungi spazio tra i bottoni */
+  }
+  
