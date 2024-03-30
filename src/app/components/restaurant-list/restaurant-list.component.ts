@@ -7,6 +7,8 @@ import { TagModule } from 'primeng/tag';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { MessagesModule } from 'primeng/messages';
 import { SkeletonModule } from 'primeng/skeleton';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
@@ -18,7 +20,7 @@ export class RestaurantListComponent implements OnInit{
   @Input() TypeFood : FoodTypes = FoodTypes.Tutti
   items: any[] = [];
   skeletonIsActive : boolean = true;
-  constructor(private restaurant_service: RestaurantsService)
+  constructor(private restaurant_service: RestaurantsService,private router: Router)
   {}
   ngOnInit(): void {
   this.LoadData(this.TypeFood);
@@ -39,11 +41,9 @@ export class RestaurantListComponent implements OnInit{
     })
   }
   
-  goTo(id: any)
+  detail_restaurant(id: any)
   {
-    window.alert(id)
-    // console.log("Button clicked")
-
+    this.router.navigate(['ristoranti/dettaglio/'+id])
   }
   
 }

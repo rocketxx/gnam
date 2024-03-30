@@ -22,9 +22,7 @@
               {{item.description}}
             </p>
             <ng-template pTemplate="footer">
-              <!-- <p-button (onClick)="goTo(item.id)" label="Vai al ristorante" icon="pi pi-eye"></p-button> -->
-              <!-- <p-button label="Vai al ristorante" [outlined]="true" severity="success"></p-button> -->
-              <button pButton pRipple (onClick)="goTo(item.id)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></button>
+              <p-button pRipple (onClick)="detail_restaurant(item.id)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
             </ng-template>
           </p-card>
         </div>

@@ -8,11 +8,19 @@ import { apiConfig } from '../config/apiUrlConfig';
 })
 export class RestaurantsService {
   private apiUrl = apiConfig.ristorantiUrl; 
+  private apiGetById = apiConfig.dettaglio_ristorante; 
 
   constructor(private http: HttpClient) { }
 
   getRistoranti(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getDettaglioById(id: any): Observable<any[]> {
+    return this.http.get<any[]>(this.apiGetById+'/'+id)
       .pipe(
         catchError(this.handleError)
       );
