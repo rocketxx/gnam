@@ -5,10 +5,11 @@ import { Restaurant } from '../../models/restaurant.model';
 import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [DataViewModule,CommonModule,ButtonModule],
+  imports: [TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })
