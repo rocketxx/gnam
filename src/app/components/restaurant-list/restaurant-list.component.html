@@ -21,8 +21,12 @@
             <p>
               {{item.description}}
             </p>
-            <ng-template pTemplate="footer">
-              <p-button pRipple (onClick)="detail_restaurant(item.id)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
+            <ng-template pTemplate="footer" *ngIf="item.status == 'chiuso'">
+              <p-button severity="danger" pRipple label="Ristorante chiuso" icon="pi pi-ban" class="w-full"></p-button>
+            </ng-template>
+            
+            <ng-template pTemplate="footer" *ngIf="item.status == 'aperto'">
+              <p-button  pRipple (onClick)="detail_restaurant(item.id)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
             </ng-template>
           </p-card>
         </div>
