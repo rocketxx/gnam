@@ -8,10 +8,11 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import {TabViewModule } from 'primeng/tabview';
 import { PanelModule } from 'primeng/panel';
+import { MiniCardComponent } from '../../components/mini-card/mini-card.component';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })

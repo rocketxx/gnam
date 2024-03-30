@@ -13,9 +13,10 @@ import { TagModule } from 'primeng/tag';
 })
 export class MiniCardComponent implements OnInit{
   
-  @Input() list_of_element : any[];
+  @Input() list_of_element : any[] = [];
+  constructor(){}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
 }
