@@ -6,9 +6,13 @@
     margin-top: 15px; /* Aggiunge un margine superiore di 20px */
   }
 
-  .custom-description {
-    font-size: 0.3rem; /* Riduce la grandezza del testo */
-    line-height: 1.2; /* Imposta l'interlinea */
-    color: #666666; /* Colore del testo */
-    margin-top: 4px; /* Aggiunge uno spazio sopra la descrizione */
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
+
+
+

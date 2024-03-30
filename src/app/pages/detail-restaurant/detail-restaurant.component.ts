@@ -6,21 +6,33 @@ import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+import {TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })
 export class DetailRestaurantComponent implements OnInit{
   
   restaurant : Restaurant = new Restaurant();
-
+  tabs: { title: string, content: string }[] = [];
   constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      
+    this.tabsInizialize();
+  }
+
+  tabsInizialize()
+  {
+    this.tabs = [
+      { title: 'Tab 1', content: 'Tab 1 Content' },
+      { title: 'Tab 2', content: 'Tab 2 Content' },
+      { title: 'Tab 3', content: 'Tab 3 Content' }
+  ];
   }
 
   loadData()
