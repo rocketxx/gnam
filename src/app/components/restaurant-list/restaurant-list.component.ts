@@ -28,7 +28,6 @@ export class RestaurantListComponent implements OnInit{
 
   ngOnChanges(changes: SimpleChange): void {
     var tmp = changes;
-    // debugger 
     //arriva un oggetto valorizzato ma non riesco a leggere il currentValue
     //una volta letto correttamente questo cambiamento, effettuo query
     this.LoadData(changes.currentValue);
