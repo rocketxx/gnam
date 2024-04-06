@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
   selector: 'app-ingredients-list',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './ingredients-list.component.scss'
 })
 export class IngredientsListComponent implements OnInit{
-  mockList : any[] = [];
+  mockList : Ingredient[] = [];
   isGreen: boolean = false;
   selectedIds: string[] = [];
   ngOnInit(): void {
