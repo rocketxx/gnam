@@ -1,0 +1,8 @@
+<button (click)="printSelectedIds()">Stampa ID Selezionati</button>
+
+<div *ngFor="let item of mockList" (click)="toggleColor(item.id)" [ngClass]="{'green-bg': isItemSelected(item.id)}" class="card">
+    <div class="card-content">
+        <div class="description">{{ item.descrizione }}</div>
+        <div class="price">{{ item.prezzo | currency:'EUR':'symbol':'1.2-2' }}</div>
+    </div>
+</div>

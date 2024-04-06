@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { StepperModule } from 'primeng/stepper';
+import { IngredientsListComponent } from '../../components/ingredients-list/ingredients-list.component';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
   providers: [MessageService],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
@@ -12,7 +15,5 @@ import { ButtonModule } from 'primeng/button';
 export class CustomProductComponent {
   constructor(private messageService: MessageService) {}
 
-  show() {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-  }
+  
 }

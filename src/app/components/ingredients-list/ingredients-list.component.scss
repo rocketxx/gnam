@@ -1,0 +1,35 @@
+.card {
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .card:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .green-bg {
+    background-color: #d1f5d1 !important;
+  }
+  
+  .card-content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .description {
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .price {
+    color: #2ecc71;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
