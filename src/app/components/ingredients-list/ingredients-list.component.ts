@@ -15,6 +15,8 @@ export class IngredientsListComponent implements OnInit{
   mockList : Ingredient[] = [];
   isGreen: boolean = false;
   selectedIds: string[] = [];
+
+  //in input deve prendere id ristorante, tipologia di prodotto (panino o pizza)
   @Output() ingredientSelectionChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   ngOnInit(): void {
