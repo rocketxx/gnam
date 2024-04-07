@@ -14,9 +14,7 @@
         <label for="indirizzi" class="block text-900 font-medium mb-2">Indirizzi salvati</label>
         
         <div class="empty-indirizzo" *ngIf="utente_corrente.indirizzi && utente_corrente.indirizzi.length === 0">
-            
             <p-tag severity="danger" value="Nessun indirizzo salvato"></p-tag>
-            <!-- <p-messages [(value)]="array_indirizzi_empty" [enableService]="false" [closable]="false"></p-messages> -->
         </div>
         
         <div *ngFor="let indirizzo of utente_corrente.indirizzi; let i = index" class="email-input mb-3">
@@ -32,7 +30,6 @@
         </div>
     </div>
 </div>
-<!-- <p-messages></p-messages> -->
 <div class="card">
     <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
 </div>
