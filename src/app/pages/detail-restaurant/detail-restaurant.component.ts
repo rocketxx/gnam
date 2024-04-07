@@ -52,4 +52,10 @@ export class DetailRestaurantComponent implements OnInit{
 
   }
 
+  BaseClicked(item: any)
+  {
+    var id = this.route.snapshot.params['id'];
+    this.router.navigate(['ristoranti/semipersonalizza/' + id +'/'+ item.id])
+  }
+
 }

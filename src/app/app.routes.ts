@@ -5,12 +5,14 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { DetailRestaurantComponent } from './pages/detail-restaurant/detail-restaurant.component';
 import { CustomProductComponent } from './pages/custom-product/custom-product.component';
+import { SemicustomProductComponent } from './pages/semicustom-product/semicustom-product.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'ristoranti', pathMatch: 'full' },
     { path: 'ristoranti', title: 'ristoranti', component: HomePageComponent },
     // aggiiungere id del ristorante
     { path: 'ristoranti/personalizza/:id', title: 'ristoranti', component: CustomProductComponent },
+    { path: 'ristoranti/semipersonalizza/:id/:baseId', title: 'ristoranti', component: SemicustomProductComponent },
     { path: 'ristoranti/dettaglio/:id', title: 'dettaglio ristorante', component: DetailRestaurantComponent },
 
 

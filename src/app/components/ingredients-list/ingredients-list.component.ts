@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from '../../services/payload-ingredients.service';
+import { Typology } from '../../models/Enum/foodTypes';
 
 @Component({
   selector: 'app-ingredients-list',
@@ -18,6 +19,7 @@ export class IngredientsListComponent implements OnInit{
 
   //in input deve prendere id ristorante, tipologia di prodotto (panino o pizza)
   @Input() CustomProduct : boolean = true;
+  @Input() typology : Typology = Typology.condimento1;
   @Output() ingredientSelectionChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class IngredientsListComponent implements OnInit{
 
   loadData()
   {
+    //in base a custom o no, carico dati diversi
     if(this.CustomProduct)
     {
       //aggiungi anche se disponibile o meno (boolean)
@@ -105,12 +108,49 @@ export class IngredientsListComponent implements OnInit{
               "prezzo": 24.99,
               "typology": 2
             }
-          ]
+          ].filter(item=> item.typology == this.typology)
 
     }
     else
     {
-      debugger
+      this.mockList = [
+        {
+          "id": "6ae90f41-d3d9-499e-bd78-15ad2bcf3f5f",
+          "descrizione": "Pantaloni da jogging",
+          "prezzo": 29.99,
+          "typology": 1
+        },
+        {
+          "id": "6ae90f41-d3d9-499e-bd78-15ad2bcf3f5f",
+          "descrizione": "Pantaloni da jogging",
+          "prezzo": 29.99,
+          "typology": 1
+        },
+        {
+          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9ef",
+          "descrizione": "Occhiali da sole polarizzati",
+          "prezzo": 39.99,
+          "typology": 0
+        },
+        {
+          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9ef",
+          "descrizione": "Occhiali da sole polarizzati",
+          "prezzo": 39.99,
+          "typology": 0
+        },
+        {
+          "id": "9807e227-9b54-4f4b-8d18-f377a4512fd1",
+          "descrizione": "Portafoglio in similpelle",
+          "prezzo": 14.99,
+          "typology": 2
+        },        
+        {
+          "id": "9807e227-9b54-4f4b-8d18-f377a4512fd1",
+          "descrizione": "Portafoglio in similpelle",
+          "prezzo": 14.99,
+          "typology": 2
+        }
+      ].filter(item=> item.typology == this.typology)
     }
     
   }
