@@ -7,6 +7,7 @@ import { IngredientsListComponent } from '../../components/ingredients-list/ingr
 import { IngredientService } from '../../services/payload-ingredients.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Typology } from '../../models/Enum/foodTypes';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
@@ -19,6 +20,10 @@ export class CustomProductComponent implements OnInit{
   ingredient1List : any[] = []
   ingredient2List : any[] = []
   ingredient3List : any[] = []
+
+  typology1: Typology= Typology.condimento1
+  typology2: Typology= Typology.condimento2
+  typology3: Typology= Typology.condimento3
   constructor(private route: ActivatedRoute,private router: Router) {}
   
   ngOnInit(): void {
