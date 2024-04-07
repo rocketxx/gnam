@@ -18,7 +18,7 @@
 
             <!--  -->
             <div class="flex py-4 gap-2">
-                <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+                <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
                 <p-button label="Avanti" (onClick)="nextCallback.emit()" />
             </div
         ></ng-template>
@@ -32,7 +32,7 @@
             <app-ingredients-list (ingredientSelectionChanged)="onIngredient3SelectionChanged($event)"></app-ingredients-list>
 
             <div class="flex py-4 gap-2">
-                <p-button label="Back" (onClick)="prevCallback.emit()" />
+                <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
                 <p-button label="Fatto" (onClick)="Save()" />
             </div>
             </ng-template>
