@@ -23,7 +23,7 @@ export class DetailRestaurantComponent implements OnInit{
   constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
-    // this.loadData();      //commento e risparmio chiamate api al server di mock
+    this.loadData();      //commento e risparmio chiamate api al server di mock
     this.tabsInizialize();
   }
 
