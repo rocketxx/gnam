@@ -12,7 +12,7 @@
     <p-stepperPanel header="Header II">
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
             <!--  -->
-            <app-ingredients-list></app-ingredients-list>
+            <app-ingredients-list (ingredientSelectionChanged)="onIngredientSelectionChanged($event)"></app-ingredients-list>
 
             <!--  -->
             <div class="flex py-4 gap-2">
@@ -28,8 +28,10 @@
                 <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
             </div>
             <div class="flex py-4">
-                <p-button label="Back" (onClick)="prevCallback.emit()" /></div
-        ></ng-template>
+                <p-button label="Back" (onClick)="prevCallback.emit()" />
+                <p-button label="Completato" (onClick)="Save()" />
+            </div>
+            </ng-template>
     </p-stepperPanel>
 </p-stepper>
 

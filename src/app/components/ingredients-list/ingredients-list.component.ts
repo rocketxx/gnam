@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Ingredient } from '../../models/ingredient.model';
+import { IngredientService } from '../../services/payload-ingredients.service';
 
 @Component({
   selector: 'app-ingredients-list',
   standalone: true,
   imports: [CommonModule],
+  providers: [],
   templateUrl: './ingredients-list.component.html',
   styleUrl: './ingredients-list.component.scss'
 })
@@ -13,9 +15,13 @@ export class IngredientsListComponent implements OnInit{
   mockList : Ingredient[] = [];
   isGreen: boolean = false;
   selectedIds: string[] = [];
+  @Output() ingredientSelectionChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
+
   ngOnInit(): void {
     this.loadData();
   }
+
+  constructor(){}
   
   toggleColor(itemId: string) {
     const index = this.selectedIds.indexOf(itemId);
@@ -25,6 +31,7 @@ export class IngredientsListComponent implements OnInit{
       this.selectedIds.push(itemId); // Aggiungi l'ID se non presente
       // bisogna che pubblichi su un payload condiviso cosi da poter recuperare tale info
     }
+    this.ingredientSelectionChanged.emit(this.selectedIds); 
   }
 
   isItemSelected(itemId: string): boolean {

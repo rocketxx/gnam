@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Ingredient } from '../models/ingredient.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IngredientService {
-  private ingredientListSubject = new BehaviorSubject<Ingredient[]>([]);
-  ingredientList$ = this.ingredientListSubject.asObservable();
+  private ingredientListSubject = new BehaviorSubject<any[]>([]);
+  ingredient1List$ = this.ingredientListSubject.asObservable();
+  // ingredient2List$ = this.ingredientListSubject.asObservable();
+  // ingredient3List$ = this.ingredientListSubject.asObservable();
 
   constructor() { }
 
-  updateIngredientList(ingredients: Ingredient[]) {
+  updateIngredientList(ingredients: any[]) {
     this.ingredientListSubject.next(ingredients);
+    console.log('dentro service:',ingredients)
   }
+
 }
