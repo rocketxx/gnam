@@ -46,7 +46,9 @@ export class DetailRestaurantComponent implements OnInit{
 
   personalizza_prodotto()
   {
-    this.router.navigate(['ristoranti/personalizza'])
+    var id = this.route.snapshot.params['id'];
+
+    this.router.navigate(['ristoranti/personalizza/' + id])
 
   }
 

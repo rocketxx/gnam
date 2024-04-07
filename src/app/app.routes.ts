@@ -10,7 +10,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'ristoranti', pathMatch: 'full' },
     { path: 'ristoranti', title: 'ristoranti', component: HomePageComponent },
     // aggiiungere id del ristorante
-    { path: 'ristoranti/personalizza', title: 'ristoranti', component: CustomProductComponent },
+    { path: 'ristoranti/personalizza/:id', title: 'ristoranti', component: CustomProductComponent },
     { path: 'ristoranti/dettaglio/:id', title: 'dettaglio ristorante', component: DetailRestaurantComponent },
 
 

@@ -46,7 +46,7 @@ export class IngredientsListComponent implements OnInit{
 
   loadData()
   {
-
+//aggiungi anche se disponibile o meno (boolean)
     this.mockList = [
       {
         "id": "d4e37a3d-1073-4d35-b78e-0c32e3b04401",

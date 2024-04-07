@@ -1,5 +1,5 @@
 <p-stepper orientation="vertical">
-    <p-stepperPanel header="Header I">
+    <p-stepperPanel header="Seleziona 1">
         <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
             <!-- <div class="flex flex-column h-12rem">
                 <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content I</div>
@@ -7,11 +7,11 @@
             <app-ingredients-list (ingredientSelectionChanged)="onIngredient2SelectionChanged($event)"></app-ingredients-list>
 
             <div class="flex py-4">
-                <p-button label="Next" (onClick)="nextCallback.emit()" /></div
+                <p-button label="Avanti" (onClick)="nextCallback.emit()" /></div
         ></ng-template>
     </p-stepperPanel>
 
-    <p-stepperPanel header="Header II">
+    <p-stepperPanel header="Selezione multipla">
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
             <!--  -->
             <app-ingredients-list (ingredientSelectionChanged)="onIngredientSelectionChanged($event)"></app-ingredients-list>
@@ -19,21 +19,21 @@
             <!--  -->
             <div class="flex py-4 gap-2">
                 <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-                <p-button label="Next" (onClick)="nextCallback.emit()" />
+                <p-button label="Avanti" (onClick)="nextCallback.emit()" />
             </div
         ></ng-template>
     </p-stepperPanel>
 
-    <p-stepperPanel header="Header III">
+    <p-stepperPanel header="Selezione multipla">
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
             <!-- <div class="flex flex-column h-12rem">
                 <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
             </div> -->
             <app-ingredients-list (ingredientSelectionChanged)="onIngredient3SelectionChanged($event)"></app-ingredients-list>
 
-            <div class="flex py-4">
+            <div class="flex py-4 gap-2">
                 <p-button label="Back" (onClick)="prevCallback.emit()" />
-                <p-button label="Completato" (onClick)="Save()" />
+                <p-button label="Fatto" (onClick)="Save()" />
             </div>
             </ng-template>
     </p-stepperPanel>
