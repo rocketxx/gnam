@@ -45,8 +45,6 @@ export class CustomProductComponent implements OnInit{
   Save()
   {
    console.log('1',this.ingredient1List)
-   console.log('2',this.ingredient2List)
-   console.log('3',this.ingredient3List)
    var id = this.route.snapshot.params['id'];
    this.router.navigate(['ristoranti/dettaglio/' + id])
   }

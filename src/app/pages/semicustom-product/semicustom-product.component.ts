@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import { Typology } from '../../models/Enum/foodTypes';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-semicustom-product',
@@ -21,7 +22,11 @@ export class SemicustomProductComponent implements OnInit{
   typology1: Typology= Typology.condimento1
   typology2: Typology= Typology.condimento2
   typology3: Typology= Typology.condimento3
-  
+
+  constructor(private route: ActivatedRoute,private router: Router)
+  {
+
+  }
   ngOnInit(): void {
   }
   onIngredientSelectionChanged(selectedIds: string[]) {
@@ -41,7 +46,8 @@ export class SemicustomProductComponent implements OnInit{
    console.log('1',this.ingredient1List)
    console.log('2',this.ingredient2List)
    console.log('3',this.ingredient3List)
-  //  var id = this.route.snapshot.params['id'];
-  //  this.router.navigate(['ristoranti/dettaglio/' + id])
+   var baseId = this.route.snapshot.params['baseId'];
+   var id = this.route.snapshot.params['id'];
+   this.router.navigate(['ristoranti/dettaglio/' + id])
   }
 }
