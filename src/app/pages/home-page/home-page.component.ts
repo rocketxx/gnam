@@ -12,18 +12,14 @@ import { FoodTypes } from '../../models/Enum/foodTypes';
 })
 export class HomePageComponent implements OnInit {
 
-  queryParamsRestaurantiList : FoodTypes = FoodTypes.Tutti
+  // queryParamsRestaurantiList : FoodTypes = FoodTypes.Tutti
 
   constructor(private route: ActivatedRoute)
   {
 
   }
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.queryParamsRestaurantiList = params['value'];
-      console.log('Value received:', this.queryParamsRestaurantiList);
-      
-    });
+
   }
 
 }

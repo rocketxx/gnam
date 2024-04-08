@@ -18,7 +18,7 @@ import { PizzaPaninoFilterComponent } from '../pizza-panino-filter/pizza-panino-
   styleUrl: './restaurant-list.component.scss'
 })
 export class RestaurantListComponent implements OnInit{
-  @Input() TypeFood : FoodTypes = FoodTypes.Tutti
+  TypeFood : FoodTypes = FoodTypes.Panino
   items: any[] = [];
   skeletonIsActive : boolean = true;
   constructor(private restaurant_service: RestaurantsService,private router: Router)
@@ -27,12 +27,6 @@ export class RestaurantListComponent implements OnInit{
   this.LoadData(this.TypeFood);
   }
 
-  ngOnChanges(changes: SimpleChange): void {
-    var tmp = changes;
-    //arriva un oggetto valorizzato ma non riesco a leggere il currentValue
-    //una volta letto correttamente questo cambiamento, effettuo query
-    this.LoadData(changes.currentValue);
-  }
 
   LoadData(type_food : FoodTypes) {
     this.restaurant_service.getRistoranti().subscribe(response=>{

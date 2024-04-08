@@ -39,19 +39,7 @@ export class MenuComponent implements OnInit {
         label: 'Tutti i ristoranti',
         icon: 'pi pi-arrow-right',
         routerLink: 'home',
-        queryParams : { value: FoodTypes.Tutti }
-      },
-      {
-        label: 'Panino',
-        icon: 'pi pi-arrow-right',
-        routerLink: 'home',
         queryParams : { value: FoodTypes.Panino }
-      },
-      {
-        label: 'Pizza',
-        icon: 'pi pi-arrow-right',
-        routerLink: 'home',
-        queryParams : { value: FoodTypes.Pizza }
       }
     ];
   }

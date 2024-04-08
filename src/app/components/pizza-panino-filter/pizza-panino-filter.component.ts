@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PaninoPizzaEnum } from '../../models/Enum/foodTypes';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { FoodTypes } from '../../models/Enum/foodTypes';
 @Component({
   selector: 'app-pizza-panino-filter',
   standalone: true,
@@ -13,11 +13,11 @@ export class PizzaPaninoFilterComponent implements OnInit {
   
   ngOnInit(): void {
   }
-  FoodType = PaninoPizzaEnum;
-  @Output() foodSelected = new EventEmitter<PaninoPizzaEnum>();
-  selectedFood: PaninoPizzaEnum = PaninoPizzaEnum.Panino; // Dichiarazione e inizializzazione della proprietà selectedFood
+  FoodType = FoodTypes;
+  @Output() foodSelected = new EventEmitter<FoodTypes>();
+  selectedFood: FoodTypes = FoodTypes.Panino; // Dichiarazione e inizializzazione della proprietà selectedFood
 
-  selectFood(foodType: PaninoPizzaEnum) {
+  selectFood(foodType: FoodTypes) {
     this.selectedFood = foodType;
     this.foodSelected.emit(foodType);
   }
