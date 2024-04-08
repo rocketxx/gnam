@@ -1,10 +1,12 @@
 dettaglio ristorante:
 
-nome
-tasto crea personalizzato
-stepper=> fase di creazione dell'ordine. 
-Alla fine il riepilogo con il numero di panini/pizze uguali che vuoi
+nome ristorante in alto al centro 
+All'inizio il numero di panini/pizze uguali che vuoi
  
 menu card:
 in quelli già fatti, si parte dalla base, e poi aggiungi altri condimenti con lo stepper
+
+home:
+
+funzione check ristorante status: chiuso se gli orari del ristorante non compaciano con quelli attuali
 
