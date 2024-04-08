@@ -1,0 +1,32 @@
+/* Stili per il contenitore dei bottoni */
+.button-container {
+    display: flex; /* Utilizza flexbox */
+    justify-content: space-between; /* Distribuisci gli elementi uniformemente lungo l'asse principale */
+    width: 100%; /* Occupa l'intero spazio disponibile */
+  }
+  
+  /* Stili per i bottoni */
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    flex-grow: 1; /* Distribuisci uniformemente lo spazio disponibile tra gli elementi figli */
+  }
+  
+  /* Stili per i bottoni selezionati */
+  button.pizza-selected,
+  button.panino-selected {
+    background-color: green;
+    color: white;
+  }
+  
+  /* Stili per i bottoni non selezionati */
+  button.pizza-unselected,
+  button.panino-unselected {
+    background-color: gray;
+    color: white;
+  }
+  

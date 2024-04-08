@@ -8,11 +8,12 @@ import { RestaurantsService } from '../../services/restaurants.service';
 import { MessagesModule } from 'primeng/messages';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
+import { PizzaPaninoFilterComponent } from '../pizza-panino-filter/pizza-panino-filter.component';
 
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
-  imports: [CardModule,ButtonModule,CommonModule,TagModule,MessagesModule,SkeletonModule],
+  imports: [PizzaPaninoFilterComponent,CardModule,ButtonModule,CommonModule,TagModule,MessagesModule,SkeletonModule],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })

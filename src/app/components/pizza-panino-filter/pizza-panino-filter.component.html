@@ -1,0 +1,5 @@
+<div>
+    <button [ngClass]="{'panino-selected': selectedFood === FoodType.Panino, 'panino-unselected': selectedFood !== FoodType.Panino}" (click)="selectFood(FoodType.Panino)">Panino</button>
+    <button [ngClass]="{'pizza-selected': selectedFood === FoodType.Pizza, 'pizza-unselected': selectedFood !== FoodType.Pizza}" (click)="selectFood(FoodType.Pizza)">Pizza</button>
+  </div>
+  

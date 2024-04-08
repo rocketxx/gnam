@@ -11,3 +11,8 @@ export enum FoodTypes {
     condimento4 = 3,
   }
   
+
+  export enum PaninoPizzaEnum {
+    Pizza = 0,
+    Panino = 1
+  }
