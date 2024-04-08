@@ -53,7 +53,7 @@ export class DetailRestaurantComponent implements OnInit{
   }
 
   BaseClicked(item: any)
-  {
+  {//aggiungere controllo se è bevanda o meno. se non lo è vai a custom altrimenti stepper
     var id = this.route.snapshot.params['id'];
     this.router.navigate(['ristoranti/semipersonalizza/' + id +'/'+ item.id])
   }
