@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PaninoPizzaEnum } from '../../models/Enum/foodTypes';
 import { CommonModule } from '@angular/common';
-
+import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-pizza-panino-filter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ButtonModule,CommonModule],
   templateUrl: './pizza-panino-filter.component.html',
   styleUrl: './pizza-panino-filter.component.scss'
 })
