@@ -39,7 +39,7 @@ export class DetailRestaurantComponent implements OnInit{
   loadData()
   {
     var id = this.route.snapshot.params['id'];
-    this.restaurant_service.getDettaglioById(id).subscribe(response=>{
+    this.restaurant_service.getDettaglioByIdMock(id).subscribe(response=>{
       this.restaurant = response;
     })
   }

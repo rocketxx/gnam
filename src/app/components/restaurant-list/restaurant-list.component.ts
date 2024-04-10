@@ -29,7 +29,7 @@ export class RestaurantListComponent implements OnInit{
 
 
   LoadData(type_food : FoodTypes) {
-    this.restaurant_service.getRistoranti().subscribe(response=>{
+    this.restaurant_service.getRistorantiMock(type_food).subscribe(response=>{
       this.items = response;
       this.skeletonIsActive = false;
     })

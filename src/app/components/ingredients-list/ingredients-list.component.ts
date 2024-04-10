@@ -115,7 +115,7 @@ export class IngredientsListComponent implements OnInit{
     {
       this.mockList = [
         {
-          "id": "6ae90f41-d3d9-499e-bd78-15ad2bcf3f5f",
+          "id": "6ae90f41-d3d9-499e-bd78-15ad2bcf3f5a",
           "descrizione": "Pantaloni da jogging",
           "prezzo": 29.99,
           "typology": 1
@@ -127,25 +127,25 @@ export class IngredientsListComponent implements OnInit{
           "typology": 1
         },
         {
-          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9ef",
+          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9ew",
           "descrizione": "Occhiali da sole polarizzati",
           "prezzo": 39.99,
           "typology": 0
         },
         {
-          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9ef",
+          "id": "b9c53c36-25ac-4988-89c7-1d41fc13b9oo",
           "descrizione": "Occhiali da sole polarizzati",
           "prezzo": 39.99,
           "typology": 0
         },
         {
-          "id": "9807e227-9b54-4f4b-8d18-f377a4512fd1",
+          "id": "9807e227-9b54-4f4b-8d18-f377a4512flk",
           "descrizione": "Portafoglio in similpelle",
           "prezzo": 14.99,
           "typology": 2
         },        
         {
-          "id": "9807e227-9b54-4f4b-8d18-f377a4512fd1",
+          "id": "9807e227-9b54-4f4b-8d18-f377a4512fsy",
           "descrizione": "Portafoglio in similpelle",
           "prezzo": 14.99,
           "typology": 2

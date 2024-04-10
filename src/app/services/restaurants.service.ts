@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { apiConfig } from '../config/apiUrlConfig';
 import { Restaurant } from '../models/restaurant.model';
+import { FoodTypes } from '../models/Enum/foodTypes';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,14 +21,75 @@ export class RestaurantsService {
       );
   }
 
-  // getDettaglioById(id: any): Observable<Restaurant> {
-  //   // return this.http.get<Restaurant>(this.apiGetById+'/'+id)
-  //   //   .pipe(
-  //   //     catchError(this.handleError)
-  //   //   );
-  // }
-  
   getDettaglioById(id: any): Observable<Restaurant> {
+    return this.http.get<Restaurant>(this.apiGetById+'/'+id)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  
+
+  getRistorantiMock(type_food : FoodTypes): Observable<any[]>
+  {
+    var lista_ristoranti: any[] = [
+      {
+        "id": 1,
+        "name": "Ristorante Uno",
+        "description": "Un ristorante accogliente con un'atmosfera familiare.",
+        "openingHours": {
+          "monday": "09:00 - 22:00",
+          "tuesday": "09:00 - 22:00",
+          "wednesday": "09:00 - 22:00",
+          "thursday": "09:00 - 22:00",
+          "friday": "09:00 - 23:00",
+          "saturday": "09:00 - 23:00",
+          "sunday": "Chiuso"
+        },
+        "status": "aperto",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tUn7mE2S4p8_xMP_pCYtfhsfeXMOO6FdVA&s",
+        "foodType": "Panino"
+      },
+      {
+        "id": 2,
+        "name": "Ristorante Due",
+        "description": "Un ristorante elegante con cucina gourmet.",
+        "openingHours": {
+          "monday": "Chiuso",
+          "tuesday": "Chiuso",
+          "wednesday": "Chiuso",
+          "thursday": "09:00 - 22:00",
+          "friday": "09:00 - 23:00",
+          "saturday": "09:00 - 23:00",
+          "sunday": "09:00 - 22:00"
+        },
+        "status": "chiuso",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tUn7mE2S4p8_xMP_pCYtfhsfeXMOO6FdVA&s",
+        "foodType": "Pizza"
+      },
+      {
+        "id": 3,
+        "name": "Ristorante Tre",
+        "description": "Un ristorante informale con specialità di pesce fresco.",
+        "openingHours": {
+          "monday": "09:00 - 22:00",
+          "tuesday": "09:00 - 22:00",
+          "wednesday": "09:00 - 22:00",
+          "thursday": "09:00 - 22:00",
+          "friday": "09:00 - 23:00",
+          "saturday": "09:00 - 23:00",
+          "sunday": "09:00 - 22:00"
+        },
+        "status": "aperto",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tUn7mE2S4p8_xMP_pCYtfhsfeXMOO6FdVA&s",
+        "foodType": "Tutti"
+      }
+    ].filter(item=> item.foodType == type_food || item.foodType == FoodTypes.Tutti);
+    return of(lista_ristoranti);
+  }
+
+
+
+  getDettaglioByIdMock(id: any): Observable<Restaurant> {
     var ristoranteMenu : Restaurant = {
       "nome": "Ristorante Bella Vista",
       "id": "e8c7de11-3b6f-45a5-9baf-84ab53b9d148",

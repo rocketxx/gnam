@@ -12,7 +12,7 @@
             <div class="ml-2">Pubblica qui il tuo annuncio</div>
         </ng-template>
     </p-messages>
-    <app-pizza-panino-filter></app-pizza-panino-filter>
+    <app-pizza-panino-filter (foodSelected)="LoadData($event)"></app-pizza-panino-filter>
     <div class="card-container">
         <div *ngFor="let item of items; let i = index">
           <p-card header="{{item.name}}" subheader="{{item.status}}" [style]="{ width: '360px' }">
