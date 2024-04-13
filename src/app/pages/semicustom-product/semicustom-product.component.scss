@@ -1,0 +1,42 @@
+.card-semi {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .title-semi {
+    font-size: 1.5em;
+    color: #333333;
+    margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .price-semi {
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .description-semi {
+    font-size: 1em;
+    color: #666666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  @media (max-width: 600px) {
+    .card-semi {
+      width: 100%; /* Rendi la card larga quanto lo schermo */
+      margin: 20px auto;
+    }
+  }
+  

@@ -1,3 +1,11 @@
+<!-- prodotto base scelto  -->
+<div class="card-semi">
+    <h2 class="title-semi">{{this.baseProduct.nome}}</h2>
+    <p class="price-semi">{{this.baseProduct.prezzo}} €</p>
+    <p class="description-semi">{{this.baseProduct.descrizione}}</p>
+  </div>
+  
+<!--  -->
 <p-stepper orientation="vertical">
     <p-stepperPanel header="Seleziona 1">
         <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">

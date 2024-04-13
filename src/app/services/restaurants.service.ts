@@ -88,7 +88,7 @@ export class RestaurantsService {
   }
 
 
-
+//è il dettaglio del ristorante. quindi menu bevande e cibo
   getDettaglioByIdMock(id: any): Observable<Restaurant> {
     var ristoranteMenu : Restaurant = {
       "nome": "Ristorante Bella Vista",
@@ -140,6 +140,34 @@ export class RestaurantsService {
 
     // Simula un Observable che restituisce il ristorante e i suoi menu
     return of(ristoranteMenu);
+  }
+
+  getBaseProductByIdMock(id: any): Observable<any[]>
+  {
+    var base_products: any[] = [
+      {
+        "id": "10f9f2e7-3fb8-4d7d-93d4-b9fd84b1681f",
+        "nome": "Spaghetti alla Carbonara",
+        "descrizione": "Pasta con uova, pancetta, pecorino e pepe nero",
+        "ingredienti": ["Pasta", "Uova", "Pancetta", "Pecorino", "Pepe"],
+        "prezzo": 10.99
+      },
+      {
+        "id": "29f28146-2d21-4e4a-9a0a-7e02bb3a302f",
+        "nome": "Pizza Margherita",
+        "descrizione": "Pizza con pomodoro, mozzarella e basilico",
+        "ingredienti": ["Impasto per pizza", "Salsa di pomodoro", "Mozzarella", "Basilico"],
+        "prezzo": 8.99
+      },
+      {
+        "id": "ac7b1e17-17cf-4df1-a940-ba75fc3f9e5e",
+        "nome": "Insalata Caesar",
+        "descrizione": "Insalata con lattuga romana, crostini, parmigiano, salsa Caesar",
+        "ingredienti": ["Lattuga romana", "Crostini", "Parmigiano", "Salsa Caesar"],
+        "prezzo": 7.99
+      }
+    ].filter(item=> item.id == id);
+    return of(base_products) 
   }
 
   private handleError(error: any) {

@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import { Typology } from '../../models/Enum/foodTypes';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RestaurantsService } from '../../services/restaurants.service';
 
 @Component({
   selector: 'app-semicustom-product',
@@ -23,11 +24,14 @@ export class SemicustomProductComponent implements OnInit{
   typology2: Typology= Typology.condimento2
   typology3: Typology= Typology.condimento3
 
-  constructor(private route: ActivatedRoute,private router: Router)
+  baseProduct : any = null;
+
+  constructor(private restaurant_service: RestaurantsService,private route: ActivatedRoute,private router: Router)
   {
 
   }
   ngOnInit(): void {
+    this.loadBaseProduct();
   }
   onIngredientSelectionChanged(selectedIds: string[]) {
     this.ingredient1List = selectedIds
@@ -46,8 +50,16 @@ export class SemicustomProductComponent implements OnInit{
    console.log('1',this.ingredient1List)
    console.log('2',this.ingredient2List)
    console.log('3',this.ingredient3List)
-   var baseId = this.route.snapshot.params['baseId'];
+  //  recupero base grazie a id
    var id = this.route.snapshot.params['id'];
    this.router.navigate(['ristoranti/dettaglio/' + id])
+  }
+
+  loadBaseProduct() //carico il prodotto scelto dall'utente come base del panino/pizza
+  {
+    var baseId = this.route.snapshot.params['baseId'];
+    this.restaurant_service.getBaseProductByIdMock(baseId).subscribe(response=>{
+      this.baseProduct = response[0];
+    })
   }
 }
