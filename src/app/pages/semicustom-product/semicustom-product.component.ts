@@ -6,11 +6,12 @@ import { StepperModule } from 'primeng/stepper';
 import { Typology } from '../../models/Enum/foodTypes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantsService } from '../../services/restaurants.service';
+import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
 
 @Component({
   selector: 'app-semicustom-product',
   standalone: true,
-  imports: [IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
+  imports: [ReadOnlyCardV1Component,IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
   templateUrl: './semicustom-product.component.html',
   styleUrl: './semicustom-product.component.scss'
 })
@@ -53,6 +54,11 @@ export class SemicustomProductComponent implements OnInit{
   //  recupero base grazie a id
    var id = this.route.snapshot.params['id'];
    this.router.navigate(['ristoranti/dettaglio/' + id])
+  }
+  
+  Carrello()
+  {
+    this.router.navigate(['cart'])
   }
 
   loadBaseProduct() //carico il prodotto scelto dall'utente come base del panino/pizza

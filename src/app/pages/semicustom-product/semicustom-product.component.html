@@ -1,10 +1,9 @@
 <!-- prodotto base scelto  -->
-<div class="card-semi">
-    <h2 class="title-semi">{{this.baseProduct.nome}}</h2>
-    <p class="price-semi">{{this.baseProduct.prezzo}} €</p>
-    <p class="description-semi">{{this.baseProduct.descrizione}}</p>
-  </div>
-  
+  <app-read-only-card-v1 
+  [title]="this.baseProduct.nome"
+  [price]="this.baseProduct.prezzo"
+  [description]="this.baseProduct.descrizione" 
+  ></app-read-only-card-v1>
 <!--  -->
 <p-stepper orientation="vertical">
     <p-stepperPanel header="Seleziona 1">
@@ -38,6 +37,7 @@
             <div class="flex py-4 gap-2">
                 <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
                 <p-button label="Fatto" (onClick)="Save()" />
+                <p-button label="Carrello" (onClick)="Carrello()" />
             </div>
             </ng-template>
     </p-stepperPanel>
