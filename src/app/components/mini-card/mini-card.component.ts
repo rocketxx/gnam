@@ -15,7 +15,7 @@ export class MiniCardComponent implements OnInit{
   
   @Input() list_of_element : any[] = [];
   @Output() baseClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
-
+  @Input() isBevande : boolean = false;
   constructor(){}
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
