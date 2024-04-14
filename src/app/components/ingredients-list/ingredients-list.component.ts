@@ -24,6 +24,8 @@ export class IngredientsListComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadData();
+    // this.toggleColor('d4e37a3d-1073-4d35-b78e-0c32e3b04401') per edit basta recuperare
+    // tramite l'ID dell'item nel carrello, la lista degli id ingredienti associati
   }
 
   constructor(){}
