@@ -11,7 +11,15 @@ export class ReadOnlyCardV1Component implements OnInit{
   @Input() title: string = '';
   @Input() price: string= '';
   @Input() description: string= '';
-  
+
   ngOnInit(): void {
+    this.errorMessage()
   }
+
+  errorMessage()
+  {
+    if(!this.title)
+      this.description='Errore nel caricamento ..'
+  }
+
 }

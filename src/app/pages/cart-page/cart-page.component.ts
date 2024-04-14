@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule,ButtonModule],
+  imports: [CardModule,CommonModule,ButtonModule],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss'
 })

@@ -1,20 +1,14 @@
-<div class="card-container">
-    <div class="card-wrapper">
-      <div class="card" *ngFor="let item of cartItems">
-        <div class="card-header">
-          {{ item.nome }}
-        </div>
-        <div class="card-body">
-          <p>Tipo: {{ item.tipologia }}</p>
-          <p>Ingredienti 1: {{ item.ingredienti1.join(', ') }}</p>
-          <p>Ingredienti 2: {{ item.ingredienti2 ? item.ingredienti2.join(', ') : '-' }}</p>
-          <p>Ingredienti 3: {{ item.ingredienti3 ? item.ingredienti3.join(', ') : '-' }}</p>
-        </div>
-      </div>
-      <p-button label="Invia ordine" [loading]="loading" loadingIcon="pi pi-spinner" (onClick)="salvaOrdine()"></p-button>
-    </div>
-  </div>
-
-  <!-- <div class="fixed-button-container"> -->
-  <!-- </div> -->
-  
+<div *ngFor="let item of cartItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
+  <p-card header="{{ item.nome }}">
+    <p class="m-0">
+      Tipo: {{ item.tipologia }}<br>
+      Ingredienti 1: {{ item.ingredienti1.join(', ') }}<br>
+      Ingredienti 2: {{ item.ingredienti2 ? item.ingredienti2.join(', ') : '-' }}<br>
+      Ingredienti 3: {{ item.ingredienti3 ? item.ingredienti3.join(', ') : '-' }}
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button label="Modifica" icon="pi pi-file-edit"></p-button>
+      <p-button label="Elimina" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+  </ng-template>
+  </p-card>
+</div>
