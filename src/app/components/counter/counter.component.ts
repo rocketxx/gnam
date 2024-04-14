@@ -1,21 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-counter',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [CommonModule,ButtonModule],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.scss'
 })
 export class CounterComponent implements OnInit {
+  @Input() quantity: number = 0;
+  @Input() productId: string = '';
+  @Output() quantityChanged: EventEmitter<{ id: string; quantity: number; action: 'added' | 'removed' }> = new EventEmitter();
 
   ngOnInit(): void {
   }
 
-  @Input() quantity: number = 0;
-  @Input() productId: string = '';
-  @Output() quantityChanged: EventEmitter<{ id: string; quantity: number; action: 'added' | 'removed' }> = new EventEmitter();
 
   increase() {
     this.quantity++;

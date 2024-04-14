@@ -3,11 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
+import { CounterComponent } from '../counter/counter.component';
 
 @Component({
   selector: 'app-mini-card',
   standalone: true,
-  imports: [TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [CounterComponent,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './mini-card.component.html',
   styleUrl: './mini-card.component.scss'
 })
@@ -24,6 +25,11 @@ export class MiniCardComponent implements OnInit{
   emitIdProduct(item : any)
   {
     this.baseClicked.emit(item);
+  }
+
+  onQuantityChanged(event: any)
+  {
+    debugger
   }
 
 }
