@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
@@ -13,13 +13,15 @@ import { FoodTypes } from '../../models/Enum/foodTypes';
 })
 export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
-
+  @Input() isClient : boolean = true;
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.items = [
+    if(this.isClient)
+    {
+      this.items = [
       {
         label: 'Profilo',
         icon: 'pi pi-fw pi-user',
@@ -42,6 +44,48 @@ export class MenuComponent implements OnInit {
         queryParams : { value: FoodTypes.Panino }
       }
     ];
+      
+    }
+    else
+    {
+      this.items = [
+        {
+          label: 'Profilo',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+        {
+          label: 'Sicurezza',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'sicurezza-restaurant'
+        },
+        {
+          label: 'Carica prodotto',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+        {
+          label: 'Lista prodotti',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+        {
+          label: 'Menu',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+        {
+          label: 'Orari lavorativi',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+        {
+          label: 'Ordini',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'profile-restaurant'
+        },
+      ]
+    }
   }
 
 
