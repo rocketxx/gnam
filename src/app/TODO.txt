@@ -10,3 +10,4 @@ home:
 
 funzione check ristorante status: chiuso se gli orari del ristorante non compaciano con quelli attuali
 
+nel carrello aggiungi in bevande il componente counter

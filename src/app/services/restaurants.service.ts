@@ -13,14 +13,12 @@ export class RestaurantsService {
   private apiGetById = apiConfig.dettaglio_ristorante; 
 
   constructor(private http: HttpClient) { }
-
   getRistoranti(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl)
       .pipe(
         catchError(this.handleError)
       );
   }
-
   getDettaglioById(id: any): Observable<Restaurant> {
     return this.http.get<Restaurant>(this.apiGetById+'/'+id)
       .pipe(

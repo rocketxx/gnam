@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './counter.component.scss'
 })
 export class CounterComponent implements OnInit {
+  loadingIncrease : boolean = false;
+  loadingDecrease : boolean = false;
   @Input() quantity: number = 0;
   @Input() productId: string = '';
   @Output() quantityChanged: EventEmitter<{ id: string; quantity: number; action: 'added' | 'removed' }> = new EventEmitter();

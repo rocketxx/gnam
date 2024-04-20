@@ -29,7 +29,8 @@ export class MiniCardComponent implements OnInit{
 
   onQuantityChanged(event: any)
   {
-    debugger
+    // debugger
+    console.log('mini-card.component')
   }
 
 }

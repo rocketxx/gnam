@@ -1,6 +1,9 @@
 <div class="counter">
-    <button pButton type="button" icon="pi pi-minus" (click)="decrease()" class="p-button-secondary"></button>
+    <!-- <button pButton type="button" icon="pi pi-minus" (click)="decrease()" class="p-button-secondary"></button> -->
+    <p-button icon="pi pi-minus" [loading]="loadingDecrease" loadingIcon="pi pi-spinner" (onClick)="decrease()"></p-button>
     <span class="count">{{ quantity }}</span>
-    <button pButton type="button" icon="pi pi-plus" (click)="increase()" class="p-button-secondary"></button>
-  </div>
+    <!-- <button pButton type="button" icon="pi pi-plus" (click)="increase()" class="p-button-secondary"></button> -->
+    <p-button icon="pi pi-plus" [loading]="loadingIncrease" loadingIcon="pi pi-spinner" (onClick)="increase()"></p-button>
+  
+</div>
   
