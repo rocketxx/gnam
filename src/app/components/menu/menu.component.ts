@@ -52,37 +52,37 @@ export class MenuComponent implements OnInit {
         {
           label: 'Profilo',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'profilo-ristorante'
         },
-        {
-          label: 'Sicurezza',
-          icon: 'pi pi-fw pi-user',
-          routerLink: 'sicurezza-restaurant'
-        },
+        // {
+        //   label: 'Sicurezza',
+        //   icon: 'pi pi-fw pi-user',
+        //   routerLink: 'sicurezza-ristorante'
+        // },
         {
           label: 'Carica prodotto',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'carica-prodotto-ristorante'
         },
         {
           label: 'Lista prodotti',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'lista-prodotti-ristorante'
         },
         {
           label: 'Menu',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'menu-ristorante'
         },
         {
           label: 'Orari lavorativi',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'orari-ristorante'
         },
         {
           label: 'Ordini',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'profile-restaurant'
+          routerLink: 'ordini-ristorante'
         },
       ]
     }
