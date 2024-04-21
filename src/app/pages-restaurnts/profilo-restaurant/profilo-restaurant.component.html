@@ -1,1 +1,27 @@
-<p>profilo-restaurant works!</p>
+
+<div >
+    <div class="profile-container">
+        <label for="nomeCognome" class="block text-900 font-medium mb-2">Nome Attività</label>
+        <input id="nomeCognome" type="text" placeholder="Nome attività" pInputText class="w-full mb-3" [(ngModel)]="dettagli_profilo.nome">
+        <label for="nomeCognome" class="block text-900 font-medium mb-2">Indirizzo</label>
+        <input id="nomeCognome" type="text" placeholder="Indirizzo" pInputText class="w-full mb-3" [(ngModel)]="dettagli_profilo.cognome">
+        <label for="telefono" class="block text-900 font-medium mb-2">Numero di telefono</label>
+        <input id="telefono" type="text" placeholder="Numero di telefono" pInputText class="w-full mb-3" [(ngModel)]="dettagli_profilo.telefono">
+        <div class="button-container">
+            <!-- <button  pRipple pButton type="button" label="Aggiungi indirizzo" class="w-full"></button>
+            <button  pRipple pButton type="button" label="Salva indirizzo" class="w-full"></button> -->
+            <button (click)="Salva()" pRipple pButton type="button" label="Salva" class="w-full"></button>
+        
+        </div>
+    </div>
+
+</div>
+
+<div class="container-toggle">
+    <label for="telefono" class="block text-900 font-medium mb-2">Stato attività</label>
+    <p-toggleButton (click)="modificaStatoAttivita()" [(ngModel)]="dettagli_profilo.stato" onLabel="Aperto" offLabel="Chiuso" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{ width: '10em' }"></p-toggleButton>
+</div>
+
+<div class="card">
+    <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+</div>
