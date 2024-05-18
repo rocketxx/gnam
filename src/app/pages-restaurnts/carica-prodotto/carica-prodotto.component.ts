@@ -42,11 +42,10 @@ export class CaricaProdottoComponent implements OnInit{
   ngOnInit(): void {
     this.tipologieProdottiList =
     [
-      { nome: 'New York', code: 'NY' },
-      { nome: 'Rome', code: 'RM' },
-      { nome: 'London', code: 'LDN' },
-      { nome: 'Istanbul', code: 'IST' },
-      { nome: 'Paris', code: 'PRS' }
+      { nome: 'Salsa', code: 'NY' },
+      { nome: 'Carne', code: 'RM' },
+      { nome: 'Bevanda', code: 'LDN' },
+      { nome: 'Condimento', code: 'IST' },
   ];
   }
 
