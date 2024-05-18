@@ -1,1 +1,37 @@
-<p>carica-prodotto works!</p>
+<h3 class="container-centered">Carica foto</h3>
+<div class="container-centered">
+    <p-toast />
+    <p-fileUpload 
+        mode="basic" 
+        chooseLabel="Scegli" 
+        chooseIcon="pi pi-upload"
+        name="demo[]" 
+        url="" 
+        accept="image/*" 
+        (onUpload)="onUpload($event)" />
+</div>
+<div >
+    <div class="profile-container">
+        <h3 class="container-centered">Dettagli Prodotto</h3>
+        <input id="nome" type="text" placeholder="Nome prodotto" pInputText class="w-full mb-3" [(ngModel)]="dettagli_prodotto.nome">
+        <input id="descrizione" type="text" placeholder="Descrizione" pInputText class="w-full mb-3" [(ngModel)]="dettagli_prodotto.nome">
+        <input id="prezzo" type="text" placeholder="Prezzo" pInputText class="w-full mb-3" [(ngModel)]="dettagli_prodotto.nome">
+        <div class="card flex justify-content-center">
+
+            <p-dropdown 
+            [options]="tipologieProdottiList" 
+            [(ngModel)]="dettagli_prodotto.tipologia" 
+            optionLabel="nome"
+            placeholder="Tipologia" />
+        </div>
+        <div class="container-toggle">
+            <label for="telefono" class="block text-900 font-medium mb-2">Stato prodotto</label>
+            <p-toggleButton (click)="modificaStatoProdotto()" [(ngModel)]="dettagli_prodotto.stato" onLabel="Attivo" offLabel="Inattivo" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{ width: '10em' }"></p-toggleButton>
+        </div>
+    </div>
+    
+</div>
+
+<div class="bottom-button">
+    <button (click)="Salva()" pRipple pButton type="button" label="Salva" class="w-full"></button>
+</div>

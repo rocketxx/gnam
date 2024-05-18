@@ -1,0 +1,33 @@
+.container-centered
+{
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+}
+.button-container
+{
+    padding-top: 10px;
+}
+.profile-container {
+    padding-top: 10px;
+    justify-content: space-between;
+    gap: 20px; /* Aggiunge spazio tra le card */
+  }
+
+  .container-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Distanza in alto dagli altri oggetti */
+  }
+
+  .bottom-button {
+    // position: fixed;
+    bottom: 20px; /* Regola l'altezza del pulsante dal fondo della pagina */
+    right: 20px; /* Regola la distanza del pulsante dal bordo destro della pagina */
+    margin-bottom: 20px; /* Margine inferiore */
+    margin-top: calc(40vh - 40%);
+}
+
+
+
