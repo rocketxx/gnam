@@ -11,6 +11,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -22,7 +23,7 @@ interface UploadEvent {
   templateUrl: './carica-prodotto.component.html',
   styleUrl: './carica-prodotto.component.scss',
   imports: [FileUploadModule, ToastModule, CommonModule,DropdownModule,
-    ToggleButtonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule
+    InputNumberModule,ToggleButtonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule
   ],
   
   providers: [MessageService]
