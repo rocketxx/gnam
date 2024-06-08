@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Restaurant } from '../../models/restaurant.model';
+import { Restaurant } from '../../models/Restaurant.model';
+
 import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -18,7 +19,7 @@ import { MiniCardComponent } from '../../components/mini-card/mini-card.componen
 })
 export class DetailRestaurantComponent implements OnInit{
   
-  restaurant : Restaurant = new Restaurant();
+  restaurant : Restaurant | undefined;
   tabs: { title: string, content: string }[] = [];
   constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
   
