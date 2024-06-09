@@ -10,6 +10,7 @@ import { TagModule } from 'primeng/tag';
 import {TabViewModule } from 'primeng/tabview';
 import { PanelModule } from 'primeng/panel';
 import { MiniCardComponent } from '../../components/mini-card/mini-card.component';
+import { ProductType } from '../../models/Enum/ProductType';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -18,7 +19,8 @@ import { MiniCardComponent } from '../../components/mini-card/mini-card.componen
   styleUrl: './detail-restaurant.component.scss'
 })
 export class DetailRestaurantComponent implements OnInit{
-  
+  foodMenuList : any[] = []
+  drinkMenuList : any[] = []
   restaurant : Restaurant | undefined;
   tabs: { title: string, content: string }[] = [];
   constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
@@ -42,6 +44,8 @@ export class DetailRestaurantComponent implements OnInit{
     var id = this.route.snapshot.params['id'];
     this.restaurant_service.getRestaurantDetailById(id).subscribe(response=>{
       this.restaurant = response;
+      this.drinkMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.DRINK_TYPE);
+      this.foodMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.FOOD_TYPE);
     })
   }
 

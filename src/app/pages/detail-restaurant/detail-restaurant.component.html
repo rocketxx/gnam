@@ -8,13 +8,13 @@
                 <p-button (onClick)="personalizza_prodotto()" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button>
             </div>
         
-            <app-mini-card (baseClicked)="BaseClicked($event)" [list_of_element]="restaurant.menuCibo"></app-mini-card>
+            <app-mini-card (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-mini-card>
         
         </p-tabPanel>
         
         <p-tabPanel header="Bevande">
 
-            <app-mini-card [isBevande]="true" [list_of_element]="restaurant.menuBevande"></app-mini-card>
+            <app-mini-card [isBevande]="true" [list_of_element]="drinkMenuList"></app-mini-card>
 
         </p-tabPanel>   
     </p-tabView>
