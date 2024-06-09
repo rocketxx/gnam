@@ -1,5 +1,6 @@
 // import { ProductType } from './ProductType'; // Assuming you have a separate file for ProductType enum
 
+import { ProductType } from "./Enum/ProductType";
 import { Ingredient } from "./IngredientTMP.model";
 
 export class MenuItem {
@@ -11,9 +12,9 @@ export class MenuItem {
     ingredients: Ingredient[]; // List<Ingredient> is represented as Ingredient[]
     restaurantId: string;
     imageUrl: string;
-    // productType: ProductType;
-    // , productType: ProductType
-    constructor(id: string, name: string, description: string, price: number, type: string, ingredients: Ingredient[], restaurantId: string, imageUrl: string) {
+    productType: ProductType | undefined;
+
+    constructor(id: string, name: string, description: string, price: number, type: string, ingredients: Ingredient[], restaurantId: string, imageUrl: string,productType: ProductType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -22,6 +23,6 @@ export class MenuItem {
         this.ingredients = ingredients;
         this.restaurantId = restaurantId;
         this.imageUrl = imageUrl;
-        // this.productType = productType;
+        this.productType = productType;
     }
 }

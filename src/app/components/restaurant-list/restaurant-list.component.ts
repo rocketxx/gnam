@@ -29,11 +29,21 @@ export class RestaurantListComponent implements OnInit{
 
 
   LoadData(type_food : FoodTypes) {
-    this.restaurant_service.getRistorantiMock(type_food).subscribe(response=>{
-      this.items = response;
-      this.skeletonIsActive = false;
-    })
+    // this.restaurant_service.getRestaurants.subscribe(response=>{
+    //   this.items = response;
+    //   this.skeletonIsActive = false;
+    // })
+    this.restaurant_service.getRestaurants().subscribe(
+      (data) => {
+        this.items = data;
+        this.skeletonIsActive = false;
+      },
+      (error) => {
+        // this.errorMessage = error;
+      }
+    );
   }
+  
   
   detail_restaurant(id: any)
   {
