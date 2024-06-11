@@ -19,7 +19,7 @@
     <label for="telefono" class="block text-900 font-medium mb-2">Stato corrente attività</label>
     <p-toggleButton (click)="ChangeStatusRestaurant()" [(ngModel)]="dettagli_profilo.opened" onLabel="Aperto" offLabel="Chiuso" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{ width: '10em' }"></p-toggleButton>
 </div>
-<div class="container-toggle">
+<div class="container-toggle2">
     <label for="telefono" class="block text-900 font-medium mb-2">Orari consegne</label>
     <div *ngFor="let item of this.working_hours; let i = index" >
         <div class="container-toggle-and-card">
