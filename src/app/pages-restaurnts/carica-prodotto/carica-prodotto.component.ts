@@ -43,10 +43,10 @@ export class CaricaProdottoComponent implements OnInit{
 
     this.tipologieProdottiList =
     [
-      { nome: 'Salsa', code: 'NY' },
-      { nome: 'Carne', code: 'RM' },
-      { nome: 'Bevanda', code: 'LDN' },
-      { nome: 'Condimento', code: 'IST' },
+      { nome: 'Salsa', code: 'SALSA' },
+      { nome: 'Carne', code: 'CARNE' },
+      { nome: 'Bevanda', code: 'BEVANDA' },
+      { nome: 'Condimento', code: 'CONDIMENTO' },
   ];
   }
 
@@ -67,7 +67,7 @@ export class CaricaProdottoComponent implements OnInit{
     this.new_ingredient.restaurantId = idRestaurantMock
     this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
       this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
-
+      this.new_ingredient = new Ingredient();
     })
   }
   modificaStatoProdotto()
