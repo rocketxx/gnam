@@ -9,7 +9,7 @@ import { Ingredient } from '../models/Ingredient.model';
 })
 export class IngredientService {
 
-  // private base_api = '' 
+  private base_api_ingredients = base_api +'/ingredients' 
   constructor(private http: HttpClient) { }
   // getRestaurants(): Observable<any[]> {
   //   return this.http.get<any[]>(base_api)
@@ -19,7 +19,7 @@ export class IngredientService {
   // }
 
   createIngredient(ingredient: Ingredient): Observable<Ingredient> {
-    return this.http.post<Ingredient>(`${base_api}/create`, ingredient)
+    return this.http.post<Ingredient>(`${this.base_api_ingredients}/create`, ingredient)
       .pipe(
         catchError(this.handleError)
       );

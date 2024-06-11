@@ -1,8 +1,9 @@
 export class Ingredient {
     id: string; // @Id
     restaurantId: string;
+    // descrizione
     name: string;
-    type: string;
+    type: string; //cambia in un type adeguato
     price: number;
     isActive: boolean; // If the product is out of stock, it can be deactivated
 
