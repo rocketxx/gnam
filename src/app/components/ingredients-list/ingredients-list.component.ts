@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Ingredient } from '../../models/ingredient.model';
+// import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from '../../services/payload-ingredients.service';
 import { Typology } from '../../models/Enum/foodTypes';
 
@@ -13,7 +13,7 @@ import { Typology } from '../../models/Enum/foodTypes';
   styleUrl: './ingredients-list.component.scss'
 })
 export class IngredientsListComponent implements OnInit{
-  mockList : Ingredient[] = [];
+  mockList : any[] = [];
   isGreen: boolean = false;
   selectedIds: string[] = [];
 

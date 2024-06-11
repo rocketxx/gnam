@@ -1,7 +1,7 @@
 // import { ProductType } from './ProductType'; // Assuming you have a separate file for ProductType enum
 
 import { ProductType } from "./Enum/ProductType";
-import { Ingredient } from "./IngredientTMP.model";
+import { Ingredient } from "./Ingredient.model";
 
 export class MenuItem {
     id: string; // @Id

@@ -1,4 +1,4 @@
-import { Ingredient } from './IngredientTMP.model';
+import { Ingredient } from './Ingredient.model';
 import { MenuItem } from './MenuItem.model';
 
 export class OrderItem {
