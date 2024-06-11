@@ -24,14 +24,14 @@ export class ProfiloRestaurantComponent implements OnInit{
   constructor(private restaurant_service: RestaurantsService,private messageService: MessageService)
   {}
   ngOnInit(): void {
-    this.restaurant_service.getRestaurantById('6667f88b1a3f1d5e4df6b8f9').subscribe(response=>{
+    this.restaurant_service.getRestaurantById('66682c5187762f5279d13fa8').subscribe(response=>{
       this.dettagli_profilo = response
     })
   }
 
   UpdateRestaurant()
   {
-    this.restaurant_service.updateRestaurant('6667f88b1a3f1d5e4df6b8f9',this.dettagli_profilo).subscribe(reponse=>{
+    this.restaurant_service.updateRestaurant('66682c5187762f5279d13fa8',this.dettagli_profilo).subscribe(reponse=>{
       //azione eseguita
       this.messageService.add({severity: 'success', summary:'Messaggio informativo', detail:'Profilo aggiornato'});
 
@@ -40,7 +40,7 @@ export class ProfiloRestaurantComponent implements OnInit{
   
   ChangeStatusRestaurant()
   {
-    this.restaurant_service.changeStatusRestaurant('6667f88b1a3f1d5e4df6b8f9').subscribe(response=>{
+    this.restaurant_service.changeStatusRestaurant('66682c5187762f5279d13fa8').subscribe(response=>{
       var stato_attivita = this.dettagli_profilo.opened ? 'APERTA' : 'CHIUSA'
       var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
       this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});
