@@ -12,6 +12,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { Ingredient } from '../../models/Ingredient.model';
+import { IngredientService } from '../../services/ingredient.service';
+import { idRestaurantMock } from '../../config/constantVariable';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -30,10 +33,10 @@ interface UploadEvent {
 })
 export class CaricaProdottoComponent implements OnInit{
   uploadedFiles: any[] = [];
-  dettagli_prodotto : any;
+  new_ingredient: Ingredient = new Ingredient();
 
   tipologieProdottiList : any[] = [];
-  constructor(private messageService: MessageService) {}
+  constructor(private ingredient_service: IngredientService,private messageService: MessageService) {}
   ngOnInit(): void {
 
     this.loadData();
@@ -59,9 +62,13 @@ export class CaricaProdottoComponent implements OnInit{
   {
 
   }
-  Salva()
+  Save_data()
   {
+    this.new_ingredient.restaurantId = idRestaurantMock
+    this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
+      this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
 
+    })
   }
   modificaStatoProdotto()
   {

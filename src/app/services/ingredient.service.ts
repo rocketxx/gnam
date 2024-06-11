@@ -18,7 +18,7 @@ export class IngredientService {
   //     );
   // }
 
-  createIngredient(id: any, ingredient: Ingredient): Observable<Ingredient> {
+  createIngredient(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${base_api}/create`, ingredient)
       .pipe(
         catchError(this.handleError)
