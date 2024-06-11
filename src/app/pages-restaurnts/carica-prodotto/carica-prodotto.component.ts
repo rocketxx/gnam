@@ -30,17 +30,14 @@ interface UploadEvent {
 })
 export class CaricaProdottoComponent implements OnInit{
   uploadedFiles: any[] = [];
-  dettagli_prodotto : any = {
-    nome: '',
-    descrizione : '',
-    prezzo : 0,
-    stato : true,
-    tipologia : '',
-  };
+  dettagli_prodotto : any;
 
   tipologieProdottiList : any[] = [];
   constructor(private messageService: MessageService) {}
   ngOnInit(): void {
+
+    this.loadData();
+
     this.tipologieProdottiList =
     [
       { nome: 'Salsa', code: 'NY' },
@@ -58,6 +55,10 @@ export class CaricaProdottoComponent implements OnInit{
       this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
 
+  loadData()
+  {
+
+  }
   Salva()
   {
 
