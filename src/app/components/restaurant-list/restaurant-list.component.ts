@@ -37,7 +37,7 @@ export class RestaurantListComponent implements OnInit{
     : type_food === FoodTypes.Pizza
     ? 'PIZZA'
     : 'BOTH';
-    this.items = this.itemsTmp.filter(item=> item.type == choice_type )
+    this.items = this.itemsTmp.filter(item=> item.type == choice_type || item.type == 'BOTH')
   }
   //togliere type_food dall'input
   LoadData() {
