@@ -41,7 +41,7 @@ export class RestaurantListComponent implements OnInit{
   LoadData() {
     this.restaurant_service.getRestaurants().subscribe(
       (data) => {
-        this.items = data;
+        this.items = data.filter(item=> item.type == 'BREAD' || item.type == 'BOTH');
         this.itemsTmp = data;
         this.skeletonIsActive = false;
       },
