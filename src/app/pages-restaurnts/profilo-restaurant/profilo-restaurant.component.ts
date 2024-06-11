@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { Restaurant } from '../../models/Restaurant.model';
+import { WorkingHours } from '../../models/WorkingHours.model';
 @Component({
   selector: 'app-profilo-restaurant',
   standalone: true,
@@ -21,7 +22,7 @@ import { Restaurant } from '../../models/Restaurant.model';
 })
 export class ProfiloRestaurantComponent implements OnInit{
   dettagli_profilo : any;
-  working_hours : any[] = [];
+  working_hours : WorkingHours[] = [];
   constructor(private restaurant_service: RestaurantsService,private messageService: MessageService)
   {}
   ngOnInit(): void {
@@ -33,6 +34,8 @@ export class ProfiloRestaurantComponent implements OnInit{
 
   UpdateRestaurant()
   {
+    //aggiorna gli orari lavorativi
+    this.dettagli_profilo.working_hours = this.working_hours;
     this.restaurant_service.updateRestaurant('66682c5187762f5279d13fa8',this.dettagli_profilo).subscribe(reponse=>{
       //azione eseguita
       this.messageService.add({severity: 'success', summary:'Messaggio informativo', detail:'Profilo aggiornato'});
@@ -51,7 +54,12 @@ export class ProfiloRestaurantComponent implements OnInit{
 
   UpdateWorkingHours()
   {
-    
+    /*
+    dayOfWeek: string; // "Monday", "Tuesday", etc.
+    openingTime: string; // In TypeScript, LocalTime can be represented as string
+    closingTime: string; // In TypeScript, LocalTime can be represented as string
+    closed: boolean;
+    */
   }
 
 }
