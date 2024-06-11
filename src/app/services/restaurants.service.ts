@@ -39,6 +39,14 @@ export class RestaurantsService {
         catchError(this.handleError)
       );
   }
+
+updateRestaurant(id: any, restaurantDetails: Restaurant): Observable<Restaurant> {
+  return this.http.put<Restaurant>(`${base_api_restaurants}/update/${id}`, restaurantDetails)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+
   
   
 

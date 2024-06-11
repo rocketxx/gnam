@@ -29,8 +29,13 @@ export class ProfiloRestaurantComponent implements OnInit{
     })
   }
 
-  Salva()
+  UpdateRestaurant()
   {
+    this.restaurant_service.updateRestaurant('6667f88b1a3f1d5e4df6b8f9',this.dettagli_profilo).subscribe(reponse=>{
+      //azione eseguita
+      this.messageService.add({severity: 'success', summary:'Messaggio informativo', detail:'Profilo aggiornato'});
+
+    })
   }
   
   ChangeStatusRestaurant()
