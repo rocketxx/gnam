@@ -13,10 +13,11 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { Restaurant } from '../../models/Restaurant.model';
 import { WorkingHours } from '../../models/WorkingHours.model';
+import { InputMaskModule } from 'primeng/inputmask';
 @Component({
   selector: 'app-profilo-restaurant',
   standalone: true,
-  imports: [MessagesModule,ToastModule,ToggleButtonModule,CommonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule],
+  imports: [InputMaskModule,MessagesModule,ToastModule,ToggleButtonModule,CommonModule,FormsModule,ButtonModule,CheckboxModule,IconFieldModule,InputIconModule,InputTextModule],
   templateUrl: './profilo-restaurant.component.html',
   styleUrl: './profilo-restaurant.component.scss'
 })

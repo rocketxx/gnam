@@ -33,6 +33,28 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px; /* Distanza in alto dagli altri oggetti */
+    margin-bottom: 80px;
   }
-  
+
+  .container-toggle-and-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Distanza in alto dagli altri oggetti */
+    border: 1px solid #ccc; /* Bordo sottile grigio */
+    border-radius: 8px; /* Angoli arrotondati */
+    padding: 16px; /* Spaziatura interna */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombreggiatura leggera */
+    background-color: #fff; /* Sfondo bianco */
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 2px; /* Distanza dal bordo inferiore */
+  left: 50%;
+  transform: translateX(-50%); /* Centra orizzontalmente il pulsante */
+  z-index: 1000; /* Assicura che il pulsante sia sopra altri contenuti */
+  border-radius: 50px; /* Bordi rotondi */
+}
+
   
