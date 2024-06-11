@@ -9,6 +9,7 @@ import { MessagesModule } from 'primeng/messages';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
 import { PizzaPaninoFilterComponent } from '../pizza-panino-filter/pizza-panino-filter.component';
+import { RestaurantType } from '../../models/Enum/RestaurantType';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -20,22 +21,30 @@ import { PizzaPaninoFilterComponent } from '../pizza-panino-filter/pizza-panino-
 export class RestaurantListComponent implements OnInit{
   TypeFood : FoodTypes = FoodTypes.Panino
   items: any[] = [];
+  itemsTmp: any[] = [];
   skeletonIsActive : boolean = true;
   constructor(private restaurant_service: RestaurantsService,private router: Router)
   {}
   ngOnInit(): void {
-  this.LoadData(this.TypeFood);
+  this.LoadData();
   }
 
-
-  LoadData(type_food : FoodTypes) {
-    // this.restaurant_service.getRestaurants.subscribe(response=>{
-    //   this.items = response;
-    //   this.skeletonIsActive = false;
-    // })
+  FilterRestaurants(type_food : FoodTypes)
+  {
+    this.items = this.itemsTmp;
+    let choice_type: string = type_food === FoodTypes.Panino
+    ? 'BREAD'
+    : type_food === FoodTypes.Pizza
+    ? 'PIZZA'
+    : 'BOTH';
+    this.items = this.itemsTmp.filter(item=> item.type == choice_type )
+  }
+  //togliere type_food dall'input
+  LoadData() {
     this.restaurant_service.getRestaurants().subscribe(
       (data) => {
         this.items = data;
+        this.itemsTmp = data;
         this.skeletonIsActive = false;
       },
       (error) => {
