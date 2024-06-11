@@ -32,6 +32,14 @@ export class RestaurantsService {
         catchError(this.handleError)
       );
   }
+
+  changeStatusRestaurant(id: any): Observable<Restaurant> {
+    return this.http.put<Restaurant>(`${base_api_restaurants}/opened/${id}`, {})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  
   
 
   // getRistorantiMock(type_food : FoodTypes): Observable<any[]>

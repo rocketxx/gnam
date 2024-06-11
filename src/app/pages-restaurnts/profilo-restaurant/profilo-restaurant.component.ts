@@ -33,11 +33,13 @@ export class ProfiloRestaurantComponent implements OnInit{
   {
   }
   
-  modificaStatoAttivita()
+  ChangeStatusRestaurant()
   {
-    var stato_attivita = this.dettagli_profilo.opened ? 'APERTA' : 'CHIUSA'
-    var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
-    this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});
+    this.restaurant_service.changeStatusRestaurant('6667f88b1a3f1d5e4df6b8f9').subscribe(response=>{
+      var stato_attivita = this.dettagli_profilo.opened ? 'APERTA' : 'CHIUSA'
+      var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
+      this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});
+    })
   }
 
 }
