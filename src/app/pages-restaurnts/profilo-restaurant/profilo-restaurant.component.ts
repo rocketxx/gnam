@@ -21,11 +21,13 @@ import { Restaurant } from '../../models/Restaurant.model';
 })
 export class ProfiloRestaurantComponent implements OnInit{
   dettagli_profilo : any;
+  working_hours : any[] = [];
   constructor(private restaurant_service: RestaurantsService,private messageService: MessageService)
   {}
   ngOnInit(): void {
     this.restaurant_service.getRestaurantById('66682c5187762f5279d13fa8').subscribe(response=>{
       this.dettagli_profilo = response
+      this.working_hours = response.workingHours;
     })
   }
 
@@ -45,6 +47,11 @@ export class ProfiloRestaurantComponent implements OnInit{
       var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
       this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});
     })
+  }
+
+  UpdateWorkingHours()
+  {
+    
   }
 
 }
