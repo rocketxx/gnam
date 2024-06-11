@@ -17,7 +17,16 @@ export class RestaurantsService {
         catchError(this.handleError)
       );
   }
+
+  //non prende il vero dettaglio, si dovrebbe modificare per prendere robe come menu ecc
   getRestaurantDetailById(id: any): Observable<Restaurant> {
+    return this.http.get<Restaurant>(base_api_restaurants+'/'+id)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getRestaurantById(id: any): Observable<Restaurant> {
     return this.http.get<Restaurant>(base_api_restaurants+'/'+id)
       .pipe(
         catchError(this.handleError)

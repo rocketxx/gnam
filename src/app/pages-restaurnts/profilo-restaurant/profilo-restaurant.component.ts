@@ -10,6 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { RestaurantsService } from '../../services/restaurants.service';
+import { Restaurant } from '../../models/Restaurant.model';
 @Component({
   selector: 'app-profilo-restaurant',
   standalone: true,
@@ -18,17 +20,13 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
   styleUrl: './profilo-restaurant.component.scss'
 })
 export class ProfiloRestaurantComponent implements OnInit{
-  dettagli_profilo : any = {
-    nome: '',
-    cognome: '',
-    telefono: '',
-    indirizzio : '',
-    stato : true
-  };
-  constructor(private messageService: MessageService)
+  dettagli_profilo : any;
+  constructor(private restaurant_service: RestaurantsService,private messageService: MessageService)
   {}
   ngOnInit(): void {
-
+    this.restaurant_service.getRestaurantById('6667f88b1a3f1d5e4df6b8f9').subscribe(response=>{
+      this.dettagli_profilo = response
+    })
   }
 
   Salva()
@@ -37,8 +35,8 @@ export class ProfiloRestaurantComponent implements OnInit{
   
   modificaStatoAttivita()
   {
-    var stato_attivita = this.dettagli_profilo.stato ? 'APERTA' : 'CHIUSA'
-    var stato_attivita_severity = this.dettagli_profilo.stato ? 'success' : 'error'
+    var stato_attivita = this.dettagli_profilo.opened ? 'APERTA' : 'CHIUSA'
+    var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
     this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});
   }
 
