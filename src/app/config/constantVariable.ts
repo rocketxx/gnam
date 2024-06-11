@@ -1,0 +1,1 @@
+export const idRestaurantMock = '66682c5187762f5279d13fa8';

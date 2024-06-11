@@ -14,6 +14,7 @@ import { RestaurantsService } from '../../services/restaurants.service';
 import { Restaurant } from '../../models/Restaurant.model';
 import { WorkingHours } from '../../models/WorkingHours.model';
 import { InputMaskModule } from 'primeng/inputmask';
+import { idRestaurantMock } from '../../config/constantVariable';
 @Component({
   selector: 'app-profilo-restaurant',
   standalone: true,
@@ -27,7 +28,7 @@ export class ProfiloRestaurantComponent implements OnInit{
   constructor(private restaurant_service: RestaurantsService,private messageService: MessageService)
   {}
   ngOnInit(): void {
-    this.restaurant_service.getRestaurantById('66682c5187762f5279d13fa8').subscribe(response=>{
+    this.restaurant_service.getRestaurantById(idRestaurantMock).subscribe(response=>{
       this.dettagli_profilo = response
       this.working_hours = response.workingHours;
     })
@@ -37,7 +38,7 @@ export class ProfiloRestaurantComponent implements OnInit{
   {
     //aggiorna gli orari lavorativi
     this.dettagli_profilo.working_hours = this.working_hours;
-    this.restaurant_service.updateRestaurant('66682c5187762f5279d13fa8',this.dettagli_profilo).subscribe(reponse=>{
+    this.restaurant_service.updateRestaurant(idRestaurantMock,this.dettagli_profilo).subscribe(reponse=>{
       //azione eseguita
       this.messageService.add({severity: 'success', summary:'Messaggio informativo', detail:'Profilo aggiornato'});
 
@@ -46,7 +47,7 @@ export class ProfiloRestaurantComponent implements OnInit{
   
   ChangeStatusRestaurant()
   {
-    this.restaurant_service.changeStatusRestaurant('66682c5187762f5279d13fa8').subscribe(response=>{
+    this.restaurant_service.changeStatusRestaurant(idRestaurantMock).subscribe(response=>{
       var stato_attivita = this.dettagli_profilo.opened ? 'APERTA' : 'CHIUSA'
       var stato_attivita_severity = this.dettagli_profilo.opened ? 'success' : 'error'
       this.messageService.add({severity: stato_attivita_severity, summary:'Messaggio informativo', detail:'Stato attività: ' + stato_attivita});

@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: 'carica-prodotto-ristorante', title: 'carica-prodotto', component: CaricaProdottoComponent },
     { path: 'lista-prodotti-ristorante', title: 'lista-prodotti', component: ListaProdottiComponent },
     { path: 'menu-ristorante', title: 'menu', component: MenuRistoranteComponent },
-    { path: 'orari-ristorante', title: 'orari', component: OrariLavorativiComponent },
+    { path: 'ferie', title: 'orari', component: OrariLavorativiComponent },
     { path: 'ordini-ristorante', title: 'ordini', component: OrdiniRistoranteComponent },
 
 ];

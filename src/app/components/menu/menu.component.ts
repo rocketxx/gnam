@@ -75,9 +75,9 @@ export class MenuComponent implements OnInit {
           routerLink: 'menu-ristorante'
         },
         {
-          label: 'Orari lavorativi',
+          label: 'Ferie',
           icon: 'pi pi-fw pi-user',
-          routerLink: 'orari-ristorante'
+          routerLink: 'ferie'
         },
         {
           label: 'Ordini',
