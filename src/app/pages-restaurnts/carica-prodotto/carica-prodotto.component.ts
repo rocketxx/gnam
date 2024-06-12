@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { Ingredient } from '../../models/Ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
 import { INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
+import { ActivatedRoute } from '@angular/router';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -36,11 +37,21 @@ export class CaricaProdottoComponent implements OnInit{
   new_ingredient: Ingredient = new Ingredient();
   selectedTypeIngredient: any | undefined;
   tipologieProdottiList : any[] = [];
-  constructor(private ingredient_service: IngredientService,private messageService: MessageService) {}
-  ngOnInit(): void {
+  editState : boolean = false;
+  constructor(private ingredient_service: IngredientService,private messageService: MessageService,private route: ActivatedRoute) {}
+  ngOnInit(): void 
+  {
+      const editId = this.route.snapshot.paramMap.get('id');
+      this.GetIngredientsTypes();
 
-    this.loadData();
-    this.GetIngredientsTypes();
+      if(editId != null) //stato EDIT
+      {
+        this.editState = true
+        this.loadData();
+      }
+      else //stato NEW
+      {
+      }
   }
 
   GetIngredientsTypes()
@@ -61,15 +72,25 @@ export class CaricaProdottoComponent implements OnInit{
 
   loadData()
   {
-
+    this.ingredient_service.getIngredientById(this.route.snapshot.paramMap.get('id')).subscribe(response=>{
+      this.new_ingredient = response
+      this.selectedTypeIngredient = this.new_ingredient.type
+    });
   }
   Save_data()
   {
-    this.AddExtraInfo()
-    this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
-      this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
-      this.new_ingredient = new Ingredient();
-    })
+    if(this.editState)
+    {
+      //chiamata di update
+    }
+    else
+    {
+      this.AddExtraInfo()
+      this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
+        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
+        this.new_ingredient = new Ingredient();
+      })
+    }
   }
   modificaStatoProdotto()
   {

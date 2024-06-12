@@ -19,6 +19,13 @@ export class IngredientService {
       );
   }
 
+  getIngredientById(idIngredient : any): Observable<any> {
+    return this.http.get<any>(this.base_api_ingredients + "/by-id"+ "/" + idIngredient)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   createIngredient(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${this.base_api_ingredients}/create`, ingredient)
       .pipe(
