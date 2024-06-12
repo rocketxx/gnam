@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
 import { IngredientService } from '../../services/ingredient.service';
 import { idRestaurantMock } from '../../config/constantVariable';
+import { Ingredient } from '../../models/Ingredient.model';
 @Component({
   selector: 'app-lista-prodotti',
   standalone: true,
@@ -18,9 +19,12 @@ import { idRestaurantMock } from '../../config/constantVariable';
   styleUrl: './lista-prodotti.component.scss'
 })
 export class ListaProdottiComponent implements OnInit {
-
+  
+  ingredients_list : Ingredient[] = [];
+  loading_data : boolean = true;
 
   constructor(private ingredient_service : IngredientService){}
+
 
   ngOnInit(): void {
     this.LoadData();
@@ -29,7 +33,9 @@ export class ListaProdottiComponent implements OnInit {
   LoadData()
   {
     this.ingredient_service.getIngredients(idRestaurantMock).subscribe(response=>{
-      console.log(response);
+      this.ingredients_list = response;
+      this.loading_data = false
+      console.log(response)
     })
   }
 
