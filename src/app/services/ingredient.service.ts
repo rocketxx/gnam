@@ -11,12 +11,13 @@ export class IngredientService {
 
   private base_api_ingredients = base_api +'/ingredients' 
   constructor(private http: HttpClient) { }
-  // getRestaurants(): Observable<any[]> {
-  //   return this.http.get<any[]>(base_api)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
+
+  getIngredients(idRestaurant : any): Observable<any[]> {
+    return this.http.get<any[]>(this.base_api_ingredients + "/ingredients-by-restaurant"+ "/" + idRestaurant)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
   createIngredient(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${this.base_api_ingredients}/create`, ingredient)
