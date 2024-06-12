@@ -14,3 +14,14 @@ $secondary-color: #4CAF50;
 
 // Colore terziario
 $tertiary-color: #FFC300;
+
+
+// richiamandola con w-full fixed-bottom, si ottiene un pulsante posizionato in basso e fixed, con bordi arrotondati
+.fixed-bottom {
+    position: fixed;
+    bottom: 2px; /* Distanza dal bordo inferiore */
+    left: 50%;
+    transform: translateX(-50%); /* Centra orizzontalmente il pulsante */
+    z-index: 1000; /* Assicura che il pulsante sia sopra altri contenuti */
+    border-radius: 50px; /* Bordi rotondi */
+  }

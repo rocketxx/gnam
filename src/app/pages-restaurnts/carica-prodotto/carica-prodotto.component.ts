@@ -51,13 +51,13 @@ export class CaricaProdottoComponent implements OnInit{
     }));
   }
 
-  onUpload(event:any) {
-      for(let file of event.files) {
-          this.uploadedFiles.push(file);
-      }
+  // onUpload(event:any) {
+  //     for(let file of event.files) {
+  //         this.uploadedFiles.push(file);
+  //     }
 
-      this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-  }
+  //     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  // }
 
   loadData()
   {
@@ -79,6 +79,7 @@ export class CaricaProdottoComponent implements OnInit{
   AddExtraInfo()
   {
     this.new_ingredient.restaurantId = idRestaurantMock
+    // TODO: aggiungi controllo se è undefined o null. in caso di edit si spacca altrimenti o perdi l'info
     this.new_ingredient.type = this.selectedTypeIngredient.name;
   }
 }

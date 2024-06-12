@@ -11,3 +11,6 @@ home:
 funzione check ristorante status: chiuso se gli orari del ristorante non compaciano con quelli attuali
 
 nel carrello aggiungi in bevande il componente counter
+
+TIPS:
+<div class="card p-fluid flex flex-wrap gap-3"> 

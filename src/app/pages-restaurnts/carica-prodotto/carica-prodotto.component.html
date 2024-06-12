@@ -1,4 +1,4 @@
-<h3 class="container-centered">Carica foto</h3>
+<!-- <h3 class="container-centered">Carica foto</h3>
 <div class="container-centered">
     <p-toast />
     <p-fileUpload 
@@ -9,22 +9,26 @@
         url="" 
         accept="image/*" 
         (onUpload)="onUpload($event)" />
+</div> -->
+<h3 class="container-centered">Dettagli Ingrediente</h3>
+<div class="card p-fluid flex flex-wrap gap-3">
+
+    <label for="name">Nome</label>
+    <input id="name" type="text" placeholder="Nome prodotto" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.name">
+    <!-- <input id="descrizione" type="text" placeholder="Descrizione" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.description"> -->
+    <!-- <input id="prezzo" type="text" placeholder="Prezzo" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.prezzo"> -->
+    <label for="telefono" class="block text-900 font-medium mb-2">Prezzo</label>
+    <p-inputNumber 
+        mode="currency" 
+        currency="EUR"
+        id="prezzo"  
+        class="w-full mb-3" 
+        [(ngModel)]="new_ingredient.price"
+        inputId="integeronly">
+    </p-inputNumber>
 </div>
 <div >
     <div class="profile-container">
-        <h3 class="container-centered">Dettagli Ingrediente</h3>
-        <input id="nome" type="text" placeholder="Nome prodotto" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.name">
-        <!-- <input id="descrizione" type="text" placeholder="Descrizione" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.description"> -->
-        <!-- <input id="prezzo" type="text" placeholder="Prezzo" pInputText class="w-full mb-3" [(ngModel)]="new_ingredient.prezzo"> -->
-        <label for="telefono" class="block text-900 font-medium mb-2">Prezzo</label>
-        <p-inputNumber 
-            mode="currency" 
-            currency="EUR"
-            id="prezzo"  
-            class="w-full mb-3" 
-            [(ngModel)]="new_ingredient.price"
-            inputId="integeronly">
-        </p-inputNumber>
 
         <div class="card flex justify-content-center">
             <p-dropdown 
@@ -42,5 +46,5 @@
 </div>
 
 <div class="bottom-button">
-    <button (click)="Save_data()" pRipple pButton type="button" label="Salva" class="w-full"></button>
+    <button (click)="Save_data()" pRipple pButton type="button" label="Salva" class="w-full fixed-bottom"></button>
 </div>
