@@ -8,8 +8,8 @@
                 <th >
                     Nome 
                 </th>
-                <th >
-                    Attivo
+                <th>
+                    Stato
                 </th>
                 <th>
                     Tipo 
@@ -31,10 +31,7 @@
                 <td>{{ product.type }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                    <!-- <p-button label="Primary" />
-                      -->
                       <p-button (onClick)="GoToEditIngredient(product.id)" icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="success " />
-                    <!-- <button  pRipple pButton type="button" label="Vai" ></button> -->
                 </td>
                 
             </tr>
