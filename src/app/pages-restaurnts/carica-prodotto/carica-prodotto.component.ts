@@ -86,6 +86,7 @@ export class CaricaProdottoComponent implements OnInit{
       this.new_ingredient.type = this.selectedTypeIngredient.name;
       this.ingredient_service.updateIngredient(this.GetIdInRoute(),this.new_ingredient).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente modificato'});
+       //ATTENDI E POI CAMBIA
         this.router.navigate(['/lista-prodotti-ristorante']);
       })
       this.editState = false;
