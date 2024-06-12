@@ -11,10 +11,12 @@ import { CommonModule } from '@angular/common';
 import { IngredientService } from '../../services/ingredient.service';
 import { idRestaurantMock } from '../../config/constantVariable';
 import { Ingredient } from '../../models/Ingredient.model';
+import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista-prodotti',
   standalone: true,
-  imports: [TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, DropdownModule, HttpClientModule, CommonModule],
+  imports: [ButtonModule,TableModule, TagModule, IconFieldModule, InputTextModule, InputIconModule, MultiSelectModule, DropdownModule, HttpClientModule, CommonModule],
   templateUrl: './lista-prodotti.component.html',
   styleUrl: './lista-prodotti.component.scss'
 })
@@ -23,7 +25,7 @@ export class ListaProdottiComponent implements OnInit {
   ingredients_list : Ingredient[] = [];
   loading_data : boolean = true;
 
-  constructor(private ingredient_service : IngredientService){}
+  constructor(private ingredient_service : IngredientService,private router: Router){}
 
 
   ngOnInit(): void {
@@ -37,6 +39,12 @@ export class ListaProdottiComponent implements OnInit {
       this.loading_data = false
       console.log(response)
     })
+  }
+
+  GoToEditIngredient(id: any)
+  {
+    //passo id al routing e vado in carica prodotto
+    this.router.navigate(['/carica-prodotto-ristorante', id]);
   }
 
 }
