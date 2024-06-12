@@ -29,7 +29,7 @@ export const routes: Routes = [
     { path: 'profilo-ristorante', title: 'profilo', component: ProfiloRestaurantComponent },
     // { path: 'sicurezza-ristorante', title: 'sicurezza', component: ProfiloRestaurantComponent },
     { path: 'carica-prodotto-ristorante', title: 'carica-prodotto', component: CaricaProdottoComponent },
-    { path: 'carica-prodotto-ristorante/:id', title: 'carica-prodotto', component: CaricaProdottoComponent },
+    { path: 'modifica-prodotto-ristorante/:id', title: 'carica-prodotto', component: CaricaProdottoComponent },
     { path: 'lista-prodotti-ristorante', title: 'lista-prodotti', component: ListaProdottiComponent },
     { path: 'menu-ristorante', title: 'menu', component: MenuRistoranteComponent },
     { path: 'ferie', title: 'orari', component: OrariLavorativiComponent },

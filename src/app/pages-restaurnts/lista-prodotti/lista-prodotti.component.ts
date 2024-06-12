@@ -44,7 +44,7 @@ export class ListaProdottiComponent implements OnInit {
   GoToEditIngredient(id: any)
   {
     //passo id al routing e vado in carica prodotto
-    this.router.navigate(['/carica-prodotto-ristorante', id]);
+    this.router.navigate(['/modifica-prodotto-ristorante', id]);
   }
 
 }
