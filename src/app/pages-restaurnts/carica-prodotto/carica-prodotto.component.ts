@@ -15,7 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { Ingredient } from '../../models/Ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
 import { INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -38,7 +38,7 @@ export class CaricaProdottoComponent implements OnInit{
   selectedTypeIngredient: any | undefined;
   tipologieProdottiList : any[] = [];
   editState : boolean = false;
-  constructor(private ingredient_service: IngredientService,private messageService: MessageService,private route: ActivatedRoute) {}
+  constructor(private ingredient_service: IngredientService,private messageService: MessageService,private route: ActivatedRoute,private router: Router) {}
   ngOnInit(): void 
   {
       const editId = this.route.snapshot.paramMap.get('id');
@@ -72,16 +72,23 @@ export class CaricaProdottoComponent implements OnInit{
 
   loadData()
   {
-    this.ingredient_service.getIngredientById(this.route.snapshot.paramMap.get('id')).subscribe(response=>{
+    this.ingredient_service.getIngredientById(this.GetIdInRoute()).subscribe(response=>{
       this.new_ingredient = response
-      this.selectedTypeIngredient = this.new_ingredient.type
+      this.selectedTypeIngredient = {name : this.new_ingredient.type}; 
+
+
     });
   }
   Save_data()
   {
     if(this.editState)
     {
-      //chiamata di update
+      this.new_ingredient.type = this.selectedTypeIngredient.name;
+      this.ingredient_service.updateIngredient(this.GetIdInRoute(),this.new_ingredient).subscribe(response=>{
+        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente modificato'});
+        this.router.navigate(['/lista-prodotti-ristorante']);
+      })
+      this.editState = false;
     }
     else
     {
@@ -95,6 +102,11 @@ export class CaricaProdottoComponent implements OnInit{
   modificaStatoProdotto()
   {
 
+  }
+
+  GetIdInRoute()
+  {
+    return this.route.snapshot.paramMap.get('id');
   }
 
   AddExtraInfo()

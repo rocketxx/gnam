@@ -33,6 +33,13 @@ export class IngredientService {
       );
   }
 
+  updateIngredient(id: any, IngredientDetails: Ingredient): Observable<Ingredient> {
+    return this.http.put<Ingredient>(`${this.base_api_ingredients}/update/${id}`, IngredientDetails)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: any) {
     console.error('Errore nella richiesta:', error);
     return throwError(error);
