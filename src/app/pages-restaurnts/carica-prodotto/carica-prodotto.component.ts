@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Ingredient } from '../../models/Ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
-import { idRestaurantMock } from '../../config/constantVariable';
+import { INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -34,20 +34,21 @@ interface UploadEvent {
 export class CaricaProdottoComponent implements OnInit{
   uploadedFiles: any[] = [];
   new_ingredient: Ingredient = new Ingredient();
-
+  selectedTypeIngredient: any | undefined;
   tipologieProdottiList : any[] = [];
   constructor(private ingredient_service: IngredientService,private messageService: MessageService) {}
   ngOnInit(): void {
 
     this.loadData();
+    this.GetIngredientsTypes();
+  }
 
-    this.tipologieProdottiList =
-    [
-      { nome: 'Salsa', code: 'SALSA' },
-      { nome: 'Carne', code: 'CARNE' },
-      { nome: 'Bevanda', code: 'BEVANDA' },
-      { nome: 'Condimento', code: 'CONDIMENTO' },
-  ];
+  GetIngredientsTypes()
+  {
+    this.tipologieProdottiList = INGREDIENTS_TYPES_CONST.map(type => ({
+      name: type,
+      // code: type.toUpperCase()
+    }));
   }
 
   onUpload(event:any) {
@@ -64,7 +65,7 @@ export class CaricaProdottoComponent implements OnInit{
   }
   Save_data()
   {
-    this.new_ingredient.restaurantId = idRestaurantMock
+    this.AddExtraInfo()
     this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
       this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
       this.new_ingredient = new Ingredient();
@@ -73,5 +74,11 @@ export class CaricaProdottoComponent implements OnInit{
   modificaStatoProdotto()
   {
 
+  }
+
+  AddExtraInfo()
+  {
+    this.new_ingredient.restaurantId = idRestaurantMock
+    this.new_ingredient.type = this.selectedTypeIngredient.name;
   }
 }
