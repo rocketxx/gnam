@@ -5,4 +5,4 @@ export const CARNE = 'Carne';
 export const BEVANDA = 'Bevanda';
 export const CONDIMENTO = 'Condimento';
 export const SPEZIA = 'Spezia'
-export const INGREDIENTS_TYPES_CONST = [SALSA, CARNE, BEVANDA, CONDIMENTO,SPEZIA];
+export const INGREDIENTS_TYPES_CONST = [SALSA, CARNE, CONDIMENTO,SPEZIA];

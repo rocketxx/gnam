@@ -25,3 +25,9 @@ $tertiary-color: #FFC300;
     z-index: 1000; /* Assicura che il pulsante sia sopra altri contenuti */
     border-radius: 50px; /* Bordi rotondi */
   }
+  .container-centered
+  {
+      display: flex;
+      padding-top: 10px;
+      justify-content: center;
+  }
