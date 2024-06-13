@@ -9,11 +9,14 @@ export const apiConfig = {
   };
 
   // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tUn7mE2S4p8_xMP_pCYtfhsfeXMOO6FdVA&s
-  
-
+  const API_BASE_URL = 'http://localhost:8080'
+// const API_BASE_URL_MENU_ITEMS = 'menuitems'
   // stato dell'arte:
   // cambia quelle sopra in simili a queste sotto
-  // const ENDPOINTS = {
-  //   GET_RESTAURANT_DETAIL: (id) => `${API_BASE_URL}/restaurants/detail/${id}`,
-  //   // Aggiungi altri endpoint qui
-  // };
+  export const ENDPOINTS_MENU_ITEMS = {
+    GET_MENU_ITEM_BY_ID: (id: any) => `${API_BASE_URL}/menuitems/${id}`,
+    CREATE_MENU_ITEM: `${API_BASE_URL}/menuitems/create`,
+    GET_MENU_ITEMS_BY_RESTAURANT_ID: (restaurantId: any) => `${API_BASE_URL}/menuitems/menu-by-restaurant/${restaurantId}`,
+    // CREATE_MENUITEM: `${API_BASE_URL}/menuitems`,
+    // Aggiungi altri endpoint qui
+  };
