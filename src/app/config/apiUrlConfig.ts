@@ -10,3 +10,10 @@ export const apiConfig = {
 
   // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tUn7mE2S4p8_xMP_pCYtfhsfeXMOO6FdVA&s
   
+
+  // stato dell'arte:
+  // cambia quelle sopra in simili a queste sotto
+  // const ENDPOINTS = {
+  //   GET_RESTAURANT_DETAIL: (id) => `${API_BASE_URL}/restaurants/detail/${id}`,
+  //   // Aggiungi altri endpoint qui
+  // };

@@ -70,7 +70,12 @@ export class MenuComponent implements OnInit {
           routerLink: 'lista-prodotti-ristorante'
         },
         {
-          label: 'Menu',
+          label: 'Carica menu',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'menu-ristorante'
+        },
+        {
+          label: 'Lista menu', //crea componente 
           icon: 'pi pi-fw pi-user',
           routerLink: 'menu-ristorante'
         },

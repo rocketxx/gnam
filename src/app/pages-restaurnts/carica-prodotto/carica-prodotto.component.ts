@@ -33,7 +33,6 @@ interface UploadEvent {
   providers: [MessageService]
 })
 export class CaricaProdottoComponent implements OnInit{
-  uploadedFiles: any[] = [];
   new_ingredient: Ingredient = new Ingredient();
   selectedTypeIngredient: any | undefined;
   tipologieProdottiList : any[] = [];
@@ -58,27 +57,18 @@ export class CaricaProdottoComponent implements OnInit{
   {
     this.tipologieProdottiList = INGREDIENTS_TYPES_CONST.map(type => ({
       name: type,
-      // code: type.toUpperCase()
     }));
   }
-
-  // onUpload(event:any) {
-  //     for(let file of event.files) {
-  //         this.uploadedFiles.push(file);
-  //     }
-
-  //     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-  // }
 
   loadData()
   {
     this.ingredient_service.getIngredientById(this.GetIdInRoute()).subscribe(response=>{
       this.new_ingredient = response
+      this.new_ingredient.isActive = response.active //per qualche ragione mi arriva active anzichè isActive e non riesce a fare ovvimente il mapping
       this.selectedTypeIngredient = {name : this.new_ingredient.type}; 
-
-
     });
   }
+
   Save_data()
   {
     if(this.editState)
@@ -100,6 +90,7 @@ export class CaricaProdottoComponent implements OnInit{
       })
     }
   }
+
   modificaStatoProdotto()
   {
 
