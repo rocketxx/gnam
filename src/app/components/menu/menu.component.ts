@@ -77,7 +77,7 @@ export class MenuComponent implements OnInit {
         {
           label: 'Lista menu', //crea componente 
           icon: 'pi pi-fw pi-user',
-          routerLink: 'menu-ristorante'
+          routerLink: 'lista-menu'
         },
         {
           label: 'Ferie',

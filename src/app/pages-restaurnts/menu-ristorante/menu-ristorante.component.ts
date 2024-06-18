@@ -15,7 +15,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItemService } from '../../services/menu-item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { MENU_TYPES } from '../../config/constantVariable';
+import { MENU_TYPES, idRestaurantMock } from '../../config/constantVariable';
 
 @Component({
   selector: 'app-menu-ristorante',
@@ -85,6 +85,7 @@ export class MenuRistoranteComponent implements OnInit {
     }
     else
     {
+      this.currentMenuItem.restaurantId = idRestaurantMock;
         this.currentMenuItem.type = this.selectedTypeMenu.name;
       // this.currentMenuItem.productType = this.selectedTypeMenu.name
         this.menu_item_service.createMenuItem(this.currentMenuItem).subscribe(response=>{
