@@ -47,7 +47,7 @@ export class MenuRistoranteComponent implements OnInit {
     if(editId != null) //stato EDIT
     {
       this.editState = true
-      this.loadData();
+      this.loadData(editId);
     }
     else //stato NEW
     {
@@ -64,8 +64,11 @@ export class MenuRistoranteComponent implements OnInit {
     }));
   }
 
-  loadData() {
-    // throw new Error('Method not implemented.');
+  loadData(id: string) {
+    this.menu_item_service.getMenuItemById(id).subscribe(response=>{
+      this.currentMenuItem = response;
+      this.selectedTypeMenu.name = this.currentMenuItem.type;
+    })
   }
 // La bevanda è un item menu.
   
@@ -74,9 +77,16 @@ export class MenuRistoranteComponent implements OnInit {
     if(this.editState)
     {
       //  update // 
+      this.currentMenuItem.type = this.selectedTypeMenu.name;
+      this.menu_item_service.updateMenuItem(this.currentMenuItem.id).subscribe(response=>{
+        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu modificato'});
+
+      })
     }
     else
     {
+        this.currentMenuItem.type = this.selectedTypeMenu.name;
+      // this.currentMenuItem.productType = this.selectedTypeMenu.name
         this.menu_item_service.createMenuItem(this.currentMenuItem).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu caricato'});
         this.currentMenuItem = new MenuItem();

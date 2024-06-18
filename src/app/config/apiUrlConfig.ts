@@ -22,6 +22,7 @@ export const apiConfig = {
   // cambia quelle sopra in simili a queste sotto
   export const ENDPOINTS_MENU_ITEMS = {
     GET_MENU_ITEM_BY_ID: (id: any) => `${API_BASE_URL}/menuitems/${id}`,
+    UPDATE_MENU_ITEM: (id: any) => `${API_BASE_URL}/menuitems/update/${id}`,
     CREATE_MENU_ITEM: `${API_BASE_URL}/menuitems/create`,
     GET_MENU_ITEMS_BY_RESTAURANT_ID: (restaurantId: any) => `${API_BASE_URL}/menuitems/menu-by-restaurant/${restaurantId}`,
   };
