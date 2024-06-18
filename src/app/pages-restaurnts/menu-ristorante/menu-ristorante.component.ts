@@ -15,6 +15,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItemService } from '../../services/menu-item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { MENU_TYPES } from '../../config/constantVariable';
 
 @Component({
   selector: 'app-menu-ristorante',
@@ -28,7 +29,8 @@ export class MenuRistoranteComponent implements OnInit {
 
   currentMenuItem : MenuItem = new MenuItem();
   editState: boolean = false;
-  
+  selectedTypeMenu: any;
+  MenuTypesList : any[] = [];
   constructor(
     private menu_item_service: MenuItemService,
     private messageService: MessageService,
@@ -39,7 +41,8 @@ export class MenuRistoranteComponent implements OnInit {
   }
   
   ngOnInit(): void {
-
+    this.loadMenuTypes();
+    // this.selectedTypeProduct.name = 'Cibo'
     const editId = this.route.snapshot.paramMap.get('id');
     if(editId != null) //stato EDIT
     {
@@ -52,11 +55,20 @@ export class MenuRistoranteComponent implements OnInit {
 
   }
 
+  
+
+  loadMenuTypes()
+  {
+    this.MenuTypesList = MENU_TYPES.map(type => ({
+      name: type,
+    }));
+  }
+
   loadData() {
     // throw new Error('Method not implemented.');
   }
 // La bevanda è un item menu.
-
+  
   Save_data()
   {
     if(this.editState)
@@ -66,7 +78,7 @@ export class MenuRistoranteComponent implements OnInit {
     else
     {
         this.menu_item_service.createMenuItem(this.currentMenuItem).subscribe(response=>{
-        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
+        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu caricato'});
         this.currentMenuItem = new MenuItem();
       })
     }

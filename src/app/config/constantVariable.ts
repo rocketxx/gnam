@@ -6,4 +6,6 @@ export const BEVANDA = 'Bevanda';
 export const CONDIMENTO = 'Condimento';
 export const SPEZIA = 'Spezia'
 export const INGREDIENTS_TYPES_CONST = [SALSA, CARNE, CONDIMENTO,SPEZIA];
+export const MENU_TYPES = ['Pizza','Panino','Bevanda'];
+// export const PRODUCT_TYPES = ['Bevanda','Cibo'];
 // export const PRODUCT_TYPE = [''];
