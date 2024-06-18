@@ -31,12 +31,14 @@ export class MenuItemService {
         catchError(this.handleError)
       );
   }
-  updateMenuItem(idMenuItem : any): Observable<any[]> {
-    return this.http.get<any[]>(ENDPOINTS_MENU_ITEMS.UPDATE_MENU_ITEM(idMenuItem))
+
+  updateMenuItem(id: any, MenuItemDetails: MenuItem): Observable<MenuItem> {
+    return this.http.put<MenuItem>(ENDPOINTS_MENU_ITEMS.UPDATE_MENU_ITEM(id), MenuItemDetails)
       .pipe(
         catchError(this.handleError)
       );
   }
+
   private handleError(error: any) {
     console.error('Errore nella richiesta:', error);
     return throwError(error);

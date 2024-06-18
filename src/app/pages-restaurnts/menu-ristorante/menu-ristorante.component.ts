@@ -67,7 +67,7 @@ export class MenuRistoranteComponent implements OnInit {
   loadData(id: string) {
     this.menu_item_service.getMenuItemById(id).subscribe(response=>{
       this.currentMenuItem = response;
-      this.selectedTypeMenu.name = this.currentMenuItem.type;
+      this.selectedTypeMenu = {name : this.currentMenuItem.type}; 
     })
   }
 // La bevanda è un item menu.
@@ -78,9 +78,9 @@ export class MenuRistoranteComponent implements OnInit {
     {
       //  update // 
       this.currentMenuItem.type = this.selectedTypeMenu.name;
-      this.menu_item_service.updateMenuItem(this.currentMenuItem.id).subscribe(response=>{
+      this.menu_item_service.updateMenuItem(this.currentMenuItem.id,this.currentMenuItem).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu modificato'});
-
+        this.router.navigate(['/lista-menu']);
       })
     }
     else
@@ -96,16 +96,3 @@ export class MenuRistoranteComponent implements OnInit {
   }
 }
 
-
-/*
-public class MenuItem {
-    @Id
-    private String id;
-    private String name;
-    private String description;
-    private double price;
-    private List<Ingredient> ingredients; //questa lista è utile in caso di menu custom 
-    private String restaurantId;
-    private String imageUrl;
-    private ProductType productType; 
-*/ 
