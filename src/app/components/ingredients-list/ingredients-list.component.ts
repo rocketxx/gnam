@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 // import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from '../../services/payload-ingredients.service';
 import { Typology } from '../../models/Enum/foodTypes';
+import { Ingredient } from '../../models/Ingredient.model';
 
 @Component({
   selector: 'app-ingredients-list',
@@ -20,6 +21,7 @@ export class IngredientsListComponent implements OnInit{
   //in input deve prendere id ristorante, tipologia di prodotto (panino o pizza)
   @Input() CustomProduct : boolean = true;
   @Input() typology : Typology = Typology.condimento1;
+  @Input() ingredients_list : any [] = [];
   @Output() ingredientSelectionChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   ngOnInit(): void {

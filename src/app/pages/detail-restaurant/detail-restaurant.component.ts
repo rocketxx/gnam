@@ -49,14 +49,10 @@ export class DetailRestaurantComponent implements OnInit{
   loadData() //TODO: non va bene, effettua nuova lettura per ristorante. Essendo menu un entità a se posso richiamarli grazie all'id passato in url. modificare
   {
     var id = this.route.snapshot.params['id'];
-    // this.restaurant_service.getRestaurantDetailById(id).subscribe(response=>{
-    //   this.restaurant = response;
-    //   this.drinkMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.DRINK_TYPE);
-    //   this.foodMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.FOOD_TYPE);
-    // })
+    
     this.menu_item_service.getMenuItems(id).subscribe(response=>{
-      console.log(response);
-      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza');
+      //TODO: sevirebbe un filtro che se è ristorante BOTH allora filtri menu panino o pizze
+      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
     })
   }

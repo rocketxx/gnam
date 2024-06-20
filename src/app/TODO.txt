@@ -14,3 +14,12 @@ nel carrello aggiungi in bevande il componente counter
 
 TIPS:
 <div class="card p-fluid flex flex-wrap gap-3"> 
+
+
+
+Sistemi e servizi:
+
+Sistema lettura excel e ribalto su database. Per ingredienti
+Login ed email verificata
+Sistema di stampa.
+
