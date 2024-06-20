@@ -20,7 +20,7 @@ import { MenuComponent } from './components/menu/menu.component';
 export class AppComponent implements OnInit {
   title: string;
 
-  isClient : boolean = false;
+  isClient : boolean = true;
 
   constructor(
     private config: PrimeNGConfig,

@@ -13,7 +13,7 @@ import { FoodTypes } from '../../models/Enum/foodTypes';
 })
 export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
-  @Input() isClient : boolean = true;
+  @Input() isClient : boolean = false;
   constructor(
     private router: Router
   ) { }

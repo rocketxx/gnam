@@ -52,9 +52,15 @@ export class RestaurantListComponent implements OnInit{
   }
   
   
-  detail_restaurant(id: any)
+  detail_restaurant(item: any)
   {
-    this.router.navigate(['ristoranti/dettaglio/'+id])
+    this.router.navigate(['ristoranti/dettaglio', item.id], {
+      state: {
+        name: item.name,
+        type: item.type
+      }
+    });
+    
   }
   
 }

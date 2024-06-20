@@ -1,5 +1,5 @@
 export enum RestaurantType {
-    PIZZA,
-    BREAD,
-    BOTH
+    PIZZA = 'PIZZA',
+    BREAD = 'BREAD',
+    BOTH = 'BOTH'
   }

@@ -4,10 +4,17 @@
 <div class="card">
     <p-tabView>
         <p-tabPanel header="Menu">
-            <div class="container-button">
-                <p-button (onClick)="personalizza_prodotto()" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button>
+            
+            <div class="restaurant-title">
+                {{this.restaurant_name}}
             </div>
-        
+            <div class="container-button">
+                <p-button *ngIf="this.renderCustomFoodButtonBread" (onClick)="personalizza_prodotto()" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button>
+            </div>
+            <div class="container-button">
+                <p-button *ngIf="this.renderCustomFoodButtonPizza" (onClick)="personalizza_prodotto()" severity="success" label="Crea pizza personalizzata" icon="pi pi-file-edit" size="small"></p-button>
+            </div>
+            
             <app-mini-card (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-mini-card>
         
         </p-tabPanel>

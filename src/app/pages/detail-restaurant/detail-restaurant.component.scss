@@ -11,8 +11,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 13px;
 }
 
-
-
+.restaurant-title {
+  font-family: Montserrat;
+  font-size: 2rem;
+  font-weight: 700;
+  color: black; /* Colore nero per il testo */
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}

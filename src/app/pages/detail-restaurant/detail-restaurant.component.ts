@@ -11,6 +11,7 @@ import {TabViewModule } from 'primeng/tabview';
 import { PanelModule } from 'primeng/panel';
 import { MiniCardComponent } from '../../components/mini-card/mini-card.component';
 import { ProductType } from '../../models/Enum/ProductType';
+import { RestaurantType } from '../../models/Enum/RestaurantType';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -23,11 +24,16 @@ export class DetailRestaurantComponent implements OnInit{
   drinkMenuList : any[] = []
   restaurant : Restaurant | undefined;
   tabs: { title: string, content: string }[] = [];
+  restaurant_name : string = '';
+  restaurant_type : string = '';
+  renderCustomFoodButtonBread : boolean = false;
+  renderCustomFoodButtonPizza : boolean = false;
   constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
     this.tabsInizialize();
+    this.loadInfoRestaurantFromUrl();
   }
 
   tabsInizialize()
@@ -39,7 +45,7 @@ export class DetailRestaurantComponent implements OnInit{
   ];
   }
 
-  loadData()
+  loadData() //TODO: non va bene, effettua nuova lettura per ristorante. Essendo menu un entità a se posso richiamarli grazie all'id passato in url. modificare
   {
     var id = this.route.snapshot.params['id'];
     this.restaurant_service.getRestaurantDetailById(id).subscribe(response=>{
@@ -61,6 +67,30 @@ export class DetailRestaurantComponent implements OnInit{
   {//aggiungere controllo se è bevanda o meno. se non lo è vai a custom altrimenti stepper
     var id = this.route.snapshot.params['id'];
     this.router.navigate(['ristoranti/semipersonalizza/' + id +'/'+ item.id])
+  }
+
+  loadInfoRestaurantFromUrl()
+  {
+    const state = window.history.state as { name: string, type: string };
+    if (state) {
+      this.restaurant_name = state.name;
+      this.restaurant_type = state.type;
+      //set type for button customize
+      this.renderCustomFoodButtons();
+    }
+  }
+
+  renderCustomFoodButtons()
+  {
+    if(this.restaurant_type == RestaurantType.BOTH.toString())
+    {
+      this.renderCustomFoodButtonPizza = true;
+      this.renderCustomFoodButtonBread = true;
+    }
+    else if(this.restaurant_type == RestaurantType.BREAD.toString())
+      this.renderCustomFoodButtonBread = true
+    else if(this.restaurant_type == RestaurantType.PIZZA.toString())
+      this.renderCustomFoodButtonPizza = true
   }
 
 }
