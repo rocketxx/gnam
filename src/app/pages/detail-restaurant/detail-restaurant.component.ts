@@ -12,6 +12,7 @@ import { PanelModule } from 'primeng/panel';
 import { MiniCardComponent } from '../../components/mini-card/mini-card.component';
 import { ProductType } from '../../models/Enum/ProductType';
 import { RestaurantType } from '../../models/Enum/RestaurantType';
+import { MenuItemService } from '../../services/menu-item.service';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -28,7 +29,7 @@ export class DetailRestaurantComponent implements OnInit{
   restaurant_type : string = '';
   renderCustomFoodButtonBread : boolean = false;
   renderCustomFoodButtonPizza : boolean = false;
-  constructor(private route: ActivatedRoute,private restaurant_service: RestaurantsService,private router: Router){}
+  constructor(private route: ActivatedRoute,private menu_item_service: MenuItemService,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
@@ -48,18 +49,27 @@ export class DetailRestaurantComponent implements OnInit{
   loadData() //TODO: non va bene, effettua nuova lettura per ristorante. Essendo menu un entità a se posso richiamarli grazie all'id passato in url. modificare
   {
     var id = this.route.snapshot.params['id'];
-    this.restaurant_service.getRestaurantDetailById(id).subscribe(response=>{
-      this.restaurant = response;
-      this.drinkMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.DRINK_TYPE);
-      this.foodMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.FOOD_TYPE);
+    // this.restaurant_service.getRestaurantDetailById(id).subscribe(response=>{
+    //   this.restaurant = response;
+    //   this.drinkMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.DRINK_TYPE);
+    //   this.foodMenuList = this.restaurant.menu.filter(item=> item.productType == ProductType.FOOD_TYPE);
+    // })
+    this.menu_item_service.getMenuItems(id).subscribe(response=>{
+      console.log(response);
+      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza');
+      this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
     })
   }
 
-  personalizza_prodotto()
+  personalizza_prodotto(custom_type: string)
   {
     var id = this.route.snapshot.params['id'];
 
-    this.router.navigate(['ristoranti/personalizza/' + id])
+    this.router.navigate(['ristoranti/personalizza/' + id],{
+      state: {
+        type : custom_type //passaggio del tipo di prodotto scelto per la personalizzazione
+      }
+    })
 
   }
 
