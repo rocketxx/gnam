@@ -26,3 +26,9 @@ export const apiConfig = {
     CREATE_MENU_ITEM: `${API_BASE_URL}/menuitems/create`,
     GET_MENU_ITEMS_BY_RESTAURANT_ID: (restaurantId: any) => `${API_BASE_URL}/menuitems/menu-by-restaurant/${restaurantId}`,
   };
+
+  export const ENDPOINTS_ORDER_ITEM = {
+    CREATE_ORDER_ITEM: `${API_BASE_URL}/order-items/create`,
+    GET_ORDER_ITEMS_BY_USER_ID: (userId: any) => `${API_BASE_URL}/order-items/get-by-user/${userId}`,
+    DELETE_ORDER_ITEM_BY_USER_ID: (userId: any) => `${API_BASE_URL}/order-items/delete/${userId}`,
+  };

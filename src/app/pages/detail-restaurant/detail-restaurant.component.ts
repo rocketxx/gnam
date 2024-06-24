@@ -76,7 +76,7 @@ export class DetailRestaurantComponent implements OnInit{
   }
 
   loadInfoRestaurantFromUrl()
-  {
+  {//crea bug quando salvi i prodotti da panino custom. non trova lo stato
     const state = window.history.state as { name: string, type: string };
     if (state) {
       this.restaurant_name = state.name;

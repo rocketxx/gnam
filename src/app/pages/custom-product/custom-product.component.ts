@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Typology } from '../../models/Enum/foodTypes';
 import { IngredientService } from '../../services/ingredient.service';
+import { OrderItem } from '../../models/OrderItem.model';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
@@ -16,7 +17,7 @@ import { IngredientService } from '../../services/ingredient.service';
   styleUrl: './custom-product.component.scss'
 })
 export class CustomProductComponent implements OnInit{
-
+  order_item : OrderItem = new OrderItem(); 
   ingredient1List : any[] = []
   ingredient2List : any[] = []
   ingredient3List : any[] = []
@@ -50,8 +51,16 @@ export class CustomProductComponent implements OnInit{
 
   Save()
   {
+    // Aggiungere quantità e note
    console.log('1',this.ingredient1List)
    var id = this.route.snapshot.params['id'];
+   //non mi piace, renderlo dinamico e generico
+   this.order_item.customizations
+                  .concat(this.ingredient1List)
+                  .concat(this.ingredient2List)
+                  .concat(this.ingredient3List);
+    //salvataggio order_item 
+
    this.router.navigate(['ristoranti/dettaglio/' + id])
   }
 
