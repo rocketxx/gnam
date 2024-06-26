@@ -38,6 +38,7 @@ export class CustomProductComponent implements OnInit{
   typology2: Typology= Typology.condimento2
   typology3: Typology= Typology.condimento3
   type_custom_product : string = '';
+  restaurant_name: string = '';
   constructor(private messageService: MessageService,private order_item_service: OrderItemService,private route: ActivatedRoute,private router: Router,private ingredient_service : IngredientService) {}
   
   ngOnInit(): void {
@@ -76,13 +77,20 @@ export class CustomProductComponent implements OnInit{
     })
 
    this.router.navigate(['ristoranti/dettaglio/' + id])
+   this.router.navigate(['ristoranti/dettaglio', this.restaurant_id], {
+    state: {
+      name: this.type_custom_product,
+      type: this.restaurant_name
+    }
+  });
   }
 
   loadTypeCustomProductFromUrl()
   {
-    const state = window.history.state as { type: string };
+    const state = window.history.state as { type: string , name: string};
     if (state) {
       this.type_custom_product = state.type;
+      this.restaurant_name = state.name;
       //scattano le logiche di render 
       this.loadIngredients();
     }

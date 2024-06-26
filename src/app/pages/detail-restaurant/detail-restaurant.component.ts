@@ -63,7 +63,8 @@ export class DetailRestaurantComponent implements OnInit{
 
     this.router.navigate(['ristoranti/personalizza/' + id],{
       state: {
-        type : custom_type //passaggio del tipo di prodotto scelto per la personalizzazione
+        type : custom_type, //passaggio del tipo di prodotto scelto per la personalizzazione
+        name : this.restaurant_name
       }
     })
 
