@@ -22,6 +22,7 @@ export class IngredientsListComponent implements OnInit{
   @Input() CustomProduct : boolean = true;
   @Input() typology : Typology = Typology.condimento1;
   @Input() ingredients_list : any [] = [];
+  //da rimuovere dato che ora utilizza
   @Output() ingredientSelectionChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   ngOnInit(): void {
@@ -40,7 +41,8 @@ export class IngredientsListComponent implements OnInit{
       this.selectedIds.push(itemId); // Aggiungi l'ID se non presente
       // bisogna che pubblichi su un payload condiviso cosi da poter recuperare tale info
     }
-    this.ingredientSelectionChanged.emit(this.selectedIds); 
+    // var tmp = this.ingredients_list.filter(item=> item.itemId)
+    // this.ingredientSelectionChanged.emit(this.selectedIds); 
   }
 
   isItemSelected(itemId: string): boolean {
@@ -157,6 +159,11 @@ export class IngredientsListComponent implements OnInit{
       ].filter(item=> item.typology == this.typology)
     }
     
+  }
+
+  getSelectedIdList()
+  {
+    return this.selectedIds;
   }
 
 }

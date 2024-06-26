@@ -1,5 +1,6 @@
 export const base_api = 'http://localhost:8080';
 export const base_api_restaurants = base_api + '/restaurants';
+export const MockUserId = 'faf16280-506c-480e-8f9c-16beab497b21';
 export const apiConfig = {
     // ristorantiUrl: 'https://gnam-mock.free.beeceptor.com/ristoranti',
     ristorantiUrl: 'https://3c74b6c1-b883-4de7-acba-06c8e443a3d9.mock.pstmn.io/ristoranti',
