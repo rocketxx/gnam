@@ -72,7 +72,6 @@ export class CustomProductComponent implements OnInit {
 
     })
 
-     this.router.navigate(['ristoranti/dettaglio/' + id])
     this.router.navigate(['ristoranti/dettaglio/' + id], {
       state: {
         name: this.restaurant_name,
