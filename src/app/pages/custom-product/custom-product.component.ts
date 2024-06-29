@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
@@ -14,25 +14,24 @@ import { MockUserId } from '../../config/apiUrlConfig';
 import { MessagesModule } from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [TagModule, MessagesModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [TagModule, MessagesModule, SkeletonModule,ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
 export class CustomProductComponent implements OnInit {
 
-  @ViewChild('ingredientsList1') ingredientsListComponent1!: IngredientsListComponent;
-  @ViewChild('ingredientsList2') ingredientsListComponent2!: IngredientsListComponent;
-  @ViewChild('ingredientsList3') ingredientsListComponent3!: IngredientsListComponent;
-
+  @ViewChildren(IngredientsListComponent) childrenComponents!: QueryList<IngredientsListComponent>;
   order_item: OrderItem = new OrderItem();
-  ingredient1List: any[] = []
-  ingredient2List: any[] = []
-  ingredient3List: any[] = []
+  ingredientsIdList: any[] = []
   selectedIdList: any[] = []
   responseListIngredients: any[] = []
+  listIngredients: any[] = []
+  _countUniqueTypes : any = 0;
+  _uniqueTypes : any[] = [];
   restaurant_id: string = '';
   typology1: Typology = Typology.condimento1
   typology2: Typology = Typology.condimento2
@@ -50,31 +49,30 @@ export class CustomProductComponent implements OnInit {
   }
 
 
-  Save() {
 
+  Save() {
     // Aggiungere quantità e note
     var id = this.route.snapshot.params['id'];
 
-    var list1 = this.ingredientsListComponent1.getSelectedIdList();
-    var list2 = this.ingredientsListComponent2.getSelectedIdList();
-    var list3 = this.ingredientsListComponent3.getSelectedIdList();
-    const combinedIds = [...list1, ...list2, ...list3];
+  // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
+    this.childrenComponents.forEach(child => {
+      this.ingredientsIdList.push(...child.selectedIds);
+    });
 
-    // Filtra gli item di responseListIngredients usando i combinedIds
-    this.order_item.customizations = this.responseListIngredients.filter(item =>
-      combinedIds.includes(item.id)
+    this.order_item.customizations = this.listIngredients.filter(item =>
+      this.ingredientsIdList.includes(item.id)
     );
+
 
     this.order_item.userId = MockUserId;
     this.order_item.restaurantId = id;
 
     this.order_item_service.createOrderItem(this.order_item).subscribe(response => {
-      //messaggio di usccesso
       this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Aggiunto al carrello' });
 
     })
 
-    //  this.router.navigate(['ristoranti/dettaglio/' + id])
+     this.router.navigate(['ristoranti/dettaglio/' + id])
     this.router.navigate(['ristoranti/dettaglio/' + id], {
       state: {
         name: this.restaurant_name,
@@ -88,23 +86,43 @@ export class CustomProductComponent implements OnInit {
     if (state) {
       this.type_custom_product = state.type;
       this.restaurant_name = state.name;
-      //scattano le logiche di render 
       this.loadIngredients();
     }
   }
 
   loadIngredients() {
     this.ingredient_service.getIngredients(this.getRestaurantId()).subscribe(response => {
-      this.fillIngredientList(response);
+
       this.responseListIngredients = response;
+      this.listIngredients = response;
+      this._countUniqueTypes = this.countUniqueTypes(response);
+      this._uniqueTypes = this.getUniqueTypes(response);
     })
   }
-  fillIngredientList(response: any[]) {
-    //qui logiche su quale lista (1..2..3) ribaltare i dati
-    //qui per capire dove mettere ingredienti in caso di panino o pizza
-    this.ingredient1List = response.filter(item => item.type == 'Carne');
-    this.ingredient2List = response.filter(item => item.type == 'Condimento');
-    this.ingredient3List = response.filter(item => item.type == 'Salsa');
+
+
+  countUniqueTypes(ingredients: any[]): number {
+    const uniqueTypes = new Set<string>();
+
+    ingredients.forEach(ingredient => {
+        uniqueTypes.add(ingredient.type);
+    });
+    
+    return uniqueTypes.size;
+  }
+
+  getUniqueTypes(ingredients: any[]): string[] {
+    const uniqueTypes = new Set<string>();
+    
+    ingredients.forEach(ingredient => {
+        uniqueTypes.add(ingredient.type);
+    });
+
+    return Array.from(uniqueTypes);
+}
+
+  filterByType(type: string): any[] {
+    return this.responseListIngredients.filter(ingredient => ingredient.type === type);
   }
 
 }

@@ -1,0 +1,14 @@
+.skeleton-container {
+    margin-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Aggiunge spazio tra le skeleton */
+  }
+  
+  @media (max-width: 768px) {
+    .skeleton-container {
+      flex-direction: column; /* Cambia la direzione del flessibile in colonna */
+      align-items: center; /* Allinea le card al centro quando in colonna */
+    }
+  }

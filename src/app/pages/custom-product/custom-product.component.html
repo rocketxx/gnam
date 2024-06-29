@@ -1,43 +1,39 @@
-<p-stepper orientation="vertical">
-    <p-stepperPanel header="Seleziona 1">
-        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
-            <!-- <div class="flex flex-column h-12rem">
-                <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content I</div>
-            </div> -->
-            <app-ingredients-list #ingredientsList1 [ingredients_list]="this.ingredient1List" [typology]="typology1" ></app-ingredients-list>
-
+<div *ngIf="_uniqueTypes && _uniqueTypes.length > 0">
+    <p-stepper orientation="vertical">
+        <p-stepperPanel *ngFor="let ing of _uniqueTypes; let i = index" header={{ing}}>
+          <!-- Condizione per il primo elemento -->
+          <ng-template *ngIf="i === 0" pTemplate="content" let-nextCallback="nextCallback">
+            <app-ingredients-list [ingredients_list]="filterByType(_uniqueTypes[i])" [typology]="_uniqueTypes[i]"></app-ingredients-list>
             <div class="flex py-4">
-                <p-button label="Avanti" (onClick)="nextCallback.emit()" /></div
-        ></ng-template>
-    </p-stepperPanel>
-
-    <p-stepperPanel header="Selezione multipla">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
-            <!--  -->
-            <app-ingredients-list #ingredientsList2 [ingredients_list]="this.ingredient2List" [typology]="typology2" ></app-ingredients-list>
-
-            <!--  -->
-            <div class="flex py-4 gap-2">
-                <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
-                <p-button label="Avanti" (onClick)="nextCallback.emit()" />
-            </div
-        ></ng-template>
-    </p-stepperPanel>
-
-    <p-stepperPanel header="Selezione multipla">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
-            <!-- <div class="flex flex-column h-12rem">
-                <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
-            </div> -->
-            <app-ingredients-list #ingredientsList3 [ingredients_list]="this.ingredient3List" [typology]="typology3" ></app-ingredients-list>
-
-            <div class="flex py-4 gap-2">
-                <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
-                <p-button label="Fatto" (onClick)="Save()" />
+              <p-button label="Avanti" (onClick)="nextCallback.emit()" />
             </div>
-            </ng-template>
-    </p-stepperPanel>
-</p-stepper>
+          </ng-template>
+          <!-- Condizione per elementi intermedi -->
+          <ng-template *ngIf="i > 0 && i < _uniqueTypes.length - 1" pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+            <app-ingredients-list [ingredients_list]="filterByType(_uniqueTypes[i])" [typology]="_uniqueTypes[i]"></app-ingredients-list>
+            <div class="flex py-4 gap-2">
+              <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
+              <p-button label="Avanti" (onClick)="nextCallback.emit()" />
+            </div>
+          </ng-template>
+          <!-- Condizione per l'ultimo elemento -->
+          <ng-template *ngIf="i === _uniqueTypes.length - 1" pTemplate="content" let-prevCallback="prevCallback">
+            <app-ingredients-list [ingredients_list]="filterByType(_uniqueTypes[i])" [typology]="_uniqueTypes[i]"></app-ingredients-list>
+            <div class="flex py-4 gap-2">
+              <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
+              <p-button label="Fatto" (onClick)="Save()" />
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+    </p-stepper>
+  </div>
+  <div *ngIf="!_uniqueTypes || _uniqueTypes.length === 0" class="skeleton-container">
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+    <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
+  </div>
+
 
 <div class="card">
     <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
