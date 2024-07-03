@@ -83,8 +83,18 @@ export class CustomProductComponent implements OnInit {
     if (state) {
       this.type_custom_product = state.type;
       this.restaurant_name = state.name;
+      // console.log(this.type_custom_product)
       this.loadIngredients();
     }
+  }
+
+  getTypeTitle()
+  {
+    if(this.type_custom_product == 'BREAD')
+      return 'Quanti panini desideri con queste stesse caratteristiche?'
+    else if(this.type_custom_product == 'PIZZA')
+      return 'Quante pizze desideri con queste stesse caratteristiche?'
+    return 'Quanti prodotti desideri con queste stesse caratteristiche?'
   }
 
   loadIngredients() {
