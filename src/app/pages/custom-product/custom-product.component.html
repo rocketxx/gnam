@@ -1,10 +1,20 @@
-<div *ngIf="_uniqueTypes && _uniqueTypes.length > 0">
+  <div *ngIf="_uniqueTypes && _uniqueTypes.length > 0">
     <p-stepper orientation="vertical">
+        <p-stepperPanel header="Panini uguali">
+          <ng-template pTemplate="content" let-nextCallback="nextCallback">
+            <app-counter [defaultQuantity]="1" (quantityChanged)="setQuantity($event)"></app-counter>
+            <div class="flex py-4">
+              <p-button label="Avanti" (onClick)="nextCallback.emit()" />
+            </div>
+          </ng-template>
+        </p-stepperPanel>
+        
         <p-stepperPanel *ngFor="let ing of _uniqueTypes; let i = index" header={{ing}}>
           <!-- Condizione per il primo elemento -->
-          <ng-template *ngIf="i === 0" pTemplate="content" let-nextCallback="nextCallback">
+          <ng-template *ngIf="i === 0" pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
             <app-ingredients-list [ingredients_list]="filterByType(_uniqueTypes[i])" [typology]="_uniqueTypes[i]"></app-ingredients-list>
-            <div class="flex py-4">
+            <div class="flex py-4 gap-2">
+              <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
               <p-button label="Avanti" (onClick)="nextCallback.emit()" />
             </div>
           </ng-template>
@@ -24,6 +34,16 @@
               <p-button label="Fatto" (onClick)="Save()" />
             </div>
           </ng-template>
+
+          <!-- note -->
+          <ng-template *ngIf="i === _uniqueTypes.length - 1" pTemplate="content" let-prevCallback="prevCallback">
+            <!-- <app-ingredients-list [ingredients_list]="filterByType(_uniqueTypes[i])" [typology]="_uniqueTypes[i]"></app-ingredients-list> -->
+            <div class="flex py-4 gap-2">
+              <p-button label="Indietro" severity="secondary" (onClick)="prevCallback.emit()" />
+              <p-button label="Fatto" (onClick)="Save()" />
+            </div>
+          </ng-template>
+
         </p-stepperPanel>
     </p-stepper>
   </div>

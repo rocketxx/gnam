@@ -15,10 +15,11 @@ import { MessagesModule } from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { SkeletonModule } from 'primeng/skeleton';
+import { CounterComponent } from '../../components/counter/counter.component';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [TagModule, MessagesModule, SkeletonModule,ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
@@ -48,8 +49,6 @@ export class CustomProductComponent implements OnInit {
     return this.route.snapshot.params['id'];
   }
 
-
-
   Save() {
     // Aggiungere quantità e note
     var id = this.route.snapshot.params['id'];
@@ -62,7 +61,6 @@ export class CustomProductComponent implements OnInit {
     this.order_item.customizations = this.listIngredients.filter(item =>
       this.ingredientsIdList.includes(item.id)
     );
-
 
     this.order_item.userId = MockUserId;
     this.order_item.restaurantId = id;
@@ -91,7 +89,6 @@ export class CustomProductComponent implements OnInit {
 
   loadIngredients() {
     this.ingredient_service.getIngredients(this.getRestaurantId()).subscribe(response => {
-
       this.responseListIngredients = response;
       this.listIngredients = response;
       this._countUniqueTypes = this.countUniqueTypes(response);
@@ -122,6 +119,12 @@ export class CustomProductComponent implements OnInit {
 
   filterByType(type: string): any[] {
     return this.responseListIngredients.filter(ingredient => ingredient.type === type);
+  }
+
+  setQuantity(event : any)
+  {
+    this.order_item.quantity = event.quantity; 
+    // console.log(event.quantity)
   }
 
 }
