@@ -64,6 +64,9 @@ export class CustomProductComponent implements OnInit {
       this.ingredientsIdList.includes(item.id)
     );
 
+    if(this.order_item.quantity == 0)
+      this.order_item.quantity = 1;
+
     this.order_item.userId = MockUserId;
     this.order_item.restaurantId = id;
 

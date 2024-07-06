@@ -42,6 +42,7 @@
           <ng-template pTemplate="content" let-nextCallback="nextCallback" let-prevCallback="prevCallback">
             <div class="card flex justify-content-center">
               <textarea 
+                  [(ngModel)]="order_item.note"
                   rows="5"
                   cols="30"
                   pInputTextarea 
