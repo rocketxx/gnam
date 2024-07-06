@@ -1,14 +1,18 @@
-<div *ngFor="let item of cartItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
-  <p-card header="{{ item.nome }}">
-    <p class="m-0">
-      Tipo: {{ item.tipologia }}<br>
-      Ingredienti 1: {{ item.ingredienti1.join(', ') }}<br>
-      Ingredienti 2: {{ item.ingredienti2 ? item.ingredienti2.join(', ') : '-' }}<br>
-      Ingredienti 3: {{ item.ingredienti3 ? item.ingredienti3.join(', ') : '-' }}
-    </p>
+<div *ngFor="let item of orderItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
+  <p-card header="{{ 'Quantità: ' + item.quantity }}">
+    <div *ngIf="item.customizations.length>0">
+        <h4>Ingredienti:</h4>
+        <p class="m-0">
+          {{ getListNameIngredients(this.item.customizations) }}<br>
+        </p>
+    </div>
+    <div *ngIf="item.note!= null && item.note.length>0">
+      <h4>Note:</h4>
+      {{item.note}}
+    </div>
     <ng-template pTemplate="footer">
       <p-button label="Modifica" icon="pi pi-file-edit"></p-button>
       <p-button label="Elimina" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-  </ng-template>
+    </ng-template>
   </p-card>
 </div>

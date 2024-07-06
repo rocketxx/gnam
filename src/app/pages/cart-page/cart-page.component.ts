@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { OrderItemService } from '../../services/order-item.service';
+import { MockUserId } from '../../config/apiUrlConfig';
+import { OrderItem } from '../../models/OrderItem.model';
+import { Ingredient } from '../../models/Ingredient.model';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
@@ -11,7 +17,12 @@ import { CardModule } from 'primeng/card';
 })
 export class CartPageComponent implements OnInit {
   cartItems : any[] = [];
+  orderItems : OrderItem[] = [];
   loading: boolean = false;
+
+  constructor(private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router)
+  {}
+
   ngOnInit(): void {
     this.loadData();
   }
@@ -23,25 +34,34 @@ export class CartPageComponent implements OnInit {
           this.loading = false
       }, 2000);
   }
+
   loadData()
   {
-   this.cartItems = [
-      {
-        "tipologia": "pizza",
-        "nome": "Pizza Margherita",
-        "ingredienti1": ["base margherita"],
-        "ingredienti2": ["salame"],
-      },
-      {
-        "tipologia": "panino",
-        "nome": "Pizza Margherita",
-        "ingredienti1": ["Porchetta"],
-        "ingredienti2": ["Mozzarella", "Funghi", "Patatine"],
-        "ingredienti3": ["Salsa rosa", "Maionese","Aroma verde"]
-      }
-    ]
-  
-   
+    this.order_item_service.getOrderItemById(MockUserId).subscribe(response=>{
+      // console.log(response)
+      this.orderItems = response;
+    })
   }
+
+  getListNameIngredients(ingredients : Ingredient [])
+  {
+    return ingredients.map(ingredient => ingredient.name).join(', ');
+  }
+
+  Save()
+  {
+
+  }
+
+  Delete()
+  {
+
+  }
+
+  Update()
+  {
+    
+  }
+
 
 }
