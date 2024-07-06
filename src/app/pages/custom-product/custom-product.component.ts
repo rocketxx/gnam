@@ -26,7 +26,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './custom-product.component.scss'
 })
 export class CustomProductComponent implements OnInit {
-
+//PER LA EDIT SERVE FARE PUSH DEGLI ID SELEZIONATI DENTRO IL COMPONENTE FIGLIO
+//E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
+//controlla se sta venendo da edit guardando il path
   @ViewChildren(IngredientsListComponent) childrenComponents!: QueryList<IngredientsListComponent>;
   order_item: OrderItem = new OrderItem();
   ingredientsIdList: any[] = []
@@ -66,21 +68,20 @@ export class CustomProductComponent implements OnInit {
 
     if(this.order_item.quantity == 0)
       this.order_item.quantity = 1;
-
+//----------TOKEN INFO
     this.order_item.userId = MockUserId;
     this.order_item.restaurantId = id;
-
+//--------------------
     this.order_item_service.createOrderItem(this.order_item).subscribe(response => {
       this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Aggiunto al carrello' });
-
+      this.router.navigate(['ristoranti/dettaglio/' + id], {
+        state: {
+          name: this.restaurant_name,
+          type: this.type_custom_product
+        }
+      });
     })
 
-    this.router.navigate(['ristoranti/dettaglio/' + id], {
-      state: {
-        name: this.restaurant_name,
-        type: this.type_custom_product
-      }
-    });
   }
 
   loadTypeCustomProductFromUrl() {

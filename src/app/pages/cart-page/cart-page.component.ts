@@ -69,18 +69,20 @@ export class CartPageComponent implements OnInit {
     );
   }
 
+  //non funziona, controllare. non funziona nemmeno il filter.
   RemoveItemByUserId(orderItems: OrderItem[], itemId: string): OrderItem[] {
     for (let i = 0; i < orderItems.length; i++) {
         if (orderItems[i].userId === itemId) {
             orderItems.splice(i, 1);
-            i--; // Decrement i because splice modifies the array length
+            i--; 
         }
     }
     return orderItems;
-}
-  Update()
-  {
+  }
 
+  Update(id: string)
+  {
+    // this.router.navigate(['/modifica-prodotto-ristorante', id]);
   }
 
 

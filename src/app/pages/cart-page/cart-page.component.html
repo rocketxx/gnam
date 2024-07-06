@@ -11,7 +11,7 @@
       {{ item.note }}
     </div>
     <ng-template pTemplate="footer">
-      <p-button label="Modifica" icon="pi pi-file-edit"></p-button>
+      <p-button (click)="Update(item.itemId)" label="Modifica" icon="pi pi-file-edit"></p-button>
       <p-button (click)="Delete(item.itemId)" label="Elimina" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
     </ng-template>
   </p-card>
