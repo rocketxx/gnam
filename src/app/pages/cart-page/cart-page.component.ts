@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -8,10 +8,12 @@ import { OrderItemService } from '../../services/order-item.service';
 import { MockUserId } from '../../config/apiUrlConfig';
 import { OrderItem } from '../../models/OrderItem.model';
 import { Ingredient } from '../../models/Ingredient.model';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CardModule,CommonModule,ButtonModule],
+  imports: [CardModule,CommonModule,ButtonModule,ToastModule,MessagesModule],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss'
 })
@@ -20,7 +22,7 @@ export class CartPageComponent implements OnInit {
   orderItems : OrderItem[] = [];
   loading: boolean = false;
 
-  constructor(private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router)
+  constructor(private cdr: ChangeDetectorRef,private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router)
   {}
 
   ngOnInit(): void {
@@ -53,14 +55,32 @@ export class CartPageComponent implements OnInit {
 
   }
 
-  Delete()
-  {
-
+  Delete(idItem: string) {
+    console.log(`Attempting to delete item with id: ${idItem}`);
+    this.order_item_service.deleteOrderItemById(idItem).subscribe(
+      response => {
+        this.loadData()
+        this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
+        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Eliminato' });
+      },
+      error => {
+        console.error('Error occurred during delete:', error);
+      }
+    );
   }
 
+  RemoveItemByUserId(orderItems: OrderItem[], itemId: string): OrderItem[] {
+    for (let i = 0; i < orderItems.length; i++) {
+        if (orderItems[i].userId === itemId) {
+            orderItems.splice(i, 1);
+            i--; // Decrement i because splice modifies the array length
+        }
+    }
+    return orderItems;
+}
   Update()
   {
-    
+
   }
 
 

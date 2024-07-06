@@ -25,12 +25,18 @@ export class OrderItemService {
       );
   }
 
-  deleteOrderItemById(orderItemId : any): Observable<any> {
-    return this.http.get<any>(ENDPOINTS_ORDER_ITEM.DELETE_ORDER_ITEM_BY_USER_ID(orderItemId))
+  deleteOrderItemById(itemId: any): Observable<any> {
+    const url = ENDPOINTS_ORDER_ITEM.DELETE_ORDER_ITEM_BY_ID(itemId);
+    return this.http.delete(url, { responseType: 'text' })
       .pipe(
-        catchError(this.handleError)
+        catchError(error => {
+          console.error('Error in HTTP request:', error);
+          return throwError(error);
+        })
       );
   }
+  
+  
   
   private handleError(error: any) {
     console.error('Errore nella richiesta:', error);

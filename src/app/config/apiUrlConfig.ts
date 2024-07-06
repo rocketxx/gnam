@@ -31,5 +31,5 @@ export const apiConfig = {
   export const ENDPOINTS_ORDER_ITEM = {
     CREATE_ORDER_ITEM: `${API_BASE_URL}/order-items/create`,
     GET_ORDER_ITEMS_BY_USER_ID: (userId: any) => `${API_BASE_URL}/order-items/get-by-user/${userId}`,
-    DELETE_ORDER_ITEM_BY_USER_ID: (userId: any) => `${API_BASE_URL}/order-items/delete/${userId}`,
+    DELETE_ORDER_ITEM_BY_ID: (itemId: any) => `${API_BASE_URL}/order-items/delete/${itemId}`,
   };
