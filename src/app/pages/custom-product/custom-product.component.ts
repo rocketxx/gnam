@@ -54,9 +54,7 @@ export class CustomProductComponent implements OnInit {
   }
 
   Save() {
-    // Aggiungere quantità e note
     var id = this.route.snapshot.params['id'];
-// this.order_item.
   // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
     this.childrenComponents.forEach(child => {
       this.ingredientsIdList.push(...child.selectedIds);

@@ -82,7 +82,8 @@ export class CartPageComponent implements OnInit {
 
   Update(id: string)
   {
-    // this.router.navigate(['/modifica-prodotto-ristorante', id]);
+    this.router.navigate(['/ristoranti/modifica-ordine', id]);
+
   }
 
 
