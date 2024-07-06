@@ -16,10 +16,12 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { SkeletonModule } from 'primeng/skeleton';
 import { CounterComponent } from '../../components/counter/counter.component';
+import { FormsModule } from '@angular/forms';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [FormsModule, InputTextareaModule,TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
@@ -52,7 +54,7 @@ export class CustomProductComponent implements OnInit {
   Save() {
     // Aggiungere quantità e note
     var id = this.route.snapshot.params['id'];
-
+// this.order_item.
   // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
     this.childrenComponents.forEach(child => {
       this.ingredientsIdList.push(...child.selectedIds);

@@ -2,6 +2,7 @@ import { Ingredient } from './Ingredient.model';
 import { MenuItem } from './MenuItem.model';
 
 export class OrderItem {
+    note: string;
     itemId: string;
     quantity: number;
     customizations: Ingredient[]; // List<Ingredient> is represented as Ingredient[]
@@ -9,7 +10,8 @@ export class OrderItem {
     restaurantId: string;
     userId: string;
 
-    constructor(itemId?: string, quantity?: number, customizations?: Ingredient[], menuItem?: MenuItem, restaurantId?: string, userId?: string) {
+    constructor(note?: string,itemId?: string, quantity?: number, customizations?: Ingredient[], menuItem?: MenuItem, restaurantId?: string, userId?: string) {
+        this.note = note ?? '';  // Default to empty string if undefined
         this.itemId = itemId ?? '';  // Default to empty string if undefined
         this.quantity = quantity ?? 0;  // Default to 0 if undefined
         this.customizations = customizations ?? [];  // Default to empty array if undefined
