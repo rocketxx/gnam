@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import { IngredientsListComponent } from '../../components/ingredients-list/ingredients-list.component';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Typology } from '../../models/Enum/foodTypes';
 import { IngredientService } from '../../services/ingredient.service';
 import { OrderItem } from '../../models/OrderItem.model';
@@ -18,6 +18,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { CounterComponent } from '../../components/counter/counter.component';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RestaurantsService } from '../../services/restaurants.service';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
@@ -30,6 +31,7 @@ export class CustomProductComponent implements OnInit {
 //E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
 //controlla se sta venendo da edit guardando il path
   @ViewChildren(IngredientsListComponent) childrenComponents!: QueryList<IngredientsListComponent>;
+  @ViewChildren(CounterComponent) counterComponent!: CounterComponent;
   order_item: OrderItem = new OrderItem();
   ingredientsIdList: any[] = []
   selectedIdList: any[] = []
@@ -43,17 +45,110 @@ export class CustomProductComponent implements OnInit {
   typology3: Typology = Typology.condimento3
   type_custom_product: string = '';
   restaurant_name: string = '';
-  constructor(private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
+  editState : boolean = false;
+  orderId_from_path : string | null = ''
+  restaurantId_from_path : string | null = ''
+  constructor(private restaurant_service: RestaurantsService,private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
   ngOnInit(): void {
-    this.loadTypeCustomProductFromUrl();
+    // const orderId = this.route.snapshot.paramMap.get('orderId');
+    // const restaurantId_from_path = this.route.snapshot.paramMap.get('restaurantId');
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.orderId_from_path = params.get('id');
+      this.restaurantId_from_path = params.get('id-restaurant');
+    });
+    if(this.orderId_from_path != null) //stato EDIT
+    {
+      this.editState = true
+      this.loadIngredients(); 
+      this.LoadOrderItem();
+      this.loadRestaurant();
+      //devo caricare gli id degli ingredienti selezionati con viewchild
+      //devo recuperare il ristorante id 
+      //caricare orderItem
+      //recuperare il tipo di prodotto: piazza panino 
+    }
+    else //stato NEW
+    {
+      this.loadTypeCustomProductFromUrl();
+    }
   }
 
+  loadRestaurant()
+  {
+    this.restaurant_service.getRestaurantById(this.restaurantId_from_path).subscribe(response=>{
+      this.restaurant_name = response.name
+    })
+  }
+
+  LoadOrderItem()
+  {
+    this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response=>{
+      this.order_item = response;
+      // this.extractSelectionedIngredientId(this.order_item)
+      this.assignSelectedIds()
+      // this.counterComponent.quantity = this.order_item.quantity
+      // va emesso evebto di cambiamento quantità
+    })
+  }
+
+  extractSelectionedIngredientId(order_item : OrderItem)
+  {
+    var tmp = order_item.customizations.map(customization => customization.id);
+    // this
+    this.childrenComponents.forEach(comp=>{
+      comp.selectedIds
+    })
+    debugger
+  }
+
+  assignSelectedIds(): void {
+    var idFromOrderItem = this.order_item.customizations.map(customization => customization.id);
+    
+    if (!this.childrenComponents || this.childrenComponents.length === 0) {
+      console.error('No child components found.');
+      return;
+    }
+  
+    console.log('idFromOrderItem:', idFromOrderItem);
+    console.log('childrenComponents:', this.childrenComponents);
+  
+    this.childrenComponents.forEach(child => {
+      console.log('Processing child:', child);
+  
+      // Filtra gli ID che sono presenti in `idFromOrderItem`
+      const selectedIds = child.ingredients_list.filter(item => idFromOrderItem.includes(item.id));
+      
+      console.log('selectedIds:', selectedIds);
+  
+      // Assegna gli ID filtrati alla variabile `selectedIds` del componente figlio
+      selectedIds.forEach(item => {
+        child.toggleColor(item);
+        debugger; // Il debugger dovrebbe fermarsi qui se ci sono item selezionati
+      });
+  
+      debugger; // Il debugger dovrebbe fermarsi qui se non ci sono item selezionati
+    });
+  }
+  
+
   getRestaurantId() {
-    return this.route.snapshot.params['id'];
+    if(this.editState)
+      return this.restaurantId_from_path;
+    else
+      return this.route.snapshot.params['id'];
+  }
+
+  Update()
+  {
+
   }
 
   Save() {
+
+    if(this.editState)
+      this.Update()
+
     var id = this.route.snapshot.params['id'];
   // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
     this.childrenComponents.forEach(child => {

@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: 'ristoranti', title: 'ristoranti', component: HomePageComponent },
     // aggiiungere id del ristorante
     { path: 'ristoranti/personalizza/:id', title: 'Personalizza', component: CustomProductComponent },
-    { path: 'ristoranti/modifica-ordine/:id', title: 'Personalizza', component: CustomProductComponent },
+    { path: 'ristoranti/modifica-ordine/:id/restaurant/:id-restaurant', title: 'Personalizza', component: CustomProductComponent },
     
     { path: 'ristoranti/semipersonalizza/:id/:baseId', title: 'Ristoranti', component: SemicustomProductComponent },
     { path: 'ristoranti/dettaglio/:id', title: 'Dettaglio ristorante', component: DetailRestaurantComponent },

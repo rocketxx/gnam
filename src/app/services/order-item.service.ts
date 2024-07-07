@@ -18,8 +18,15 @@ export class OrderItemService {
       );
   }
 
-  getOrderItemById(userId : any): Observable<any> {
+  getOrderItemByUserId(userId : any): Observable<any> {
     return this.http.get<any>(ENDPOINTS_ORDER_ITEM.GET_ORDER_ITEMS_BY_USER_ID(userId))
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getOrderItemById(id : any): Observable<any> {
+    return this.http.get<any>(ENDPOINTS_ORDER_ITEM.GET_ORDER_ITEM_BY_ID(id))
       .pipe(
         catchError(this.handleError)
       );

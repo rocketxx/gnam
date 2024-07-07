@@ -39,7 +39,7 @@ export class CartPageComponent implements OnInit {
 
   loadData()
   {
-    this.order_item_service.getOrderItemById(MockUserId).subscribe(response=>{
+    this.order_item_service.getOrderItemByUserId(MockUserId).subscribe(response=>{
       // console.log(response)
       this.orderItems = response;
     })
@@ -80,10 +80,10 @@ export class CartPageComponent implements OnInit {
     return orderItems;
   }
 
-  Update(id: string)
-  {
-    this.router.navigate(['/ristoranti/modifica-ordine', id]);
-
+  Update(orderId: string,restaurantId : string)
+  { //va passato anche id ristorante per recuperare le info.
+    // this.router.navigate(['/ristoranti/modifica-ordine', id]);
+    this.router.navigate(['/ristoranti/modifica-ordine', orderId, 'restaurant', restaurantId]);
   }
 
 
