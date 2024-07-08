@@ -85,22 +85,10 @@ export class CustomProductComponent implements OnInit {
   {
     this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response=>{
       this.order_item = response;
-      // this.extractSelectionedIngredientId(this.order_item)
       this.assignSelectedIds()
-      // this.counterComponent.quantity = this.order_item.quantity
-      // va emesso evebto di cambiamento quantità
     })
   }
 
-  extractSelectionedIngredientId(order_item : OrderItem)
-  {
-    var tmp = order_item.customizations.map(customization => customization.id);
-    // this
-    this.childrenComponents.forEach(comp=>{
-      comp.selectedIds
-    })
-    debugger
-  }
 
   assignSelectedIds(): void {
     var idFromOrderItem = this.order_item.customizations.map(customization => customization.id);
@@ -110,24 +98,15 @@ export class CustomProductComponent implements OnInit {
       return;
     }
   
-    console.log('idFromOrderItem:', idFromOrderItem);
-    console.log('childrenComponents:', this.childrenComponents);
-  
     this.childrenComponents.forEach(child => {
-      console.log('Processing child:', child);
-  
       // Filtra gli ID che sono presenti in `idFromOrderItem`
       const selectedIds = child.ingredients_list.filter(item => idFromOrderItem.includes(item.id));
       
-      console.log('selectedIds:', selectedIds);
-  
       // Assegna gli ID filtrati alla variabile `selectedIds` del componente figlio
       selectedIds.forEach(item => {
         child.toggleColor(item.id);
-        debugger; // Il debugger dovrebbe fermarsi qui se ci sono item selezionati
       });
   
-      debugger; // Il debugger dovrebbe fermarsi qui se non ci sono item selezionati
     });
   }
   
