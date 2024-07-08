@@ -35,16 +35,12 @@ export class IngredientsListComponent implements OnInit{
   constructor(){}
   
   toggleColor(itemId: string) {
-    debugger
     const index = this.selectedIds.indexOf(itemId);
     if (index > -1) {
       this.selectedIds.splice(index, 1); // Rimuovi l'ID se già presente
     } else {
       this.selectedIds.push(itemId); // Aggiungi l'ID se non presente
-      // bisogna che pubblichi su un payload condiviso cosi da poter recuperare tale info
     }
-    // var tmp = this.ingredients_list.filter(item=> item.itemId)
-    // this.ingredientSelectionChanged.emit(this.selectedIds); 
   }
 
   isItemSelected(itemId: string): boolean {

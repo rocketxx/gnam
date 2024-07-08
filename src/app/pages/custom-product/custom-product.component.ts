@@ -57,15 +57,12 @@ export class CustomProductComponent implements OnInit {
       this.orderId_from_path = params.get('id');
       this.restaurantId_from_path = params.get('id-restaurant');
     });
-    if(this.orderId_from_path != null) //stato EDIT
+    if(this.orderId_from_path != null && this.restaurantId_from_path != null ) //stato EDIT
     {
       this.editState = true
       this.loadIngredients(); 
       this.LoadOrderItem();
       this.loadRestaurant();
-      //devo caricare gli id degli ingredienti selezionati con viewchild
-      //devo recuperare il ristorante id 
-      //caricare orderItem
       //recuperare il tipo di prodotto: piazza panino 
     }
     else //stato NEW
