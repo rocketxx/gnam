@@ -33,4 +33,5 @@ export const apiConfig = {
     GET_ORDER_ITEMS_BY_USER_ID: (userId: any) => `${API_BASE_URL}/order-items/get-by-user/${userId}`,
     GET_ORDER_ITEM_BY_ID: (id: any) => `${API_BASE_URL}/order-items/${id}`,
     DELETE_ORDER_ITEM_BY_ID: (itemId: any) => `${API_BASE_URL}/order-items/delete/${itemId}`,
+    UPDATE_ORDER_ITEM: (id: any) => `${API_BASE_URL}/order-items/update/${id}`,
   };

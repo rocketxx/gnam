@@ -117,7 +117,11 @@ export class CustomProductComponent implements OnInit {
 
   Update()
   {
-
+    this.order_item_service.update(this.order_item.itemId,this.order_item).subscribe(response=>{
+      var tmp = response;
+      this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Modificato con successo' });
+      this.router.navigate(['/cart'])
+    })
   }
 
   Save() {

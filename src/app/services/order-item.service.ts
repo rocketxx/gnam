@@ -32,6 +32,13 @@ export class OrderItemService {
       );
   }
 
+  update(id: any, OrderItemDetails: OrderItem): Observable<OrderItem> {
+    return this.http.put<OrderItem>(ENDPOINTS_ORDER_ITEM.UPDATE_ORDER_ITEM(id), OrderItemDetails)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   deleteOrderItemById(itemId: any): Observable<any> {
     const url = ENDPOINTS_ORDER_ITEM.DELETE_ORDER_ITEM_BY_ID(itemId);
     return this.http.delete(url, { responseType: 'text' })
