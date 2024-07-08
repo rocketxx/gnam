@@ -31,7 +31,6 @@ export class CustomProductComponent implements OnInit {
 //E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
 //controlla se sta venendo da edit guardando il path
   @ViewChildren(IngredientsListComponent) childrenComponents!: QueryList<IngredientsListComponent>;
-  @ViewChildren(CounterComponent) counterComponent!: CounterComponent;
   order_item: OrderItem = new OrderItem();
   ingredientsIdList: any[] = []
   selectedIdList: any[] = []
@@ -63,6 +62,7 @@ export class CustomProductComponent implements OnInit {
       this.loadIngredients(); 
       this.LoadOrderItem();
       this.loadRestaurant();
+      // this.setQuantityEvent();
       //recuperare il tipo di prodotto: piazza panino 
     }
     else //stato NEW
@@ -70,6 +70,7 @@ export class CustomProductComponent implements OnInit {
       this.loadTypeCustomProductFromUrl();
     }
   }
+
 
   loadRestaurant()
   {

@@ -3,7 +3,7 @@
         <p-stepperPanel header="Quantità">
           <ng-template pTemplate="content" let-nextCallback="nextCallback">
             <h4>{{getTypeTitle()}}</h4>
-            <app-counter [defaultQuantity]="1" (quantityChanged)="setQuantity($event)"></app-counter>
+            <app-counter [quantity]="this.order_item.quantity" [defaultQuantity]="1" (quantityChanged)="setQuantity($event)"></app-counter>
             <div class="flex py-4">
               <p-button label="Avanti" (onClick)="nextCallback.emit()" />
             </div>
