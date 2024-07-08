@@ -35,6 +35,7 @@ export class IngredientsListComponent implements OnInit{
   constructor(){}
   
   toggleColor(itemId: string) {
+    debugger
     const index = this.selectedIds.indexOf(itemId);
     if (index > -1) {
       this.selectedIds.splice(index, 1); // Rimuovi l'ID se già presente

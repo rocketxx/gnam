@@ -123,7 +123,7 @@ export class CustomProductComponent implements OnInit {
   
       // Assegna gli ID filtrati alla variabile `selectedIds` del componente figlio
       selectedIds.forEach(item => {
-        child.toggleColor(item);
+        child.toggleColor(item.id);
         debugger; // Il debugger dovrebbe fermarsi qui se ci sono item selezionati
       });
   
