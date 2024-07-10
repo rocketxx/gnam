@@ -1,3 +1,10 @@
+ <div *ngIf="this.thereIsBaseProduct">
+  <app-read-only-card-v1 
+    [title]="this.order_item.menuItem.name"
+    [price]="this.order_item.menuItem.price.toString()"
+    [description]="this.order_item.menuItem.description" 
+  ></app-read-only-card-v1>
+ </div>
   <div *ngIf="_uniqueTypes && _uniqueTypes.length > 0">
     <p-stepper orientation="vertical">
         <p-stepperPanel header="Quantità">

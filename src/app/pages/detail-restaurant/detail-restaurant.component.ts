@@ -13,6 +13,8 @@ import { MiniCardComponent } from '../../components/mini-card/mini-card.componen
 import { ProductType } from '../../models/Enum/ProductType';
 import { RestaurantType } from '../../models/Enum/RestaurantType';
 import { MenuItemService } from '../../services/menu-item.service';
+import { MenuItem } from '../../models/MenuItem.model';
+import { BaseProductStateService } from '../../services/base-product-state.service';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -29,7 +31,7 @@ export class DetailRestaurantComponent implements OnInit{
   restaurant_type : string = '';
   renderCustomFoodButtonBread : boolean = false;
   renderCustomFoodButtonPizza : boolean = false;
-  constructor(private route: ActivatedRoute,private menu_item_service: MenuItemService,private restaurant_service: RestaurantsService,private router: Router){}
+  constructor(private base_product_state: BaseProductStateService,private route: ActivatedRoute,private menu_item_service: MenuItemService,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
@@ -71,9 +73,17 @@ export class DetailRestaurantComponent implements OnInit{
   }
 
   BaseClicked(item: any)
-  {//aggiungere controllo se è bevanda o meno. se non lo è vai a custom altrimenti stepper
+  {
+    var menu_item = item as MenuItem;
     var id = this.route.snapshot.params['id'];
-    this.router.navigate(['ristoranti/semipersonalizza/' + id +'/'+ item.id])
+    this.base_product_state.setMenuItem(menu_item)
+    this.router.navigate(['ristoranti/personalizza/' + id],{
+      state: {
+        type : item.type, 
+        name : this.restaurant_name,
+      }
+    })
+
   }
 
   loadInfoRestaurantFromUrl()

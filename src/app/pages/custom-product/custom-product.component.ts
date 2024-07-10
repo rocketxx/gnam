@@ -19,10 +19,12 @@ import { CounterComponent } from '../../components/counter/counter.component';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RestaurantsService } from '../../services/restaurants.service';
+import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
+import { BaseProductStateService } from '../../services/base-product-state.service';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [FormsModule, InputTextareaModule, TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [ReadOnlyCardV1Component,FormsModule, InputTextareaModule, TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
@@ -39,21 +41,23 @@ export class CustomProductComponent implements OnInit, AfterViewInit {
   _countUniqueTypes: any = 0;
   _uniqueTypes: any[] = [];
   restaurant_id: string = '';
-  typology1: Typology = Typology.condimento1
+  typology1: Typology = Typology.condimento1 //non servono, cancellare
   typology2: Typology = Typology.condimento2
   typology3: Typology = Typology.condimento3
   type_custom_product: string = '';
   restaurant_name: string = '';
   editState: boolean = false;
+  thereIsBaseProduct: boolean = false;
   orderId_from_path: string | null = ''
   restaurantId_from_path: string | null = ''
-  constructor(private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
+  constructor(private base_product_state: BaseProductStateService,private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
   
 
   ngOnInit(): void {
     // const orderId = this.route.snapshot.paramMap.get('orderId');
     // const restaurantId_from_path = this.route.snapshot.paramMap.get('restaurantId');
+    this.loadCustomProductFromState();
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.orderId_from_path = params.get('id');
       this.restaurantId_from_path = params.get('id-restaurant');
@@ -64,13 +68,29 @@ export class CustomProductComponent implements OnInit, AfterViewInit {
       this.loadIngredients();
       // this.LoadOrderItem();
       this.loadRestaurant();
-      // this.setQuantityEvent();
+      // this.setQuantityEvent();      
       //recuperare il tipo di prodotto: piazza panino 
     }
     else //stato NEW
     {
       this.loadTypeCustomProductFromUrl();
     }
+  }
+
+  loadCustomProductFromState()
+  {
+    this.base_product_state.getMenuItem().subscribe(response=>{
+      var menu_item = response;
+      if(menu_item != null)
+      {
+        this.order_item.menuItem = menu_item;
+        this.thereIsBaseProduct = true;
+      }
+      else
+      {
+        debugger
+      }
+    });
   }
 
   ngAfterViewInit(): void
