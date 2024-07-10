@@ -26,6 +26,22 @@
         inputId="integeronly">
     </p-inputNumber>
 </div>
+
+<!--  -->
+<div >
+    <div class="profile-container">
+
+        <div class="card flex justify-content-center">
+            <p-dropdown 
+            [options]="AvaibleForList" 
+            [(ngModel)]="selectedAvaibleForIngredient" 
+            optionLabel="name"
+            placeholder="Disponibile per" />
+        </div>
+    </div>
+    
+</div>
+<!--  -->
 <div >
     <div class="profile-container">
 
@@ -43,6 +59,7 @@
     </div>
     
 </div>
+
 <div class="bottom-button">
     <button (click)="Save_data()" pRipple pButton type="button" label="Salva" class="w-full fixed-bottom"></button>
 </div>

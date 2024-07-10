@@ -7,16 +7,16 @@ export class Ingredient {
     type: string; // Change to an appropriate type
     price: number;
     isActive: boolean;
-    AvaibleFor: AvaibleFor; // Corrected typo here: AvaibleFor -> AvaibleFor
+    avaibleFor: String; // Corrected typo here: AvaibleFor -> AvaibleFor
     constructor();
-    constructor(id: string, restaurantId: string, name: string, type: string, price: number, isActive?: boolean, avaibleFor?: AvaibleFor);
-    constructor(id?: string, restaurantId?: string, name?: string, type?: string, price?: number, isActive: boolean = true, avaibleFor: AvaibleFor = AvaibleFor.BOTH) {
+    constructor(id: string, restaurantId: string, name: string, type: string, price: number, isActive?: boolean, avaibleFor?: string);
+    constructor(id?: string, restaurantId?: string, name?: string, type?: string, price?: number, isActive: boolean = true, avaibleFor?: string) {
         this.id = id || '';
         this.restaurantId = restaurantId || '';
         this.name = name || '';
         this.type = type || '';
         this.price = price || 0;
         this.isActive = isActive;
-        this.AvaibleFor = avaibleFor;
+        this.avaibleFor = avaibleFor || '';
     }
 }

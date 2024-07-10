@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Ingredient } from '../../models/Ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
-import { INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
+import { AVAIBLE_FOR__TYPES_CONST, INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
 import { ActivatedRoute, Router } from '@angular/router';
 
 interface UploadEvent {
@@ -36,12 +36,17 @@ export class CaricaProdottoComponent implements OnInit{
   new_ingredient: Ingredient = new Ingredient();
   selectedTypeIngredient: any | undefined;
   tipologieProdottiList : any[] = [];
+  
+  selectedAvaibleForIngredient: any | undefined;
+  AvaibleForList : any[] = [];
+
   editState : boolean = false;
   constructor(private ingredient_service: IngredientService,private messageService: MessageService,private route: ActivatedRoute,private router: Router) {}
   ngOnInit(): void 
   {
       const editId = this.route.snapshot.paramMap.get('id');
       this.GetIngredientsTypes();
+      this.GetAvaibleForTypes();
 
       if(editId != null) //stato EDIT
       {
@@ -60,12 +65,20 @@ export class CaricaProdottoComponent implements OnInit{
     }));
   }
 
+  GetAvaibleForTypes()
+  {
+    this.AvaibleForList = AVAIBLE_FOR__TYPES_CONST.map(type => ({
+      name: type,
+    }));
+  }
+
   loadData()
   {
     this.ingredient_service.getIngredientById(this.GetIdInRoute()).subscribe(response=>{
       this.new_ingredient = response
       this.new_ingredient.isActive = response.active //per qualche ragione mi arriva active anzichè isActive e non riesce a fare ovvimente il mapping
       this.selectedTypeIngredient = {name : this.new_ingredient.type}; 
+      this.selectedAvaibleForIngredient = {name : this.new_ingredient.avaibleFor}; 
     });
   }
 
@@ -74,6 +87,7 @@ export class CaricaProdottoComponent implements OnInit{
     if(this.editState)
     {
       this.new_ingredient.type = this.selectedTypeIngredient.name;
+      this.new_ingredient.avaibleFor = this.selectedAvaibleForIngredient.name
       this.ingredient_service.updateIngredient(this.GetIdInRoute(),this.new_ingredient).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente modificato'});
        //ATTENDI E POI CAMBIA
@@ -106,5 +120,6 @@ export class CaricaProdottoComponent implements OnInit{
     this.new_ingredient.restaurantId = idRestaurantMock
     // TODO: aggiungi controllo se è undefined o null. in caso di edit si spacca altrimenti o perdi l'info
     this.new_ingredient.type = this.selectedTypeIngredient.name;
+    this.new_ingredient.avaibleFor = this.selectedAvaibleForIngredient.name
   }
 }
