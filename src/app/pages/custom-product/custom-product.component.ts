@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import { IngredientsListComponent } from '../../components/ingredients-list/ingredients-list.component';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Typology } from '../../models/Enum/foodTypes';
 import { IngredientService } from '../../services/ingredient.service';
@@ -28,7 +28,7 @@ import { BaseProductStateService } from '../../services/base-product-state.servi
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
-export class CustomProductComponent implements OnInit, AfterViewInit {
+export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  {
   //PER LA EDIT SERVE FARE PUSH DEGLI ID SELEZIONATI DENTRO IL COMPONENTE FIGLIO
   //E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
   //controlla se sta venendo da edit guardando il path
@@ -50,9 +50,19 @@ export class CustomProductComponent implements OnInit, AfterViewInit {
   thereIsBaseProduct: boolean = false;
   orderId_from_path: string | null = ''
   restaurantId_from_path: string | null = ''
+  private menuItemSubscription: Subscription | undefined
   constructor(private base_product_state: BaseProductStateService,private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
-  
+  ngOnDestroy(): void {
+    // Unsubscribe to avoid memory leaks
+    debugger
+    if (this.menuItemSubscription) {
+      this.menuItemSubscription.unsubscribe();
+    }
+
+    // Clear the menu item
+    this.base_product_state.clearMenuItem();
+  }
 
   ngOnInit(): void {
     // const orderId = this.route.snapshot.paramMap.get('orderId');
@@ -79,16 +89,12 @@ export class CustomProductComponent implements OnInit, AfterViewInit {
 
   loadCustomProductFromState()
   {
-    this.base_product_state.getMenuItem().subscribe(response=>{
+    this.menuItemSubscription = this.base_product_state.getMenuItem().subscribe(response=>{
       var menu_item = response;
       if(menu_item != null)
       {
         this.order_item.menuItem = menu_item;
         this.thereIsBaseProduct = true;
-      }
-      else
-      {
-        debugger
       }
     });
   }
