@@ -1,21 +1,22 @@
+import { AvaibleFor } from "./Enum/AvaibleFor";
+
 export class Ingredient {
     id: string; // @Id
     restaurantId: string;
-    // descrizione
     name: string;
-    type: string; //cambia in un type adeguato
+    type: string; // Change to an appropriate type
     price: number;
-    isActive: boolean; // If the product is out of stock, it can be deactivated
-
+    isActive: boolean;
+    AvaibleFor: AvaibleFor; // Corrected typo here: AvaibleFor -> AvaibleFor
     constructor();
-    constructor(id: string, restaurantId: string, name: string, type: string, price: number, isActive?: boolean);
-    constructor(id?: string, restaurantId?: string, name?: string, type?: string, price?: number, isActive: boolean = true) {
+    constructor(id: string, restaurantId: string, name: string, type: string, price: number, isActive?: boolean, avaibleFor?: AvaibleFor);
+    constructor(id?: string, restaurantId?: string, name?: string, type?: string, price?: number, isActive: boolean = true, avaibleFor: AvaibleFor = AvaibleFor.BOTH) {
         this.id = id || '';
         this.restaurantId = restaurantId || '';
         this.name = name || '';
         this.type = type || '';
         this.price = price || 0;
         this.isActive = isActive;
+        this.AvaibleFor = avaibleFor;
     }
 }
-

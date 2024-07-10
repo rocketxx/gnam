@@ -1,7 +1,6 @@
 dettaglio ristorante:
 
-nome ristorante in alto al centro 
-All'inizio il numero di panini/pizze uguali che vuoi
+
  
 menu card:
 in quelli già fatti, si parte dalla base, e poi aggiungi altri condimenti con lo stepper
@@ -23,3 +22,16 @@ Sistema lettura excel e ribalto su database. Per ingredienti
 Login ed email verificata
 Sistema di stampa.
 
+TODO:
+Modifica ordine passa anche la tipologia, questo lo ottiene salvando in orderItem, la tipologia
+pizza,panino
+
+nel modello ingredient, metti "productFor", per filtrare in base a quello che l'utente ha selezionato
+quindi spuntano ingredienti per pizza ecc.
+
+Nel menu salva anche la tipologia, sempre per caricare gli ingredienti che si possono 
+aggiungere nel menu di base
+
+in carrello, aggiungi prezzi, totale e "invia ordine"
+
+interfaccia super admin 
