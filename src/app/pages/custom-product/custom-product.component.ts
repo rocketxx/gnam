@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
@@ -26,7 +26,7 @@ import { RestaurantsService } from '../../services/restaurants.service';
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
-export class CustomProductComponent implements OnInit {
+export class CustomProductComponent implements OnInit, AfterViewInit {
   //PER LA EDIT SERVE FARE PUSH DEGLI ID SELEZIONATI DENTRO IL COMPONENTE FIGLIO
   //E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
   //controlla se sta venendo da edit guardando il path
