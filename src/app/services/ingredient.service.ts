@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { base_api } from '../config/apiUrlConfig';
 import { Ingredient } from '../models/Ingredient.model';
+import { AvaibleFor } from '../models/Enum/AvaibleFor';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,12 @@ export class IngredientService {
 
   getIngredients(idRestaurant : any): Observable<any[]> {
     return this.http.get<any[]>(this.base_api_ingredients + "/ingredients-by-restaurant"+ "/" + idRestaurant)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  getIngredientsByRestaurantAndAvaibleFor(idRestaurant : any, avaibleFor : AvaibleFor): Observable<any[]> {
+    return this.http.get<any[]>(this.base_api_ingredients + "/ingredients-by-restaurant"+ "/" + idRestaurant + "/" + avaibleFor)
       .pipe(
         catchError(this.handleError)
       );
