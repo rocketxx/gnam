@@ -22,32 +22,32 @@ import { RestaurantsService } from '../../services/restaurants.service';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [FormsModule, InputTextareaModule,TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [FormsModule, InputTextareaModule, TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
 export class CustomProductComponent implements OnInit {
-//PER LA EDIT SERVE FARE PUSH DEGLI ID SELEZIONATI DENTRO IL COMPONENTE FIGLIO
-//E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
-//controlla se sta venendo da edit guardando il path
+  //PER LA EDIT SERVE FARE PUSH DEGLI ID SELEZIONATI DENTRO IL COMPONENTE FIGLIO
+  //E PASSARE UN ORDER_ITEM_MENU A QUESTO COMPONENT  
+  //controlla se sta venendo da edit guardando il path
   @ViewChildren(IngredientsListComponent) childrenComponents!: QueryList<IngredientsListComponent>;
   order_item: OrderItem = new OrderItem();
   ingredientsIdList: any[] = []
   selectedIdList: any[] = []
   responseListIngredients: any[] = []
   listIngredients: any[] = []
-  _countUniqueTypes : any = 0;
-  _uniqueTypes : any[] = [];
+  _countUniqueTypes: any = 0;
+  _uniqueTypes: any[] = [];
   restaurant_id: string = '';
   typology1: Typology = Typology.condimento1
   typology2: Typology = Typology.condimento2
   typology3: Typology = Typology.condimento3
   type_custom_product: string = '';
   restaurant_name: string = '';
-  editState : boolean = false;
-  orderId_from_path : string | null = ''
-  restaurantId_from_path : string | null = ''
-  constructor(private restaurant_service: RestaurantsService,private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
+  editState: boolean = false;
+  orderId_from_path: string | null = ''
+  restaurantId_from_path: string | null = ''
+  constructor(private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
   ngOnInit(): void {
     // const orderId = this.route.snapshot.paramMap.get('orderId');
@@ -56,10 +56,10 @@ export class CustomProductComponent implements OnInit {
       this.orderId_from_path = params.get('id');
       this.restaurantId_from_path = params.get('id-restaurant');
     });
-    if(this.orderId_from_path != null && this.restaurantId_from_path != null ) //stato EDIT
+    if (this.orderId_from_path != null && this.restaurantId_from_path != null) //stato EDIT
     {
       this.editState = true
-      this.loadIngredients(); 
+      this.loadIngredients();
       this.LoadOrderItem();
       this.loadRestaurant();
       // this.setQuantityEvent();
@@ -72,16 +72,14 @@ export class CustomProductComponent implements OnInit {
   }
 
 
-  loadRestaurant()
-  {
-    this.restaurant_service.getRestaurantById(this.restaurantId_from_path).subscribe(response=>{
+  loadRestaurant() {
+    this.restaurant_service.getRestaurantById(this.restaurantId_from_path).subscribe(response => {
       this.restaurant_name = response.name
     })
   }
 
-  LoadOrderItem()
-  {
-    this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response=>{
+  LoadOrderItem() {
+    this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
       this.order_item = response;
       this.assignSelectedIds()
     })
@@ -90,35 +88,46 @@ export class CustomProductComponent implements OnInit {
 
   assignSelectedIds(): void {
     var idFromOrderItem = this.order_item.customizations.map(customization => customization.id);
-    
+
     if (!this.childrenComponents || this.childrenComponents.length === 0) {
       console.error('No child components found.');
       return;
     }
-  
+
     this.childrenComponents.forEach(child => {
       // Filtra gli ID che sono presenti in `idFromOrderItem`
       const selectedIds = child.ingredients_list.filter(item => idFromOrderItem.includes(item.id));
-      
+
       // Assegna gli ID filtrati alla variabile `selectedIds` del componente figlio
       selectedIds.forEach(item => {
         child.toggleColor(item.id);
       });
-  
+
     });
   }
-  
+
 
   getRestaurantId() {
-    if(this.editState)
+    if (this.editState)
       return this.restaurantId_from_path;
     else
       return this.route.snapshot.params['id'];
   }
 
-  Update()
-  {
-    this.order_item_service.update(this.order_item.itemId,this.order_item).subscribe(response=>{
+  aggiornaPersonalizzazioniOrdineInIngredientList() {
+    this.childrenComponents.forEach(child => {
+      this.ingredientsIdList.push(...child.selectedIds);
+    });
+
+    this.order_item.customizations = this.listIngredients.filter(item =>
+      this.ingredientsIdList.includes(item.id)
+    );
+  }
+
+
+
+  Update() {
+    this.order_item_service.update(this.order_item.itemId, this.order_item).subscribe(response => {
       var tmp = response;
       this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Modificato con successo' });
       this.router.navigate(['/cart'])
@@ -127,34 +136,33 @@ export class CustomProductComponent implements OnInit {
 
   Save() {
 
-    if(this.editState)
+    if (this.editState) {
+      this.aggiornaPersonalizzazioniOrdineInIngredientList();
       this.Update()
+    }
+    else {
+      var id = this.route.snapshot.params['id'];
+      // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
+      this.aggiornaPersonalizzazioniOrdineInIngredientList();
 
-    var id = this.route.snapshot.params['id'];
-  // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
-    this.childrenComponents.forEach(child => {
-      this.ingredientsIdList.push(...child.selectedIds);
-    });
+      if (this.order_item.quantity == 0)
+        this.order_item.quantity = 1;
+      //----------TOKEN INFO
+      this.order_item.userId = MockUserId;
+      this.order_item.restaurantId = id;
+      //--------------------
+      this.order_item_service.createOrderItem(this.order_item).subscribe(response => {
+        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Aggiunto al carrello' });
+        this.router.navigate(['ristoranti/dettaglio/' + id], {
+          state: {
+            name: this.restaurant_name,
+            type: this.type_custom_product
+          }
+        });
+      })
 
-    this.order_item.customizations = this.listIngredients.filter(item =>
-      this.ingredientsIdList.includes(item.id)
-    );
+    }
 
-    if(this.order_item.quantity == 0)
-      this.order_item.quantity = 1;
-//----------TOKEN INFO
-    this.order_item.userId = MockUserId;
-    this.order_item.restaurantId = id;
-//--------------------
-    this.order_item_service.createOrderItem(this.order_item).subscribe(response => {
-      this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Aggiunto al carrello' });
-      this.router.navigate(['ristoranti/dettaglio/' + id], {
-        state: {
-          name: this.restaurant_name,
-          type: this.type_custom_product
-        }
-      });
-    })
 
   }
 
@@ -168,11 +176,10 @@ export class CustomProductComponent implements OnInit {
     }
   }
 
-  getTypeTitle()
-  {
-    if(this.type_custom_product == 'BREAD')
+  getTypeTitle() {
+    if (this.type_custom_product == 'BREAD')
       return 'Quanti panini desideri con queste stesse caratteristiche?'
-    else if(this.type_custom_product == 'PIZZA')
+    else if (this.type_custom_product == 'PIZZA')
       return 'Quante pizze desideri con queste stesse caratteristiche?'
     return 'Quanti prodotti desideri con queste stesse caratteristiche?'
   }
@@ -191,29 +198,28 @@ export class CustomProductComponent implements OnInit {
     const uniqueTypes = new Set<string>();
 
     ingredients.forEach(ingredient => {
-        uniqueTypes.add(ingredient.type);
+      uniqueTypes.add(ingredient.type);
     });
-    
+
     return uniqueTypes.size;
   }
 
   getUniqueTypes(ingredients: any[]): string[] {
     const uniqueTypes = new Set<string>();
-    
+
     ingredients.forEach(ingredient => {
-        uniqueTypes.add(ingredient.type);
+      uniqueTypes.add(ingredient.type);
     });
 
     return Array.from(uniqueTypes);
-}
+  }
 
   filterByType(type: string): any[] {
     return this.responseListIngredients.filter(ingredient => ingredient.type === type);
   }
 
-  setQuantity(event : any)
-  {
-    this.order_item.quantity = event.quantity; 
+  setQuantity(event: any) {
+    this.order_item.quantity = event.quantity;
     // console.log(event.quantity)
   }
 
