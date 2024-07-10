@@ -49,6 +49,8 @@ export class CustomProductComponent implements OnInit {
   restaurantId_from_path: string | null = ''
   constructor(private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
+  
+
   ngOnInit(): void {
     // const orderId = this.route.snapshot.paramMap.get('orderId');
     // const restaurantId_from_path = this.route.snapshot.paramMap.get('restaurantId');
@@ -60,7 +62,7 @@ export class CustomProductComponent implements OnInit {
     {
       this.editState = true
       this.loadIngredients();
-      this.LoadOrderItem();
+      // this.LoadOrderItem();
       this.loadRestaurant();
       // this.setQuantityEvent();
       //recuperare il tipo di prodotto: piazza panino 
@@ -71,6 +73,10 @@ export class CustomProductComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void
+  {
+    this.LoadOrderItem();
+  }
 
   loadRestaurant() {
     this.restaurant_service.getRestaurantById(this.restaurantId_from_path).subscribe(response => {
