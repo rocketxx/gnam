@@ -261,12 +261,34 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   getUniqueTypes(ingredients: any[]): string[] {
     const uniqueTypes = new Set<string>();
-
+  
     ingredients.forEach(ingredient => {
       uniqueTypes.add(ingredient.type);
     });
-    return Array.from(uniqueTypes);
+  
+    const uniqueTypesArray = Array.from(uniqueTypes);
+    const result: string[] = [];
+  //ordinamento
+    if (uniqueTypesArray.includes('Carne')) {
+      result.push('Carne');
+      if (uniqueTypesArray.includes('Condimento')) {
+        result.push('Condimento');
+      }
+    } else {
+      if (uniqueTypesArray.includes('Condimento')) {
+        result.push('Condimento');
+      }
+    }
+  
+    uniqueTypesArray.forEach(type => {
+      if (type !== 'Carne' && type !== 'Condimento') {
+        result.push(type);
+      }
+    });
+  
+    return result;
   }
+  
 
   filterByType(type: string): any[] {
     return this.responseListIngredients.filter(ingredient => ingredient.type === type);
@@ -275,11 +297,10 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   setQuantity(event: any) {
     this.order_item.quantity = event.quantity;
   }
-//(ok)TODO: gestire in caso di edit. Poichè in caso di edit non hai il type_custom_product
-//(ok)mettere il type in order_item
-//(ok)TODO: sistemare anche menu item type, poichè nel caso base si userà quello type
-//TODO: richiama questa dove richiami this.loadIngredients(); 
-//TODO: fai in modo che gli stepper con all'interno liste vuote, non vengano visualizzati
+//(fatto)TODO: gestire in caso di edit. Poichè in caso di edit non hai il type_custom_product
+//(fatto)mettere il type in order_item
+//(fatto)TODO: sistemare anche menu item type, poichè nel caso base si userà quello type
+//(fatto)TODO: richiama questa dove richiami this.loadIngredients(); 
 //TODO: mettere in ordine. prima carne, poi condimenti poi salse.
   loadIngredientsWithAvaibleForOrDefault() //non mi garba questo sistema 
   {
