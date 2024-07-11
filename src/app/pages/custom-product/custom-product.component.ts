@@ -74,9 +74,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     {
       this.editState = true
       this.loadIngredients();
-      // this.LoadOrderItem();
       this.loadRestaurant();
-      // this.setQuantityEvent();      
       //recuperare il tipo di prodotto: piazza panino 
     }
     else //stato NEW
@@ -114,6 +112,8 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
       this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
         this.order_item = response;
         this.assignSelectedIds()
+        if(this.order_item.menuItem.id!='')
+          this.thereIsBaseProduct = true;
       })
     }
   }
