@@ -6,7 +6,6 @@ import { StepperModule } from 'primeng/stepper';
 import { IngredientsListComponent } from '../../components/ingredients-list/ingredients-list.component';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Typology } from '../../models/Enum/foodTypes';
 import { IngredientService } from '../../services/ingredient.service';
 import { OrderItem } from '../../models/OrderItem.model';
 import { OrderItemService } from '../../services/order-item.service';

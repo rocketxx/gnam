@@ -3,7 +3,6 @@ import { IngredientsListComponent } from '../../components/ingredients-list/ingr
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
-import { Typology } from '../../models/Enum/foodTypes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
@@ -20,10 +19,6 @@ export class SemicustomProductComponent implements OnInit{
   ingredient1List : any[] = []
   ingredient2List : any[] = []
   ingredient3List : any[] = []
-
-  typology1: Typology= Typology.condimento1
-  typology2: Typology= Typology.condimento2
-  typology3: Typology= Typology.condimento3
 
   baseProduct : any = null;
 

@@ -4,11 +4,6 @@ export enum FoodTypes {
     Tutti = 'Tutti'
   }
 
-  export enum Typology {
-    condimento1 = 0,
-    condimento2 = 1,
-    condimento3 = 2,
-    condimento4 = 3,
-  }
+
   
 
