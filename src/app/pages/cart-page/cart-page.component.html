@@ -1,5 +1,11 @@
 <div *ngFor="let item of orderItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
   <p-card header="{{ 'Quantità: ' + item.quantity }}">
+    <div *ngIf="item.menuItem.name!=''">
+      <h4>Base:</h4>
+      <p class="m-0">
+        {{ item.menuItem.name }}<br>
+      </p>
+    </div>
     <div *ngIf="item.customizations.length > 0">
       <h4>Ingredienti:</h4>
       <p class="m-0">
