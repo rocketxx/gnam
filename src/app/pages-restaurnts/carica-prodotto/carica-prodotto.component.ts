@@ -115,7 +115,7 @@ export class CaricaProdottoComponent implements OnInit{
   {
     ingredient.avaibleFor = avaibleFor;
     this.ingredient_service.createIngredient(ingredient).subscribe(reponse=>{
-      this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
+      this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente per ' + avaibleFor + ' caricato'});
       this.new_ingredient = new Ingredient();
     })
   }
