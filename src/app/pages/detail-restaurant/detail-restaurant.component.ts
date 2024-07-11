@@ -15,6 +15,7 @@ import { RestaurantType } from '../../models/Enum/RestaurantType';
 import { MenuItemService } from '../../services/menu-item.service';
 import { MenuItem } from '../../models/MenuItem.model';
 import { BaseProductStateService } from '../../services/base-product-state.service';
+import { BREAD, PIZZA } from '../../config/constantVariable';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -54,7 +55,7 @@ export class DetailRestaurantComponent implements OnInit{
     
     this.menu_item_service.getMenuItems(id).subscribe(response=>{
       //TODO: sevirebbe un filtro che se è ristorante BOTH allora filtri menu panino o pizze
-      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
+      this.foodMenuList = response.filter(item=> item.type == BREAD || item.type == PIZZA); 
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
     })
   }

@@ -69,7 +69,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     if (this.orderId_from_path != null && this.restaurantId_from_path != null) //stato EDIT
     {
       this.editState = true
-      this.loadIngredients();
+      this.loadIngredientsWithAvaibleForOrDefault();
       this.loadRestaurant();
       //recuperare il tipo di prodotto: pizza panino 
     }
@@ -170,7 +170,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
       var id = this.route.snapshot.params['id'];
       // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
       this.aggiornaPersonalizzazioniOrdineInIngredientList();
-
+      this.order_item.type = this.getType_custom_product();
       if (this.order_item.quantity == 0)
         this.order_item.quantity = 1;
       //----------TOKEN INFO
@@ -192,12 +192,21 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   }
 
+
+  getType_custom_product() //se non è stato cliccato il bottone personalizza, prenderà il tipo
+  { //dal menu item cliccato come base
+    if(!!this.type_custom_product)
+      return this.type_custom_product
+    else
+      return this.order_item.menuItem.type;
+  }
+
   loadTypeCustomProductFromUrl() {
     const state = window.history.state as { type: string, name: string };
     if (state) {
       this.type_custom_product = state.type;
       this.restaurant_name = state.name;
-      this.loadIngredients();
+      this.loadIngredientsWithAvaibleForOrDefault();
     }
   }
 
@@ -209,7 +218,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     return 'Quanti prodotti desideri con queste stesse caratteristiche?'
   }
 
-  loadIngredients() {
+  loadDefaultIngredients() {
     this.ingredient_service.getIngredients(this.getRestaurantId()).subscribe(response => {
       this.responseListIngredients = response;
       this.listIngredients = response;
@@ -246,18 +255,21 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   setQuantity(event: any) {
     this.order_item.quantity = event.quantity;
   }
-//TODO: gestire in caso di edit. Poichè in caso di edit non hai il type_custom_product
+//(ok)TODO: gestire in caso di edit. Poichè in caso di edit non hai il type_custom_product
+//(ok)mettere il type in order_item
+//(ok)TODO: sistemare anche menu item type, poichè nel caso base si userà quello type
 //TODO: richiama questa dove richiami this.loadIngredients(); 
 //TODO: fai in modo che gli stepper con all'interno liste vuote, non vengano visualizzati
-  loadIngredientsWithAvaibleForOrDefault()
+//TODO: mettere in ordine. prima carne, poi condimenti poi salse.
+  loadIngredientsWithAvaibleForOrDefault() //non mi garba questo sistema 
   {
     if (this.type_custom_product == 'BREAD')
       this.loadIngredientsWithAvaibleFor(Panini)
     else if(this.type_custom_product == 'PIZZA')
       this.loadIngredientsWithAvaibleFor(Pizze)
     else
-    {
-      this.loadIngredients();
+    { //per sicurezza, se il sistema dovesse fallire, richiamo quelli di default
+      this.loadDefaultIngredients(); //senza filtri sul tipo, se per qualche ragione non si trova il tipo
     }
   }
 

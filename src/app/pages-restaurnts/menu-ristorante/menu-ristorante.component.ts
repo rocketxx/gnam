@@ -15,7 +15,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItemService } from '../../services/menu-item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { MENU_TYPES, idRestaurantMock } from '../../config/constantVariable';
+import { BREAD, MENU_TYPES, PIZZA, idRestaurantMock } from '../../config/constantVariable';
 
 @Component({
   selector: 'app-menu-ristorante',
@@ -72,12 +72,23 @@ export class MenuRistoranteComponent implements OnInit {
   }
 // La bevanda è un item menu.
   
+
+  getTypeNameMenu()
+  {
+    // 'Pizza','Panino','Bevanda'
+    if(this.selectedTypeMenu.name == 'Pizza')
+      return PIZZA;
+    else if(this.selectedTypeMenu.name == 'Panino')
+      return BREAD;
+    return this.selectedTypeMenu.name;
+  }
+
   Save_data()
   {
     if(this.editState)
     {
       //  update // 
-      this.currentMenuItem.type = this.selectedTypeMenu.name;
+      this.currentMenuItem.type = this.getTypeNameMenu();
       this.menu_item_service.updateMenuItem(this.currentMenuItem.id,this.currentMenuItem).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu modificato'});
         this.router.navigate(['/lista-menu']);
@@ -86,8 +97,7 @@ export class MenuRistoranteComponent implements OnInit {
     else
     {
       this.currentMenuItem.restaurantId = idRestaurantMock;
-        this.currentMenuItem.type = this.selectedTypeMenu.name;
-      // this.currentMenuItem.productType = this.selectedTypeMenu.name
+        this.currentMenuItem.type = this.getTypeNameMenu();
         this.menu_item_service.createMenuItem(this.currentMenuItem).subscribe(response=>{
         this.messageService.add({severity: 'success', summary: 'Info', detail: 'Menu caricato'});
         this.currentMenuItem = new MenuItem();

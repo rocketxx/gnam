@@ -9,8 +9,9 @@ export class OrderItem {
     menuItem: MenuItem;
     restaurantId: string;
     userId: string;
+    type: string;
 
-    constructor(note?: string,itemId?: string, quantity?: number, customizations?: Ingredient[], menuItem?: MenuItem, restaurantId?: string, userId?: string) {
+    constructor(note?: string, itemId?: string, quantity?: number, customizations?: Ingredient[], menuItem?: MenuItem, restaurantId?: string, userId?: string, type?: string) {
         this.note = note ?? '';  // Default to empty string if undefined
         this.itemId = itemId ?? '';  // Default to empty string if undefined
         this.quantity = quantity ?? 0;  // Default to 0 if undefined
@@ -18,5 +19,6 @@ export class OrderItem {
         this.menuItem = menuItem ?? new MenuItem();  // Assuming MenuItem has a default constructor
         this.restaurantId = restaurantId ?? '';  // Default to empty string if undefined
         this.userId = userId ?? '';  // Default to empty string if undefined
+        this.type = type ?? '';  // Default to empty string if undefined
     }
 }
