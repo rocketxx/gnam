@@ -41,9 +41,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   _countUniqueTypes: any = 0;
   _uniqueTypes: any[] = [];
   restaurant_id: string = '';
-  typology1: Typology = Typology.condimento1 //non servono, cancellare
-  typology2: Typology = Typology.condimento2
-  typology3: Typology = Typology.condimento3
   type_custom_product: string = '';
   restaurant_name: string = '';
   editState: boolean = false;
