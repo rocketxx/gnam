@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Ingredient } from '../../models/Ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
-import { AVAIBLE_FOR__TYPES_CONST, INGREDIENTS_TYPES_CONST, idRestaurantMock } from '../../config/constantVariable';
+import { AVAIBLE_FOR__TYPES_CONST, INGREDIENTS_TYPES_CONST, Panini, Pizze, Pizze_E_Panini, idRestaurantMock } from '../../config/constantVariable';
 import { ActivatedRoute, Router } from '@angular/router';
 
 interface UploadEvent {
@@ -98,11 +98,26 @@ export class CaricaProdottoComponent implements OnInit{
     else
     {
       this.AddExtraInfo()
-      this.ingredient_service.createIngredient(this.new_ingredient).subscribe(reponse=>{
-        this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
-        this.new_ingredient = new Ingredient();
-      })
+      if(this.selectedAvaibleForIngredient.name == Pizze_E_Panini)
+      {
+        this.CreateIngredient(this.new_ingredient,Pizze)
+        this.CreateIngredient(this.new_ingredient,Panini)
+      }
+      else
+      {
+        this.CreateIngredient(this.new_ingredient,this.selectedAvaibleForIngredient.name)
+      }
     }
+  }
+
+
+  CreateIngredient(ingredient : Ingredient,avaibleFor : string)
+  {
+    ingredient.avaibleFor = avaibleFor;
+    this.ingredient_service.createIngredient(ingredient).subscribe(reponse=>{
+      this.messageService.add({severity: 'success', summary: 'Info', detail: 'Ingrediente caricato'});
+      this.new_ingredient = new Ingredient();
+    })
   }
 
   modificaStatoProdotto()
@@ -120,6 +135,6 @@ export class CaricaProdottoComponent implements OnInit{
     this.new_ingredient.restaurantId = idRestaurantMock
     // TODO: aggiungi controllo se è undefined o null. in caso di edit si spacca altrimenti o perdi l'info
     this.new_ingredient.type = this.selectedTypeIngredient.name;
-    this.new_ingredient.avaibleFor = this.selectedAvaibleForIngredient.name
+    // this.new_ingredient.avaibleFor = this.selectedAvaibleForIngredient.name
   }
 }
