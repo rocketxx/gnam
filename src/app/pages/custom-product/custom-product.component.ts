@@ -54,13 +54,11 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   constructor(private base_product_state: BaseProductStateService,private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
   ngOnDestroy(): void {
-    // Unsubscribe to avoid memory leaks
-    debugger
+    // evitare memory leaks
     if (this.menuItemSubscription) {
       this.menuItemSubscription.unsubscribe();
     }
-
-    // Clear the menu item
+    // pulisco storage
     this.base_product_state.clearMenuItem();
   }
 
@@ -111,10 +109,13 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   }
 
   LoadOrderItem() {
-    this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
-      this.order_item = response;
-      this.assignSelectedIds()
-    })
+    if(this.editState)
+    {
+      this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
+        this.order_item = response;
+        this.assignSelectedIds()
+      })
+    }
   }
 
 
