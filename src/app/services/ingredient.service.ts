@@ -19,7 +19,7 @@ export class IngredientService {
         catchError(this.handleError)
       );
   }
-  getIngredientsByRestaurantAndAvaibleFor(idRestaurant : any, avaibleFor : AvaibleFor): Observable<any[]> {
+  getIngredientsByRestaurantAndAvaibleFor(idRestaurant : any, avaibleFor : string): Observable<any[]> {
     return this.http.get<any[]>(this.base_api_ingredients + "/ingredients-by-restaurant"+ "/" + idRestaurant + "/" + avaibleFor)
       .pipe(
         catchError(this.handleError)

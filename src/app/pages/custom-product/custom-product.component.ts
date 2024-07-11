@@ -20,6 +20,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
 import { BaseProductStateService } from '../../services/base-product-state.service';
+import { Panini, Pizze } from '../../config/constantVariable';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
@@ -59,6 +60,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   }
 
   ngOnInit(): void {
+
     this.loadCustomProductFromState();
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.orderId_from_path = params.get('id');
@@ -244,5 +246,31 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   setQuantity(event: any) {
     this.order_item.quantity = event.quantity;
   }
+//TODO: gestire in caso di edit. Poichè in caso di edit non hai il type_custom_product
+//TODO: richiama questa dove richiami this.loadIngredients(); 
+//TODO: fai in modo che gli stepper con all'interno liste vuote, non vengano visualizzati
+  loadIngredientsWithAvaibleForOrDefault()
+  {
+    if (this.type_custom_product == 'BREAD')
+      this.loadIngredientsWithAvaibleFor(Panini)
+    else if(this.type_custom_product == 'PIZZA')
+      this.loadIngredientsWithAvaibleFor(Pizze)
+    else
+    {
+      this.loadIngredients();
+    }
+  }
+
+  loadIngredientsWithAvaibleFor(avaible_for : string)
+  {
+    this.ingredient_service.getIngredientsByRestaurantAndAvaibleFor(this.getRestaurantId(),avaible_for).subscribe(response=>{
+      this.responseListIngredients = response;
+      this.listIngredients = response;
+      this._countUniqueTypes = this.countUniqueTypes(response);
+      this._uniqueTypes = this.getUniqueTypes(response);
+    })
+  }
+
+
 
 }
