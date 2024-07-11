@@ -91,8 +91,12 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   ngAfterViewInit(): void
   {
-    this.LoadOrderItem();
+    setTimeout(() => { //senza il timeout, ogni tanto non trova i child su cui ciclare
+      this.LoadOrderItem(); //ng after view init scatta troppo presto, il che è strano perchè
+    }, 50); //non dovrebbe proprio scattare senza aver renderizzato tutto 
   }
+
+
   loadOrderItemTypeTypeFromServiceState()
   {
     this.orderItemTypeService.getOrderItemType().subscribe(response=>{
@@ -124,7 +128,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     {
       this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
         this.order_item = response;
-        this.type_custom_product = this.order_item.type;
+        // this.type_custom_product = this.order_item.type;
         this.assignSelectedIds()
         if(this.order_item.menuItem.id!='')
           this.thereIsBaseProduct = true;
@@ -261,7 +265,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     ingredients.forEach(ingredient => {
       uniqueTypes.add(ingredient.type);
     });
-
     return Array.from(uniqueTypes);
   }
 
