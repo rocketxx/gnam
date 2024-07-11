@@ -21,6 +21,7 @@ import { RestaurantsService } from '../../services/restaurants.service';
 import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
 import { BaseProductStateService } from '../../services/base-product-state.service';
 import { Panini, Pizze } from '../../config/constantVariable';
+import { OrderItemTypeService } from '../../services/order-item-type.service';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
@@ -48,7 +49,8 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   orderId_from_path: string | null = ''
   restaurantId_from_path: string | null = ''
   private menuItemSubscription: Subscription | undefined
-  constructor(private base_product_state: BaseProductStateService,private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
+  private orderItemTypeSubscription: Subscription | undefined
+  constructor(private orderItemTypeService : OrderItemTypeService,private base_product_state: BaseProductStateService,private restaurant_service: RestaurantsService, private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router, private ingredient_service: IngredientService) { }
 
   ngOnDestroy(): void {
     // evitare memory leaks
@@ -57,6 +59,13 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     }
     // pulisco storage
     this.base_product_state.clearMenuItem();
+
+        // evitare memory leaks
+    if (this.orderItemTypeSubscription) {
+      this.orderItemTypeSubscription.unsubscribe();
+    }
+    // pulisco storage
+    this.orderItemTypeService.clearOrderItemType();
   }
 
   ngOnInit(): void {
@@ -69,6 +78,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     if (this.orderId_from_path != null && this.restaurantId_from_path != null) //stato EDIT
     {
       this.editState = true
+      this.loadOrderItemTypeTypeFromServiceState();
       this.loadIngredientsWithAvaibleForOrDefault();
       this.loadRestaurant();
       //recuperare il tipo di prodotto: pizza panino 
@@ -77,6 +87,17 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     {
       this.loadTypeCustomProductFromUrl();
     }
+  }
+
+  ngAfterViewInit(): void
+  {
+    this.LoadOrderItem();
+  }
+  loadOrderItemTypeTypeFromServiceState()
+  {
+    this.orderItemTypeService.getOrderItemType().subscribe(response=>{
+      this.type_custom_product = response ? response : '';
+    })
   }
 
   loadCustomProductFromState()
@@ -91,10 +112,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     });
   }
 
-  ngAfterViewInit(): void
-  {
-    this.LoadOrderItem();
-  }
 
   loadRestaurant() {
     this.restaurant_service.getRestaurantById(this.restaurantId_from_path).subscribe(response => {
@@ -107,6 +124,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     {
       this.order_item_service.getOrderItemById(this.orderId_from_path).subscribe(response => {
         this.order_item = response;
+        this.type_custom_product = this.order_item.type;
         this.assignSelectedIds()
         if(this.order_item.menuItem.id!='')
           this.thereIsBaseProduct = true;
@@ -170,7 +188,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
       var id = this.route.snapshot.params['id'];
       // prendo tutti gli id selezionati nei vari componenti app-ingredient-list.
       this.aggiornaPersonalizzazioniOrdineInIngredientList();
-      this.order_item.type = this.getType_custom_product();
+      this.order_item.type = this.getType_product_or_menuItem();
       if (this.order_item.quantity == 0)
         this.order_item.quantity = 1;
       //----------TOKEN INFO
@@ -193,12 +211,11 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   }
 
 
-  getType_custom_product() //se non è stato cliccato il bottone personalizza, prenderà il tipo
+  getType_product_or_menuItem() //se non è stato cliccato il bottone personalizza, prenderà il tipo
   { //dal menu item cliccato come base
     if(!!this.type_custom_product)
       return this.type_custom_product
-    else
-      return this.order_item.menuItem.type;
+    return '';
   }
 
   loadTypeCustomProductFromUrl() {
@@ -263,9 +280,9 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 //TODO: mettere in ordine. prima carne, poi condimenti poi salse.
   loadIngredientsWithAvaibleForOrDefault() //non mi garba questo sistema 
   {
-    if (this.type_custom_product == 'BREAD')
+    if (this.getType_product_or_menuItem() == 'BREAD')
       this.loadIngredientsWithAvaibleFor(Panini)
-    else if(this.type_custom_product == 'PIZZA')
+    else if(this.getType_product_or_menuItem() == 'PIZZA')
       this.loadIngredientsWithAvaibleFor(Pizze)
     else
     { //per sicurezza, se il sistema dovesse fallire, richiamo quelli di default

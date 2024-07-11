@@ -10,6 +10,7 @@ import { OrderItem } from '../../models/OrderItem.model';
 import { Ingredient } from '../../models/Ingredient.model';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { OrderItemTypeService } from '../../services/order-item-type.service';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
@@ -22,7 +23,7 @@ export class CartPageComponent implements OnInit {
   orderItems : OrderItem[] = [];
   loading: boolean = false;
 
-  constructor(private cdr: ChangeDetectorRef,private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router)
+  constructor(private orderItemTypeService : OrderItemTypeService,private cdr: ChangeDetectorRef,private messageService: MessageService, private order_item_service: OrderItemService, private route: ActivatedRoute, private router: Router)
   {}
 
   ngOnInit(): void {
@@ -80,10 +81,11 @@ export class CartPageComponent implements OnInit {
     return orderItems;
   }
 
-  Update(orderId: string,restaurantId : string)
+  Update(item : OrderItem)
   { //va passato anche id ristorante per recuperare le info.
     // this.router.navigate(['/ristoranti/modifica-ordine', id]);
-    this.router.navigate(['/ristoranti/modifica-ordine', orderId, 'restaurant', restaurantId]);
+    this.orderItemTypeService.setOrderItemType(item.type);
+    this.router.navigate(['/ristoranti/modifica-ordine', item.itemId, 'restaurant', item.restaurantId]);
   }
 
 
