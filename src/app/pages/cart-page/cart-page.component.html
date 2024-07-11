@@ -3,7 +3,8 @@
     <div *ngIf="item.menuItem.name!=''">
       <h4>Base:</h4>
       <p class="m-0">
-        {{ item.menuItem.name }}<br>
+        {{ 'Nome: ' + item.menuItem.name }}<br>
+        {{ 'Descrizione: ' + item.menuItem.description }}<br>
       </p>
     </div>
     <div *ngIf="item.customizations.length > 0">
