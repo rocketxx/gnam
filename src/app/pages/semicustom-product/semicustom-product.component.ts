@@ -64,8 +64,6 @@ export class SemicustomProductComponent implements OnInit{
   loadBaseProduct() //carico il prodotto scelto dall'utente come base del panino/pizza
   {
     var baseId = this.route.snapshot.params['baseId'];
-    this.restaurant_service.getBaseProductByIdMock(baseId).subscribe(response=>{
-      this.baseProduct = response[0];
-    })
+
   }
 }

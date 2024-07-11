@@ -152,8 +152,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     );
   }
 
-
-
   Update() {
     this.order_item_service.update(this.order_item.itemId, this.order_item).subscribe(response => {
       this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Modificato con successo' });
