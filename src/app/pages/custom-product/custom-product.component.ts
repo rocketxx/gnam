@@ -63,8 +63,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
   }
 
   ngOnInit(): void {
-    // const orderId = this.route.snapshot.paramMap.get('orderId');
-    // const restaurantId_from_path = this.route.snapshot.paramMap.get('restaurantId');
     this.loadCustomProductFromState();
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.orderId_from_path = params.get('id');
@@ -75,7 +73,7 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
       this.editState = true
       this.loadIngredients();
       this.loadRestaurant();
-      //recuperare il tipo di prodotto: piazza panino 
+      //recuperare il tipo di prodotto: pizza panino 
     }
     else //stato NEW
     {
@@ -161,7 +159,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   Update() {
     this.order_item_service.update(this.order_item.itemId, this.order_item).subscribe(response => {
-      var tmp = response;
       this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Modificato con successo' });
       this.router.navigate(['/cart'])
     })
@@ -204,7 +201,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     if (state) {
       this.type_custom_product = state.type;
       this.restaurant_name = state.name;
-      // console.log(this.type_custom_product)
       this.loadIngredients();
     }
   }
@@ -253,7 +249,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   setQuantity(event: any) {
     this.order_item.quantity = event.quantity;
-    // console.log(event.quantity)
   }
 
 }
