@@ -22,10 +22,11 @@ import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read
 import { BaseProductStateService } from '../../services/base-product-state.service';
 import { Panini, Pizze } from '../../config/constantVariable';
 import { OrderItemTypeService } from '../../services/order-item-type.service';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 @Component({
   selector: 'app-custom-product',
   standalone: true,
-  imports: [ReadOnlyCardV1Component,FormsModule, InputTextareaModule, TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
+  imports: [ProductCardComponent,ReadOnlyCardV1Component,FormsModule, InputTextareaModule, TagModule, MessagesModule, CounterComponent, SkeletonModule, ToastModule, IngredientsListComponent, CommonModule, ButtonModule, StepperModule],
   templateUrl: './custom-product.component.html',
   styleUrl: './custom-product.component.scss'
 })
@@ -86,6 +87,18 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
     {
       this.loadTypeCustomProductFromUrl();
     }
+  }
+
+  getMenuItemIfExist() : []
+  {
+    var list : any = []
+    if(this.thereIsBaseProduct)
+    {
+      list.push(this.order_item.menuItem)
+      return list;
+    }
+    else
+      return []
   }
 
   ngAfterViewInit(): void

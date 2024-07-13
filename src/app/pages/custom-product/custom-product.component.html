@@ -1,9 +1,10 @@
  <div *ngIf="this.thereIsBaseProduct">
-  <app-read-only-card-v1 
+  <!-- <app-read-only-card-v1 
     [title]="this.order_item.menuItem.name"
     [price]="this.order_item.menuItem.price.toString()"
     [description]="this.order_item.menuItem.description" 
-  ></app-read-only-card-v1>
+  ></app-read-only-card-v1> -->
+  <app-product-card [readOnly]="true" [list_of_element]="getMenuItemIfExist()"></app-product-card>
  </div>
   <div *ngIf="_uniqueTypes && _uniqueTypes.length > 0">
     <p-stepper orientation="vertical">
