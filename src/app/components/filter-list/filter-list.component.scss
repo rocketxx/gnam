@@ -1,0 +1,19 @@
+/* Contenitore principale */
+.scrollable-container {
+    width: 100%; /* Imposta la larghezza del contenitore */
+    overflow-x: scroll; /* Abilita lo scorrimento orizzontale */
+    white-space: nowrap; /* Impedisce il wrapping degli elementi della lista */
+    -ms-overflow-style: none;  /* Nasconde la scrollbar su Internet Explorer e Edge */
+    scrollbar-width: none;  /* Nasconde la scrollbar su Firefox */
+  }
+  
+  .scrollable-container::-webkit-scrollbar {
+    display: none; /* Nasconde la scrollbar su Chrome, Safari e Opera */
+  }
+  
+  /* Elementi della lista */
+  .scrollable-item {
+    display: inline-block; /* Dispone gli elementi in linea orizzontale */
+    margin-right: 10px; /* Spazio tra gli elementi, personalizzabile */
+  }
+  

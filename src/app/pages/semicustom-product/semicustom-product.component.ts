@@ -7,59 +7,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
 import { ExperimentalComponent } from '../../components/experimental/experimental.component';
+import { MiniItemComponent } from '../../components/mini-item/mini-item.component';
+import { FilterListComponent } from '../../components/filter-list/filter-list.component';
 
 @Component({
   selector: 'app-semicustom-product',
   standalone: true,
-  imports: [ExperimentalComponent,ReadOnlyCardV1Component,IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
+  imports: [FilterListComponent,MiniItemComponent,ExperimentalComponent,ReadOnlyCardV1Component,IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
   templateUrl: './semicustom-product.component.html',
   styleUrl: './semicustom-product.component.scss'
 })
 export class SemicustomProductComponent implements OnInit{
-  
-  ingredient1List : any[] = []
-  ingredient2List : any[] = []
-  ingredient3List : any[] = []
-
-  baseProduct : any = null;
-
-  constructor(private restaurant_service: RestaurantsService,private route: ActivatedRoute,private router: Router)
-  {
-
-  }
+  myelement : any = {name: 'Bevande'}
+  myList : any[] = [];
+  // myelement : any = {name: 'Bevande'}
   ngOnInit(): void {
-    this.loadBaseProduct();
-  }
-  onIngredientSelectionChanged(selectedIds: string[]) {
-    this.ingredient1List = selectedIds
-  }
-
-  onIngredient2SelectionChanged(selectedIds: string[]) {
-    this.ingredient2List = selectedIds
-  }
-
-  onIngredient3SelectionChanged(selectedIds: string[]) {
-    this.ingredient3List = selectedIds
-  }
-
-  Save()
-  {
-   console.log('1',this.ingredient1List)
-   console.log('2',this.ingredient2List)
-   console.log('3',this.ingredient3List)
-  //  recupero base grazie a id
-   var id = this.route.snapshot.params['id'];
-   this.router.navigate(['ristoranti/dettaglio/' + id])
+    this.myList.push({name: 'Panini'})
+    this.myList.push({name: 'Pizze'})
+    this.myList.push({name: 'Bevande'})
+    this.myList.push({name: 'Insalate'})
+    // throw new Error('Method not implemented.');
   }
   
-  Carrello()
-  {
-    this.router.navigate(['cart'])
-  }
-
-  loadBaseProduct() //carico il prodotto scelto dall'utente come base del panino/pizza
-  {
-    var baseId = this.route.snapshot.params['baseId'];
-
-  }
 }

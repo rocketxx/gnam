@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { CounterComponent } from '../counter/counter.component';
@@ -12,7 +12,7 @@ import { imageType } from '../experimental/experimental.component';
   templateUrl: './mini-item.component.html',
   styleUrl: './mini-item.component.scss'
 })
-export class MiniItemComponent {
+export class MiniItemComponent implements OnInit {
   @Input() element : any;
   @Output() elementClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() image_type: imageType = imageType.pizza; // Default size

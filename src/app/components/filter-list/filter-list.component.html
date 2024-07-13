@@ -1,1 +1,25 @@
-<p>filter-list works!</p>
+
+
+<!-- <div class="scrollable-container">
+    <div class="scrollable-item">
+        <app-mini-item [element]="this.myelement"></app-mini-item>
+    </div>
+    <div class="scrollable-item">
+        <app-mini-item [element]="this.myelement"></app-mini-item>
+    </div>
+    <div class="scrollable-item">
+        <app-mini-item [element]="this.myelement"></app-mini-item>
+    </div>
+    <div class="scrollable-item">
+        <app-mini-item [element]="this.myelement"></app-mini-item>
+    </div>
+  </div> -->
+  
+
+  <div class="scrollable-container">
+    <div class="scrollable-item" *ngFor="let item of myElements">
+      <app-mini-item [element]="item"></app-mini-item>
+    </div>
+  </div>
+  
+  
