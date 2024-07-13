@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: 'ristoranti/personalizza/:id', title: 'Personalizza', component: CustomProductComponent },
     { path: 'ristoranti/modifica-ordine/:id/restaurant/:id-restaurant', title: 'Personalizza', component: CustomProductComponent },
     
-    { path: 'ristoranti/semipersonalizza/:id/:baseId', title: 'Ristoranti', component: SemicustomProductComponent },
+    { path: 'experimental', title: 'Componenti sperimentali', component: SemicustomProductComponent },
     { path: 'ristoranti/dettaglio/:id', title: 'Dettaglio ristorante', component: DetailRestaurantComponent },
     { path: 'order', title: 'Ordini', component: OrderPageComponent },
     { path: 'profile', title: 'Profilo', component: ProfilePageComponent },

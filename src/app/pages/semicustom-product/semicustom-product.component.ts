@@ -6,11 +6,12 @@ import { StepperModule } from 'primeng/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ReadOnlyCardV1Component } from '../../components/read-only-card-v1/read-only-card-v1.component';
+import { ExperimentalComponent } from '../../components/experimental/experimental.component';
 
 @Component({
   selector: 'app-semicustom-product',
   standalone: true,
-  imports: [ReadOnlyCardV1Component,IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
+  imports: [ExperimentalComponent,ReadOnlyCardV1Component,IngredientsListComponent,CommonModule,ButtonModule,StepperModule],
   templateUrl: './semicustom-product.component.html',
   styleUrl: './semicustom-product.component.scss'
 })

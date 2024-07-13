@@ -1,0 +1,60 @@
+.card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex;
+    flex-direction: column; /* Per allineare il contenuto in colonna */
+  }
+  
+  .card-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-info {
+    margin-left: 16px;
+    flex-grow: 1;
+  }
+  
+  .card-name {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card-description {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .card-price {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFC300;
+  }
+  
+  .add-button {
+    background-color: #FFC300;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px; /* Spazio sopra il pulsante */
+    width: 100%; /* Larghezza del pulsante uguale alla card */
+    transition: background-color 0.3s;
+  }
+  
+  .add-button:hover {
+    background-color: #e0a800;
+  }
+  
+  .icon {
+    margin-right: 5px;
+  }
+  
