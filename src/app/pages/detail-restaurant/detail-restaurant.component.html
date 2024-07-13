@@ -4,10 +4,8 @@
 <div class="card">
     <p-tabView>
         <p-tabPanel header="Menu">
-            
-            <div class="restaurant-title">
-                {{this.restaurant_name}}
-            </div>
+            <h1 class="cool-title">{{this.restaurant_name}}</h1>
+
             <div class="container-button">
                 <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('BREAD')" [icon]="'🍔'" [description]="'Crea panino personalizzato'"></app-custom-button>
                 <!-- <p-button *ngIf="this.renderCustomFoodButtonBread" (onClick)="personalizza_prodotto('BREAD')" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button> -->
