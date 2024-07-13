@@ -23,7 +23,15 @@
             <p-button severity="danger" pRipple label="Ristorante chiuso" icon="pi pi-ban" class="w-full"></p-button>
           </ng-template>
           <ng-template pTemplate="footer" *ngIf="item.opened == true">
-            <p-button  pRipple (onClick)="detail_restaurant(item)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
+            <div class="button-container">
+              <!-- <p-button  pRipple (onClick)="detail_restaurant(item)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button> -->
+              <button class="detail-button" (click)="detail_restaurant(item)">
+                <span class="button-text">Dettaglio</span>
+                <i class="fas fa-eye icon"></i>
+            </button>
+            </div>
+            
+            
           </ng-template>
         </p-card>
       </div>
