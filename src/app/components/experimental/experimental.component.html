@@ -13,9 +13,10 @@
           <p class="card-price">{{item.price + '€'}} </p>
         </div>
       </div>
-      <button class="add-button" (click)="emitIdProduct(item)">
-        <i class="fas fa-plus"></i> Aggiungi
+      <button *ngIf="!this.counterActive && !this.readOnly" class="add-button" (click)="emitIdProduct(item)">
+        <i class="fas fa-plus"></i> Personalizza
       </button>
+      <app-counter class="add-button"  *ngIf="this.counterActive && !this.readOnly" [productId]="item?.id" [quantity]="0"></app-counter>
     </div>
 </div>
   

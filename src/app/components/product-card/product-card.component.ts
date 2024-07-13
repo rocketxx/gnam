@@ -1,3 +1,15 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-product-card',
+//   standalone: true,
+//   imports: [],
+//   templateUrl: './product-card.component.html',
+//   styleUrl: './product-card.component.scss'
+// })
+// export class ProductCardComponent {
+
+// }
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
@@ -11,13 +23,13 @@ export enum imageType {
 }
 
 @Component({
-  selector: 'app-experimental',
+  selector: 'app-product-card',
   standalone: true,
   imports: [CounterComponent,AvatarModule, BadgeModule,CommonModule],
-  templateUrl: './experimental.component.html',
-  styleUrl: './experimental.component.scss'
+  templateUrl: './product-card.component.html',
+  styleUrl: './product-card.component.scss'
 })
-export class ExperimentalComponent implements OnInit {
+export class ProductCardComponent implements OnInit {
   @Input() list_of_element : any[] = [];
   @Output() baseClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() isBevande : boolean = false;

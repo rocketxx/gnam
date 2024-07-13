@@ -1,0 +1,22 @@
+<div *ngFor="let item of list_of_element; let i = index">
+    <div class="card">
+        <div class="card-content">
+          <p-avatar 
+            image={{getImageLink(item.image)}}
+            styleClass="mr-2" 
+            size="xlarge" 
+            shape="circle">
+          </p-avatar>
+          <div class="card-info">
+            <h3 class="card-name">{{item.name}}</h3>
+            <p class="card-description">{{item.description}}</p>
+            <p class="card-price">{{item.price + '€'}} </p>
+          </div>
+        </div>
+        <button *ngIf="!this.counterActive && !this.readOnly" class="add-button" (click)="emitIdProduct(item)">
+          <i class="fas fa-plus"></i> Personalizza
+        </button>
+        <app-counter class="add-button"  *ngIf="this.counterActive && !this.readOnly" [productId]="item?.id" [quantity]="0"></app-counter>
+      </div>
+  </div>
+    

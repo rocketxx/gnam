@@ -9,13 +9,15 @@
                 {{this.restaurant_name}}
             </div>
             <div class="container-button">
-                <p-button *ngIf="this.renderCustomFoodButtonBread" (onClick)="personalizza_prodotto('BREAD')" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button>
+                <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('BREAD')" [icon]="'🍔'" [description]="'Crea panino personalizzato'"></app-custom-button>
+                <!-- <p-button *ngIf="this.renderCustomFoodButtonBread" (onClick)="personalizza_prodotto('BREAD')" severity="success" label="Crea panino personalizzato" icon="pi pi-file-edit" size="small"></p-button> -->
             </div>
             <div class="container-button">
-                <p-button *ngIf="this.renderCustomFoodButtonPizza" (onClick)="personalizza_prodotto('PIZZA')" severity="success" label="Crea pizza personalizzata" icon="pi pi-file-edit" size="small"></p-button>
+                <!-- <p-button *ngIf="this.renderCustomFoodButtonPizza" (onClick)="personalizza_prodotto('PIZZA')" severity="success" label="Crea pizza personalizzata" icon="pi pi-file-edit" size="small"></p-button> -->
+                <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('PIZZA')" [icon]="'🍕'" [description]="'Crea pizza personalizzata'"></app-custom-button>
             </div>
             
-            <app-experimental (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-experimental>
+            <app-product-card (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-product-card>
         
         </p-tabPanel>
         

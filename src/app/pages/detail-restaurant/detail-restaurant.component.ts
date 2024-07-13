@@ -17,10 +17,12 @@ import { MenuItem } from '../../models/MenuItem.model';
 import { BaseProductStateService } from '../../services/base-product-state.service';
 import { BREAD, PIZZA } from '../../config/constantVariable';
 import { ExperimentalComponent } from '../../components/experimental/experimental.component';
+import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [ExperimentalComponent,MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [CustomButtonComponent,ProductCardComponent,MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })
