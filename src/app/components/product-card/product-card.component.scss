@@ -6,7 +6,8 @@
     padding: 16px;
     display: flex;
     flex-direction: column; /* Per allineare il contenuto in colonna */
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     font-weight: bold;
   }
   
@@ -44,7 +45,7 @@
     border: none;
     color: white;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px; /* Spazio sopra il pulsante */
