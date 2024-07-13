@@ -15,7 +15,7 @@
                 <p-button *ngIf="this.renderCustomFoodButtonPizza" (onClick)="personalizza_prodotto('PIZZA')" severity="success" label="Crea pizza personalizzata" icon="pi pi-file-edit" size="small"></p-button>
             </div>
             
-            <app-mini-card (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-mini-card>
+            <app-experimental (baseClicked)="BaseClicked($event)" [list_of_element]="foodMenuList"></app-experimental>
         
         </p-tabPanel>
         

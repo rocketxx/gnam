@@ -6,6 +6,8 @@
     padding: 16px;
     display: flex;
     flex-direction: column; /* Per allineare il contenuto in colonna */
+    margin-top: 30px;
+    font-weight: bold;
   }
   
   .card-content {
@@ -48,6 +50,7 @@
     margin-top: 10px; /* Spazio sopra il pulsante */
     width: 100%; /* Larghezza del pulsante uguale alla card */
     transition: background-color 0.3s;
+    font-weight: bold;
   }
   
   .add-button:hover {

@@ -16,10 +16,11 @@ import { MenuItemService } from '../../services/menu-item.service';
 import { MenuItem } from '../../models/MenuItem.model';
 import { BaseProductStateService } from '../../services/base-product-state.service';
 import { BREAD, PIZZA } from '../../config/constantVariable';
+import { ExperimentalComponent } from '../../components/experimental/experimental.component';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [ExperimentalComponent,MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })
