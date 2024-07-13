@@ -11,8 +11,9 @@
           <ng-template pTemplate="content" let-nextCallback="nextCallback">
             <h4>{{getTypeTitle()}}</h4>
             <app-counter [quantity]="this.order_item.quantity" [defaultQuantity]="1" (quantityChanged)="setQuantity($event)"></app-counter>
-            <div class="flex py-4">
+            <div class="flex py-4 gap-2">
               <p-button label="Avanti" (onClick)="nextCallback.emit()" />
+              <p-button *ngIf="this.thereIsBaseProduct" label="Va bene così, salva" (onClick)="Save()" />
             </div>
           </ng-template>
         </p-stepperPanel>
