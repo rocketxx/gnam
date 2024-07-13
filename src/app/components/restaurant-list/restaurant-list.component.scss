@@ -1,30 +1,42 @@
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px; /* Aggiunge spazio tra le card */
-  }
-  
-  @media (max-width: 768px) {
-    .card-container {
-      flex-direction: column; /* Cambia la direzione del flessibile in colonna */
-      align-items: center; /* Allinea le card al centro quando in colonna */
-    }
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; /* Aggiunge spazio tra le card */
+}
 
+.card-container p-card {
+  border-radius: 15px; /* Arrotonda i bordi delle card */
+  overflow: hidden; /* Evita che i contenuti superino i bordi arrotondati */
+}
 
+.card-header-image {
+  width: 100%; /* Imposta la larghezza al 100% del contenitore */
+  height: auto; /* Mantiene il rapporto di aspetto */
+  border-radius: 15px 15px 0 0; /* Arrotonda solo gli angoli superiori */
+  object-fit: cover; /* Adatta l'immagine al contenitore */
+  max-height: 150px; /* Imposta un'altezza massima per l'header dell'immagine */
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column; /* Cambia la direzione del flessibile in colonna */
+    align-items: center; /* Allinea le card al centro quando in colonna */
+  }
+}
+
+.skeleton-container {
+  margin-top: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; /* Aggiunge spazio tra le skeleton */
+}
+
+@media (max-width: 768px) {
   .skeleton-container {
-    margin-top: 10%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px; /* Aggiunge spazio tra le skeleton */
+    flex-direction: column; /* Cambia la direzione del flessibile in colonna */
+    align-items: center; /* Allinea le card al centro quando in colonna */
   }
-  
-  @media (max-width: 768px) {
-    .skeleton-container {
-      flex-direction: column; /* Cambia la direzione del flessibile in colonna */
-      align-items: center; /* Allinea le card al centro quando in colonna */
-    }
-  }
-  
+}
+

@@ -1,4 +1,26 @@
-<div class="button-container">
+<!-- <div class="button-container">
   <button pButton type="button" [class.p-button-success]="selectedFood === FoodType.Panino" [class.p-button-secondary]="selectedFood !== FoodType.Panino" (click)="selectFood(FoodType.Panino)">Panino</button>
   <button pButton type="button" [class.p-button-success]="selectedFood === FoodType.Pizza" [class.p-button-secondary]="selectedFood !== FoodType.Pizza" (click)="selectFood(FoodType.Pizza)">Pizza</button>
+</div> -->
+<div class="card">
+  <div class="button-container">
+    <div
+        class="card"
+        [class.pizza-selected]="selectedFood === FoodType.Pizza"
+        [class.pizza-unselected]="selectedFood !== FoodType.Pizza"
+        (click)="selectFood(FoodType.Pizza)"
+    >
+        <div class="icon">🍕</div>
+        <div class="text">Pizza</div>
+    </div>
+
+    <div
+        class="card"
+        [class.panino-selected]="selectedFood === FoodType.Panino"
+        [class.panino-unselected]="selectedFood !== FoodType.Panino"
+        (click)="selectFood(FoodType.Panino)"
+    >
+        <div class="icon">🍔</div>
+        <div class="text">Hamburger</div>
+    </div>
 </div>

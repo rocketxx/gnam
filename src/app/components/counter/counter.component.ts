@@ -48,7 +48,6 @@ export class CounterComponent implements OnInit {
   }
 
   public emitQuantityChanged(action: 'added' | 'removed') {
-    debugger
     this.quantityChanged.emit({ id: this.productId, quantity: this.quantity, action });
   }
 }

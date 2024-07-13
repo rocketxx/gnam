@@ -81,7 +81,6 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
       this.loadOrderItemTypeTypeFromServiceState();
       this.loadIngredientsWithAvaibleForOrDefault();
       this.loadRestaurant();
-      //recuperare il tipo di prodotto: pizza panino 
     }
     else //stato NEW
     {

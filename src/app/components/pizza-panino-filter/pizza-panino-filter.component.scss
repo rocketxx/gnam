@@ -1,32 +1,41 @@
-/* Stili per il contenitore dei bottoni */
 .button-container {
-    display: flex; /* Utilizza flexbox */
-    justify-content: space-between; /* Distribuisci gli elementi uniformemente lungo l'asse principale */
-    width: 100%; /* Occupa l'intero spazio disponibile */
-  }
-  
-  /* Stili per i bottoni */
-  button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    flex-grow: 1; /* Distribuisci uniformemente lo spazio disponibile tra gli elementi figli */
-  }
-  
-  /* Stili per i bottoni selezionati */
-  button.pizza-selected,
-  button.panino-selected {
-    background-color: green;
-    color: white;
-  }
-  
-  /* Stili per i bottoni non selezionati */
-  button.pizza-unselected,
-  button.panino-unselected {
-    background-color: gray;
-    color: white;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  // border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  flex-grow: 1;
+  transition: background-color 0.3s;
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFC300;
+}
+
+.card.pizza-selected,
+.card.panino-selected {
+  // background-color: #FF6F61;
+  border: 1px solid #FFC300;
+  color: white;
+}
+
+.card.pizza-unselected,
+.card.panino-unselected {
+  background-color: white;
+  color: white;
+}

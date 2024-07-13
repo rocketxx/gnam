@@ -10,11 +10,11 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
 import { PizzaPaninoFilterComponent } from '../pizza-panino-filter/pizza-panino-filter.component';
 import { RestaurantType } from '../../models/Enum/RestaurantType';
-
+import { ChipModule } from 'primeng/chip';
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
-  imports: [PizzaPaninoFilterComponent,CardModule,ButtonModule,CommonModule,TagModule,MessagesModule,SkeletonModule],
+  imports: [ChipModule,PizzaPaninoFilterComponent,CardModule,ButtonModule,CommonModule,TagModule,MessagesModule,SkeletonModule],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })

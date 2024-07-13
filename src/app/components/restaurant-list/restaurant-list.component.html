@@ -1,4 +1,4 @@
-<!-- {{TypeFood}} -->
+
 <div *ngIf="skeletonIsActive" class="skeleton-container">
     <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
     <p-skeleton width="22rem" height="10rem" borderRadius="16px"></p-skeleton>
@@ -7,30 +7,27 @@
 </div>
 
 <div *ngIf="!skeletonIsActive">
-    <p-messages severity="info">
+    <!-- <p-messages severity="info">
         <ng-template pTemplate>
             <div class="ml-2">Pubblica qui il tuo annuncio</div>
         </ng-template>
-    </p-messages>
+    </p-messages> -->
     <app-pizza-panino-filter (foodSelected)="FilterRestaurants($event)"></app-pizza-panino-filter>
     <div class="card-container">
-        <div *ngFor="let item of items; let i = index">
-          <p-card header="{{item.name}}" subheader="{{item.opened == true ? 'Aperto' : 'Chiuso' }}" [style]="{ width: '360px' }">
-            <ng-template pTemplate="header">
-              <img alt="Card" src="{{item.imageUrl}}" />
-            </ng-template>
-            <p>
-              {{item.address}}
-            </p>
-            <ng-template pTemplate="footer" *ngIf="item.opened == false">
-              <p-button severity="danger" pRipple label="Ristorante chiuso" icon="pi pi-ban" class="w-full"></p-button>
-            </ng-template>
-            
-            <ng-template pTemplate="footer" *ngIf="item.opened == true">
-              <p-button  pRipple (onClick)="detail_restaurant(item)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
-            </ng-template>
-          </p-card>
-        </div>
+      <div *ngFor="let item of items; let i = index">
+        <p-card class="custom-card" header="{{item.name}}" subheader="{{item.address}}" [style]="{ width: '360px', borderRadius: '15px' }">
+          <ng-template pTemplate="header">
+            <img class="card-header-image" alt="Card" src="{{item.imageUrl}}" />
+          </ng-template>
+          <ng-template pTemplate="footer" *ngIf="item.opened == false">
+            <p-button severity="danger" pRipple label="Ristorante chiuso" icon="pi pi-ban" class="w-full"></p-button>
+          </ng-template>
+          <ng-template pTemplate="footer" *ngIf="item.opened == true">
+            <p-button  pRipple (onClick)="detail_restaurant(item)" label="Vai al ristorante" icon="pi pi-eye" class="w-full"></p-button>
+          </ng-template>
+        </p-card>
       </div>
+    </div>
+    
 </div> 
   
