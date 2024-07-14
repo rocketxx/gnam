@@ -16,6 +16,7 @@ export class MiniItemComponent implements OnInit {
   @Input() element : any;
   @Output() elementClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() image_type: imageType = imageType.pizza; // Default size
+  isRed = false;
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
   }
@@ -23,6 +24,10 @@ export class MiniItemComponent implements OnInit {
   emitClick(item : any)
   {
     this.elementClicked.emit(item);
+    this.isRed = !this.isRed;
+  }
+  onBlur() {
+    this.isRed = false; // Ritorna al colore normale quando perde il focus
   }
 
   getImageLink(image: string | null | undefined)

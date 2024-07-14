@@ -19,10 +19,11 @@ import { BREAD, PIZZA } from '../../config/constantVariable';
 import { ExperimentalComponent } from '../../components/experimental/experimental.component';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { FilterListComponent } from '../../components/filter-list/filter-list.component';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
-  imports: [CustomButtonComponent,ProductCardComponent,MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
+  imports: [FilterListComponent,CustomButtonComponent,ProductCardComponent,MiniCardComponent,PanelModule,TabViewModule,TagModule,DataViewModule,CommonModule,ButtonModule],
   templateUrl: './detail-restaurant.component.html',
   styleUrl: './detail-restaurant.component.scss'
 })
@@ -35,12 +36,17 @@ export class DetailRestaurantComponent implements OnInit{
   restaurant_type : string = '';
   renderCustomFoodButtonBread : boolean = false;
   renderCustomFoodButtonPizza : boolean = false;
+  myList : any[] = [];
+
   constructor(private base_product_state: BaseProductStateService,private route: ActivatedRoute,private menu_item_service: MenuItemService,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
     this.tabsInizialize();
     this.loadInfoRestaurantFromUrl();
+    // this.myList.push({name: 'Panini'})
+    // this.myList.push({name: 'Pizze'})
+    // this.myList.push({name: 'Bevande'})
   }
 
   tabsInizialize()
@@ -113,5 +119,10 @@ export class DetailRestaurantComponent implements OnInit{
     else if(this.restaurant_type == RestaurantType.PIZZA.toString())
       this.renderCustomFoodButtonPizza = true
   }
+
+  //recupera le tipologie di menu (bevanda, pizze,panini) dal ristorante
+  //immettili nel componente list
+  //l'evento emesso con l'item cliccato andrà a modificare la lista che passi a app-product-card
+  //di default, la lista sarà sul primo elemento passato
 
 }
