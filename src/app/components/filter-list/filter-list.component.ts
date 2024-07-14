@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MiniItemComponent } from '../mini-item/mini-item.component';
 import { CommonModule } from '@angular/common';
 
@@ -11,9 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class FilterListComponent implements OnInit{
  @Input() myElements: any [] = []
-
+@Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
+  }
+  clickedItem(item: any)
+  {
+    this.itemClicked.emit(item);
   }
 
 }

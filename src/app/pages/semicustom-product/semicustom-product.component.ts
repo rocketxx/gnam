@@ -28,5 +28,10 @@ export class SemicustomProductComponent implements OnInit{
     this.myList.push({name: 'Insalate'})
     // throw new Error('Method not implemented.');
   }
+
+  test(item: any)
+  {
+    console.log(item);
+  }
   
 }
