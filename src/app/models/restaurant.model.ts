@@ -14,7 +14,7 @@ export class Restaurant {
   imageUrl: string;
   menu: MenuItem[];
   workingHours: WorkingHours[];
-  filters: FilterItem[]; // Aggiungi la lista di FilterItem
+  filterItems: FilterItem[]; // Aggiungi la lista di FilterItem
 
   constructor(
     id?: string,
@@ -27,7 +27,7 @@ export class Restaurant {
     imageUrl?: string,
     menu?: MenuItem[],
     workingHours?: WorkingHours[],
-    filters?: FilterItem[]) {
+    filterItems?: FilterItem[]) {
     this.id = id || "";
     this.name = name || "";
     this.type = type || RestaurantType.BOTH; // Assuming 'Other' is a valid value in RestaurantType enum
@@ -38,6 +38,6 @@ export class Restaurant {
     this.imageUrl = imageUrl || "";
     this.menu = menu || [];
     this.workingHours = workingHours || [];
-    this.filters = filters || [];
+    this.filterItems = filterItems || [];
   }
 }

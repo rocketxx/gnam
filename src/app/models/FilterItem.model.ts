@@ -1,10 +1,10 @@
 export class FilterItem {
-    public nome: string;
+    public name: string;
     public isActive: boolean;
     public restaurantId: string;
 
-    constructor(nome?: string, isActive?: boolean, restaurantId?: string) {
-        this.nome = nome || "";
+    constructor(name?: string, isActive?: boolean, restaurantId?: string) {
+        this.name = name || "";
         this.isActive = isActive || false;
         this.restaurantId = restaurantId || '';
     }

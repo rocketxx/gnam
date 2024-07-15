@@ -1,1 +1,4 @@
-<!-- <app-mini-item (elementClicked)="clickedItem(item)" [element]="item"></app-mini-item> -->
+
+<div *ngFor="let item of this.my_restaurant.filterItems">
+    <app-mini-item (elementClicked)="clickedItem(item)" [element]="item"></app-mini-item>
+</div>
