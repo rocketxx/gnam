@@ -13,6 +13,7 @@ import { MenuRistoranteComponent } from './pages-restaurnts/menu-ristorante/menu
 import { OrariLavorativiComponent } from './pages-restaurnts/orari-lavorativi/orari-lavorativi.component';
 import { OrdiniRistoranteComponent } from './pages-restaurnts/ordini-ristorante/ordini-ristorante.component';
 import { ListaMenuComponent } from './pages-restaurnts/lista-menu/lista-menu.component';
+import { SezioniAttiveComponent } from './pages-restaurnts/sezioni-attive/sezioni-attive.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'ristoranti', pathMatch: 'full' },
@@ -30,6 +31,7 @@ export const routes: Routes = [
 
     //-------- ROUTES RESTAURANT ADMIN 
     { path: 'profilo-ristorante', title: 'Profilo', component: ProfiloRestaurantComponent },
+    { path: 'sezioni-attive', title: 'Sezioni', component: SezioniAttiveComponent },
     // { path: 'sicurezza-ristorante', title: 'sicurezza', component: ProfiloRestaurantComponent },
     { path: 'carica-prodotto-ristorante', title: 'Carica prodotto', component: CaricaProdottoComponent },
     { path: 'modifica-prodotto-ristorante/:id', title: 'Modifica prodotto', component: CaricaProdottoComponent },

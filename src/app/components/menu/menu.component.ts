@@ -54,11 +54,11 @@ export class MenuComponent implements OnInit {
           icon: 'pi pi-fw pi-user',
           routerLink: 'profilo-ristorante'
         },
-        // {
-        //   label: 'Sicurezza',
-        //   icon: 'pi pi-fw pi-user',
-        //   routerLink: 'sicurezza-ristorante'
-        // },
+        {
+          label: 'Sezioani attive',
+          icon: 'pi pi-fw pi-user',
+          routerLink: 'sezioni-attive'
+        },
         {
           label: 'Carica prodotto',
           icon: 'pi pi-fw pi-user',
