@@ -1,4 +1,4 @@
-class FilterItem {
+export class FilterItem {
     private _nome: string;
     private _isActive: boolean;
     private _restaurantId: number;

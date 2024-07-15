@@ -1,4 +1,5 @@
 import { RestaurantType } from "./Enum/RestaurantType";
+import { FilterItem } from "./FilterItem.model";
 import { MenuItem } from "./MenuItem.model";
 import { WorkingHours } from "./WorkingHours.model";
 
@@ -26,8 +27,7 @@ export class Restaurant {
     imageUrl?: string,
     menu?: MenuItem[],
     workingHours?: WorkingHours[],
-    filters?: FilterItem[]
-  ) {
+    filters?: FilterItem[]) {
     this.id = id || "";
     this.name = name || "";
     this.type = type || RestaurantType.BOTH; // Assuming 'Other' is a valid value in RestaurantType enum

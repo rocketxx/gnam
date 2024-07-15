@@ -21,7 +21,8 @@ export class SezioniAttiveComponent implements OnInit{
 
     loadRestaurant() {
       this.restaurant_service.getRestaurantById(idRestaurantMock).subscribe(response => {
-        // this.restaurant_name = response.name
+        this.my_restaurant = response;
+        debugger
       })
     }
 
