@@ -51,9 +51,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: #FFC300;
   border: 2px solid #FFC300;
-  color: #FFC300;
+  color: white;
+  border-radius: 50px !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
