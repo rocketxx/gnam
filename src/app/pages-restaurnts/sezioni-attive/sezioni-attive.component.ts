@@ -8,11 +8,13 @@ import { FilterItem } from '../../models/FilterItem.model';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
 import { ButtonModule } from 'primeng/button';
 import { Restaurant } from '../../models/Restaurant.model';
+import { PanelModule } from 'primeng/panel';
+import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: 'app-sezioni-attive',
   standalone: true,
-  imports: [CustomButtonComponent,MiniItemComponent, CommonModule,ButtonModule],
+  imports: [CustomButtonComponent,MiniItemComponent,PanelModule,TabViewModule, CommonModule,ButtonModule],
   templateUrl: './sezioni-attive.component.html',
   styleUrl: './sezioni-attive.component.scss'
 })
