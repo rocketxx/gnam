@@ -16,6 +16,7 @@ import { MenuItemService } from '../../services/menu-item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BREAD, MENU_TYPES, PIZZA, idRestaurantMock } from '../../config/constantVariable';
+import { RestaurantsService } from '../../services/restaurants.service';
 
 @Component({
   selector: 'app-menu-ristorante',
@@ -35,13 +36,14 @@ export class MenuRistoranteComponent implements OnInit {
     private menu_item_service: MenuItemService,
     private messageService: MessageService,
     private route: ActivatedRoute,
+    private restaurant_service: RestaurantsService,
     private router: Router)
   {
 
   }
   
   ngOnInit(): void {
-    this.loadMenuTypes();
+    this.loadRestaurant();
     // this.selectedTypeProduct.name = 'Cibo'
     const editId = this.route.snapshot.paramMap.get('id');
     if(editId != null) //stato EDIT
@@ -57,17 +59,23 @@ export class MenuRistoranteComponent implements OnInit {
 
   
 
-  loadMenuTypes()
-  {
-    this.MenuTypesList = MENU_TYPES.map(type => ({
-      name: type,
-    }));
-  }
+  // loadMenuTypes()
+  // {
+  //   this.MenuTypesList = MENU_TYPES.map(type => ({
+  //     name: type,
+  //   }));
+  // }
 
   loadData(id: string) {
     this.menu_item_service.getMenuItemById(id).subscribe(response=>{
       this.currentMenuItem = response;
       this.selectedTypeMenu = {name : this.currentMenuItem.type}; 
+    })
+  }
+
+  loadRestaurant() {
+    this.restaurant_service.getRestaurantById(idRestaurantMock).subscribe(response => {
+      this.MenuTypesList = response.filterItems;
     })
   }
 // La bevanda è un item menu.
@@ -76,11 +84,7 @@ export class MenuRistoranteComponent implements OnInit {
   getTypeNameMenu()
   {
     // 'Pizza','Panino','Bevanda'
-    if(this.selectedTypeMenu.name == 'Pizza')
-      return PIZZA;
-    else if(this.selectedTypeMenu.name == 'Panino')
-      return BREAD;
-    return this.selectedTypeMenu.name;
+    return this.selectedTypeMenu.name
   }
 
   Save_data()

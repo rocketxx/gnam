@@ -64,7 +64,7 @@ export class DetailRestaurantComponent implements OnInit{
     
     this.menu_item_service.getMenuItems(id).subscribe(response=>{
       //TODO: sevirebbe un filtro che se è ristorante BOTH allora filtri menu panino o pizze
-      this.foodMenuList = response.filter(item=> item.type == BREAD || item.type == PIZZA); 
+      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
     })
   }
