@@ -1,4 +1,19 @@
 
 <div *ngFor="let item of this.my_restaurant.filterItems">
-    <app-mini-item (elementClicked)="clickedItem(item)" [element]="item"></app-mini-item>
+    <div *ngIf="item.active">
+        <app-mini-item (elementClicked)="clickedItem(item)" [element]="item"></app-mini-item>
+        <!-- <app-custom-button (click)="changeStatus(item)" [description]="this.getDescription(item)"></app-custom-button> -->
+        <p-button label="Disattiva" severity="secondary" (onClick)="changeStatus(item)" />
+    </div>
+
+</div>
+<h4>INATTIVI</h4>
+<div *ngFor="let item of this.my_restaurant.filterItems">
+    <div *ngIf="!item.active">
+        <!-- <app-custom-button (click)="changeStatus(item)" [description]="this.getDescription(item)"></app-custom-button> -->
+        <app-mini-item (elementClicked)="clickedItem(item)" [element]="item"></app-mini-item>
+        <p-button label="Attiva" severity="secondary" (onClick)="changeStatus(item)" />
+
+    </div>
+
 </div>

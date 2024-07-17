@@ -1,11 +1,11 @@
 export class FilterItem {
     public name: string;
-    public isActive: boolean;
+    public active: boolean;
     public restaurantId: string;
 
-    constructor(name?: string, isActive?: boolean, restaurantId?: string) {
+    constructor(name?: string, active?: boolean, restaurantId?: string) {
         this.name = name || "";
-        this.isActive = isActive || false;
+        this.active = active || false;
         this.restaurantId = restaurantId || '';
     }
 
