@@ -10,18 +10,20 @@ import { ButtonModule } from 'primeng/button';
 import { Restaurant } from '../../models/Restaurant.model';
 import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sezioni-attive',
   standalone: true,
-  imports: [CustomButtonComponent,MiniItemComponent,PanelModule,TabViewModule, CommonModule,ButtonModule],
+  imports: [ToastModule,CustomButtonComponent,MiniItemComponent,PanelModule,TabViewModule, CommonModule,ButtonModule],
   templateUrl: './sezioni-attive.component.html',
   styleUrl: './sezioni-attive.component.scss'
 })
 export class SezioniAttiveComponent implements OnInit{
   my_restaurant : Restaurant = new Restaurant() 
   filterlist : FilterItem[] = [ ]
-  constructor(private restaurant_service: RestaurantsService){}
+  constructor(private restaurant_service: RestaurantsService,private messageService: MessageService){}
   ngOnInit(): void {
     // throw new Error('Method not implemented.');const pizza = new FilterItem();
 // const pizza = new FilterItem();
@@ -65,7 +67,6 @@ export class SezioniAttiveComponent implements OnInit{
     loadRestaurant() {
       this.restaurant_service.getRestaurantById(idRestaurantMock).subscribe(response => {
         this.my_restaurant = response;
-        debugger
       })
     }
 
@@ -82,9 +83,12 @@ export class SezioniAttiveComponent implements OnInit{
 
     }
 
-    changeStatus(item: any)
+    changeStatus(clieckedItem: FilterItem)
     {
-
+      var itemIndex = this.my_restaurant.filterItems.findIndex(item=> item.name == clieckedItem.name);
+      clieckedItem.active = !clieckedItem.active 
+      this.my_restaurant.filterItems[itemIndex] = clieckedItem;
+      this.updateRestaurant();
     }
 
     getDescription(item : FilterItem)
@@ -93,6 +97,14 @@ export class SezioniAttiveComponent implements OnInit{
         return 'Attivo'
       else
         return "Inattivo"
+    }
+
+    updateRestaurant()
+    {
+      this.restaurant_service.updateRestaurant(idRestaurantMock,this.my_restaurant).subscribe(reponse=>{
+        this.messageService.add({severity: 'success', summary:'Messaggio informativo', detail:'Status sezione modificato'});
+
+      })
     }
 
 }
