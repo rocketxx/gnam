@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestaurantsService } from '../../services/restaurants.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Restaurant } from '../../models/Restaurant.model';
@@ -21,6 +21,7 @@ import { CustomButtonComponent } from '../../components/custom-button/custom-but
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { FilterListComponent } from '../../components/filter-list/filter-list.component';
 import { FilterItem } from '../../models/FilterItem.model';
+import { MiniItemComponent } from '../../components/mini-item/mini-item.component';
 @Component({
   selector: 'app-detail-restaurant',
   standalone: true,
@@ -29,6 +30,7 @@ import { FilterItem } from '../../models/FilterItem.model';
   styleUrl: './detail-restaurant.component.scss'
 })
 export class DetailRestaurantComponent implements OnInit{
+  @ViewChild('filterList') filter_list_component!: FilterListComponent;
   foodMenuList : any[] = []
   menuItems : any [] = [];
   currentMenuItems : any [] = [];
@@ -45,19 +47,11 @@ export class DetailRestaurantComponent implements OnInit{
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
-    this.tabsInizialize();
     this.loadInfoRestaurantFromUrl();
     this.loadFilterItem();
   }
 
-  tabsInizialize()
-  {
-    this.tabs = [
-      { title: 'Tab 1', content: 'Tab 1 Content' },
-      { title: 'Tab 2', content: 'Tab 2 Content' },
-      { title: 'Tab 3', content: 'Tab 3 Content' }
-  ];
-  }
+
 
   loadData() //TODO: non va bene, effettua nuova lettura per ristorante. Essendo menu un entità a se posso richiamarli grazie all'id passato in url. modificare
   {
@@ -65,6 +59,7 @@ export class DetailRestaurantComponent implements OnInit{
     
     this.menu_item_service.getMenuItems(id).subscribe(response=>{
       //TODO: sevirebbe un filtro che se è ristorante BOTH allora filtri menu panino o pizze
+      //TODO: food e drink menuList
       this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
       this.menuItems = response;
@@ -132,6 +127,8 @@ export class DetailRestaurantComponent implements OnInit{
   {
       this.restaurant_service.getRestaurantById(this.getRestaurantId()).subscribe(response => {
         this.filter_items = response.filterItems.filter(item=> item.active);
+        this.filter_list_component.clickedItem(this.filter_items[0])
+        //devi accedere a filter_list_component e al suo figlio, attivare variabile isRed 
       })
   }
 

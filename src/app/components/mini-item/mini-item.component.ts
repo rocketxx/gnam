@@ -16,7 +16,7 @@ export class MiniItemComponent implements OnInit {
   @Input() element : any;
   @Output() elementClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() image_type: imageType = imageType.pizza; // Default size
-  isRed = false;
+  public isRed = false;
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
   }
