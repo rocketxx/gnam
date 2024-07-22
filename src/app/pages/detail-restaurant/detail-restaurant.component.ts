@@ -68,6 +68,7 @@ export class DetailRestaurantComponent implements OnInit{
       this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
       this.menuItems = response;
+      this.currentMenuItems = this.menuItems
     })
   }
 
@@ -136,7 +137,7 @@ export class DetailRestaurantComponent implements OnInit{
 
   filterMenuList(filter: FilterItem) //appena utente clicca su item "Pizza" o "Panino" questa funz. filtra in base al click
   {
-    this.currentMenuItems = this.currentMenuItems.filter(item=> item.type == filter.name)
+    this.currentMenuItems = this.menuItems.filter(item=> item.type == filter.name)
   }
 
   getRestaurantId()

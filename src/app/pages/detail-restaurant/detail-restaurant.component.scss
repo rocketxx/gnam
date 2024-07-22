@@ -33,3 +33,11 @@
   color: black; /* Gold color */
   text-align: center; /* Center the text */
 }
+
+
+.container-detail {
+  padding: 20px; /* Questo è il padding scelto, puoi modificarlo secondo le tue necessità */
+  margin: 0 auto; /* Centro la container orizzontalmente */
+  max-width: 1200px; /* Limito la larghezza massima per evitare che diventi troppo larga sui grandi schermi */
+  box-sizing: border-box; /* Includo il padding e il bordo nella larghezza totale dell'elemento */
+}

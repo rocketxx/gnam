@@ -69,13 +69,13 @@ export class MenuRistoranteComponent implements OnInit {
   loadData(id: string) {
     this.menu_item_service.getMenuItemById(id).subscribe(response=>{
       this.currentMenuItem = response;
-      this.selectedTypeMenu = {name : this.currentMenuItem.type}; 
+      this.selectedTypeMenu = {name : this.currentMenuItem.name}; 
     })
   }
 
   loadRestaurant() {
     this.restaurant_service.getRestaurantById(idRestaurantMock).subscribe(response => {
-      this.MenuTypesList = response.filterItems;
+      this.MenuTypesList = response.filterItems.filter(item=> item.active);
     })
   }
 // La bevanda è un item menu.
