@@ -6,14 +6,6 @@
     margin-top: 15px; /* Aggiunge un margine superiore di 20px */
   }
 
-
-.container-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 13px;
-}
-
 .restaurant-title {
   font-family: Montserrat;
   font-size: 2rem;
@@ -27,7 +19,7 @@
 
 .cool-title {
   font-family: 'Bungee', cursive;
-  font-size: 40px;
+  // font-size: 40px;
   text-shadow: 2px 2px 5px rgba(16 15 15 / 70%);
   letter-spacing: 2px;
   color: black; /* Gold color */
