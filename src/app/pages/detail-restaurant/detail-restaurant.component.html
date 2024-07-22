@@ -1,12 +1,12 @@
 <div class="card">
     <app-filter-list (itemClicked)="filterMenuList($event)" [myElements]="this.filter_items"></app-filter-list>
+    <h1 class="cool-title">{{this.restaurant_name}}</h1>
+    <div class="container-button">
+        <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('BREAD')"
+            [items]="this.custom_product_button_list"></app-custom-button>
+    </div>    
     <div class="container-detail">
-        <h1 class="cool-title">{{this.restaurant_name}}</h1>
     
-        <div class="container-button">
-            <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('BREAD')"
-                [items]="this.custom_product_button_list"></app-custom-button>
-        </div>    
         <app-product-card (baseClicked)="BaseClicked($event)" [list_of_element]="currentMenuItems"></app-product-card>
     </div>    
 </div>
