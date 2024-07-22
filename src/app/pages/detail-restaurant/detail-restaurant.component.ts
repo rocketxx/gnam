@@ -43,14 +43,26 @@ export class DetailRestaurantComponent implements OnInit{
   renderCustomFoodButtonPizza : boolean = false;
   myList : any[] = [];
   filter_items : FilterItem[] = []
+
+  custom_product_button_list : any[] = []
+
   constructor(private base_product_state: BaseProductStateService,private route: ActivatedRoute,private menu_item_service: MenuItemService,private restaurant_service: RestaurantsService,private router: Router){}
   
   ngOnInit(): void {
     this.loadData();      //commento e risparmio chiamate api al server di mock
     this.loadInfoRestaurantFromUrl();
     this.loadFilterItem();
+    this.fillCustomProductButtonList();
   }
 
+  fillCustomProductButtonList()
+  {
+    this.custom_product_button_list = 
+    [
+      {description: 'Crea Pizza', active: this.renderCustomFoodButtonBread,tag:'BREAD'},
+      {description: 'Crea Panino', active: this.renderCustomFoodButtonPizza,tag:'PIZZA'}
+    ]
+  }
 
 
   loadData() //TODO: non va bene, effettua nuova lettura per ristorante. Essendo menu un entità a se posso richiamarli grazie all'id passato in url. modificare

@@ -5,13 +5,8 @@
     
         <div class="container-button">
             <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('BREAD')"
-                [icon]="'🍔'" [description]="'Crea panino personalizzato'"></app-custom-button>
-        </div>
-        <div class="container-button">
-            <app-custom-button *ngIf="this.renderCustomFoodButtonBread" (click)="personalizza_prodotto('PIZZA')"
-                [icon]="'🍕'" [description]="'Crea pizza personalizzata'"></app-custom-button>
-        </div>
-    
+                [items]="this.custom_product_button_list"></app-custom-button>
+        </div>    
         <app-product-card (baseClicked)="BaseClicked($event)" [list_of_element]="currentMenuItems"></app-product-card>
     </div>    
 </div>

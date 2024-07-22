@@ -1,9 +1,18 @@
-<div class="button-container">
-    <div
-        class="card"
-    >
+<!-- <div class="full-width-button">
+
         <div class="icon">{{icon}}</div>
         <div class="text">{{description}}</div>
-    </div>
 
-</div>
+</div> -->
+
+<!-- <div class="container">
+    <div class="element">Elemento 1</div>
+    <div class="element">Elemento 2 ok</div>
+  </div>
+   -->
+  <div class="container">
+    <div *ngFor="let item of activeItems" class="element" (click)="onItemClicked(item)">
+      {{ item.description }}
+    </div>
+  </div>
+  
