@@ -1,5 +1,5 @@
 <div class="card">
-    <app-filter-list #filterList (itemClicked)="filterMenuList($event)" [myElements]="this.filter_items"></app-filter-list>
+    <app-filter-list (itemClicked)="filterMenuList($event)" [myElements]="this.filter_items"></app-filter-list>
     <div class="container-detail">
         <h1 class="cool-title">{{this.restaurant_name}}</h1>
     
