@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { CounterComponent } from '../counter/counter.component';
 
 @Component({
   selector: 'app-cart-card',
   standalone: true,
-  imports: [ButtonModule,AvatarModule,CommonModule],
+  imports: [CounterComponent,ButtonModule,AvatarModule,CommonModule],
   templateUrl: './cart-card.component.html',
   styleUrl: './cart-card.component.scss'
 })

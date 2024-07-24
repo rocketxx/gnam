@@ -31,14 +31,11 @@ export class SemicustomProductComponent implements OnInit{
     // throw new Error('Method not implemented.');
 
     this.items = [
-      
       {
         image: 'assets/pizza_default.png',
         name: 'Pizza Margherita',
         ingredients: 'Tomato, mozzarella, pomodoro'
-      },
-
-      // more items...
+      }
     ];
   }
 
