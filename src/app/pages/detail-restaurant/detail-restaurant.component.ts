@@ -76,6 +76,7 @@ export class DetailRestaurantComponent implements OnInit{
       this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
       this.menuItems = response;
       this.currentMenuItems = this.menuItems
+     
     })
   }
 
@@ -140,7 +141,6 @@ export class DetailRestaurantComponent implements OnInit{
       this.restaurant_service.getRestaurantById(this.getRestaurantId()).subscribe(response => {
         this.filter_items = response.filterItems.filter(item=> item.active);
         this.filter_list_component?.clickedItem(this.filter_items[0])
-        //devi accedere a filter_list_component e al suo figlio, attivare variabile isRed 
       })
   }
 

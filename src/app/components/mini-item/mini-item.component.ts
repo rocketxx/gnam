@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { CounterComponent } from '../counter/counter.component';
@@ -16,9 +16,19 @@ export class MiniItemComponent implements OnInit {
   @Input() element : any;
   @Output() elementClicked: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() image_type: imageType = imageType.pizza; // Default size
+  @Input() isActive: boolean = false; // Add this input
   public isRed = false;
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.')
+    if (this.isActive) {
+      this.isRed = true; // Activate the first item
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isActive']) {
+      this.isRed = this.isActive;
+    }
   }
 
   emitClick(item : any)

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { MiniItemComponent } from '../mini-item/mini-item.component';
 import { CommonModule } from '@angular/common';
 
@@ -10,14 +10,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './filter-list.component.scss'
 })
 export class FilterListComponent implements OnInit{
+  @ViewChildren(MiniItemComponent) childrenComponents!: QueryList<MiniItemComponent>;
+
  @Input() myElements: any [] = []
-@Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
+ @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
+ activeItem: any;
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
+    if (this.myElements.length > 0) {
+      this.activeItem = this.myElements[0];
+    }
   }
   clickedItem(item: any)
   {
     this.itemClicked.emit(item);
+    this.activeItem = item;
+  }
+
+  activeFirstElement()
+  {
+    // this.itemClicked.emit(this.myElements[0]);
+    // this.childrenComponents.first.isRed = true;
+
   }
 
 }
