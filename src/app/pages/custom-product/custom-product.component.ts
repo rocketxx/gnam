@@ -328,11 +328,13 @@ export class CustomProductComponent implements OnInit, AfterViewInit,OnDestroy  
 
   loadIngredientsWithAvaibleFor(avaible_for : string)
   {
+    debugger
     this.ingredient_service.getIngredientsByRestaurantAndAvaibleFor(this.getRestaurantId(),avaible_for).subscribe(response=>{
       this.responseListIngredients = response;
       this.listIngredients = response;
       this._countUniqueTypes = this.countUniqueTypes(response);
       this._uniqueTypes = this.getUniqueTypes(response);
+      debugger
     })
   }
 

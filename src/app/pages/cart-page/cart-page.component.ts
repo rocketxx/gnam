@@ -56,6 +56,19 @@ export class CartPageComponent implements OnInit {
 
   }
 
+  getTitleCardCart(item : any)
+  {
+    if(item.menuItem.name!='')
+    {
+      return item.menuItem.name
+    }
+    else if(item.type=='BREAD')
+      return 'Panino personalizzato'
+    else if(item.type=='PIZZA')
+      return 'Pizza personalizzata'
+    return 'Prodotto personalizzato'
+  }
+
   Delete(idItem: string) {
     console.log(`Attempting to delete item with id: ${idItem}`);
     this.order_item_service.deleteOrderItemById(idItem).subscribe(
