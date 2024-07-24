@@ -16,7 +16,6 @@ export class FilterListComponent implements OnInit{
  @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
  activeItem: any;
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     if (this.myElements.length > 0) {
       this.activeItem = this.myElements[0];
     }
@@ -26,12 +25,4 @@ export class FilterListComponent implements OnInit{
     this.itemClicked.emit(item);
     this.activeItem = item;
   }
-
-  activeFirstElement()
-  {
-    // this.itemClicked.emit(this.myElements[0]);
-    // this.childrenComponents.first.isRed = true;
-
-  }
-
 }

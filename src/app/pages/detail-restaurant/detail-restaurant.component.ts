@@ -31,10 +31,8 @@ import { MiniItemComponent } from '../../components/mini-item/mini-item.componen
 })
 export class DetailRestaurantComponent implements OnInit{
   @ViewChild('filterList') filter_list_component!: FilterListComponent;
-  foodMenuList : any[] = []
   menuItems : any [] = [];
   currentMenuItems : any [] = [];
-  drinkMenuList : any[] = []
   restaurant : Restaurant | undefined;
   tabs: { title: string, content: string }[] = [];
   restaurant_name : string = '';
@@ -70,10 +68,6 @@ export class DetailRestaurantComponent implements OnInit{
     var id = this.getRestaurantId();
     
     this.menu_item_service.getMenuItems(id).subscribe(response=>{
-      //TODO: sevirebbe un filtro che se è ristorante BOTH allora filtri menu panino o pizze
-      //TODO: food e drink menuList
-      this.foodMenuList = response.filter(item=> item.type == 'Panino' || item.type == 'Pizza'); 
-      this.drinkMenuList = response.filter(item=> item.type == 'Bevanda');
       this.menuItems = response;
       this.currentMenuItems = this.menuItems
      
@@ -131,11 +125,6 @@ export class DetailRestaurantComponent implements OnInit{
       this.renderCustomFoodButtonPizza = true
   }
   //TODO IMPORTANTE: modificare e prendere solo i filterItem altrimenti troppe letture
-
-    //recupera le tipologie di menu (bevanda, pizze,panini) dal ristorante
-  //immettili nel componente list
-  //l'evento emesso con l'item cliccato andrà a modificare la lista che passi a app-product-card
-  //di default, la lista sarà sul primo elemento passato
   loadFilterItem()
   {
       this.restaurant_service.getRestaurantById(this.getRestaurantId()).subscribe(response => {

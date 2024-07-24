@@ -19,7 +19,6 @@ export class MiniItemComponent implements OnInit {
   @Input() isActive: boolean = false; // Add this input
   public isRed = false;
   ngOnInit(): void {
-    // throw new Error('Method not implemented.')
     if (this.isActive) {
       this.isRed = true; // Activate the first item
     }
