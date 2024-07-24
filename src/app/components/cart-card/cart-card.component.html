@@ -1,19 +1,24 @@
-
 <div class="card">
     <div class="card-header">
-      <p-avatar [image]="image" shape="circle" size="large" styleClass="avatar"></p-avatar>
-      <div class="card-info">
-        <h3 class="card-name">{{ name }}</h3>
-        <ul class="ingredients-list">
-          {{ ingredients }}
-        </ul>
-      </div>
-      <div class="card-actions">
-        <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" size="small" severity="success" (onClick)="onEdit()"></p-button>
-        <p-button [rounded]="true" [text]="true" size="small" icon="pi pi-times" severity="danger" (onClick)="onDelete()"></p-button>
+        <p-avatar [image]="image" shape="circle" size="large" styleClass="avatar"></p-avatar>
+        <div class="card-info">
+            <h3 class="card-name">{{ name }}</h3>
+            <ul class="ingredients-list">
+                {{ ingredients }}
+            </ul>
+        </div>
+        <div class="card-actions">
+            <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" size="small" severity="success"
+                (onClick)="onEdit()"></p-button>
+            <p-button [rounded]="true" [text]="true" size="small" icon="pi pi-times" severity="danger"
+                (onClick)="onDelete()"></p-button>
+        </div>
+    </div>
+    <div class="card-footer">
+        <app-counter [quantity]="item_quantity"></app-counter>
     </div>
 </div>
-<div class="card-footer">
-    <app-counter [quantity]="item_quantity"></app-counter>
-</div>
+<div>
+<!-- aggiungi margin bottom alla card -->
+    <button pRipple pButton type="button" label="Salva" class="w-full fixed-bottom"></button>
 </div>
