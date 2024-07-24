@@ -1,6 +1,6 @@
 .card {
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Per permettere alla card-footer di essere posizionata sotto il card-header */
     padding: 1rem;
     background: #fff;
     border-radius: 8px;
@@ -11,6 +11,7 @@
   .card-header {
     display: flex;
     align-items: center;
+    // align-items: center;
     width: 100%;
   }
   
@@ -43,10 +44,9 @@
     gap: 0.5rem;
   }
   
-
-  .container-card-counter
-  {
+  .card-footer {
     display: flex;
-  justify-content: center; /* Centra orizzontalmente */
-  align-items: center; 
+    justify-content: center; /* Posiziona il contatore all'estremità destra della card */
+    margin-top: 1rem;
   }
+  

@@ -16,6 +16,7 @@ export class CartCardComponent implements OnInit{
   @Input() image: string='';
   @Input() name: string='';
   @Input() ingredients: string= '';
+  @Input() item_quantity: number= 0;
   @Output() edit = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
   ngOnInit(): void {

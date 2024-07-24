@@ -11,9 +11,9 @@
       <div class="card-actions">
         <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" size="small" severity="success" (onClick)="onEdit()"></p-button>
         <p-button [rounded]="true" [text]="true" size="small" icon="pi pi-times" severity="danger" (onClick)="onDelete()"></p-button>
-      </div>
     </div>
 </div>
-<div class="container-card-counter">
-    <app-counter></app-counter>
+<div class="card-footer">
+    <app-counter [quantity]="item_quantity"></app-counter>
+</div>
 </div>

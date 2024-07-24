@@ -34,7 +34,26 @@ export class SemicustomProductComponent implements OnInit{
       {
         image: 'assets/pizza_default.png',
         name: 'Pizza Margherita',
-        ingredients: 'Tomato, mozzarella, pomodoro'
+        ingredients: 'Tomato, mozzarella, pomodoro',
+        quantity : 3
+      },
+      {
+        image: 'assets/pizza_default.png',
+        name: 'Pizza Margherita',
+        ingredients: 'Tomato, mozzarella, pomodoro',
+        quantity : 3
+      },
+      {
+        image: 'assets/pizza_default.png',
+        name: 'Pizza Margherita',
+        ingredients: 'Tomato, mozzarella, pomodoro',
+        quantity : 3
+      },
+      {
+        image: 'assets/pizza_default.png',
+        name: 'Pizza Margherita',
+        ingredients: 'Tomato, mozzarella, pomodoro,Tomato, mozzarella, pomodoro,Tomato, mozzarella, pomodoro',
+        quantity : 3
       }
     ];
   }
