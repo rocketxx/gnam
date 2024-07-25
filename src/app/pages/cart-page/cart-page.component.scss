@@ -9,3 +9,13 @@
 {
   margin-top: 18%;
 }
+
+
+
+
+/* Definisci una classe personalizzata per sovrascrivere gli stili di .p-button */
+.custom-p-button {
+  color: #ffffff !important;
+  background: #FFC300 !important; /* Colore rosso */
+  border: 1px solid #FFC300 !important; /* Bordo rosso */
+}

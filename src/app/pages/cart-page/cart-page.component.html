@@ -34,5 +34,5 @@
   </app-cart-card>
 </div>
 <div class="mymargin">
-  <button (click)="Save()" pRipple pButton type="button" label="Salva" class="w-full fixed-bottom"></button>
+  <button (click)="Save()" pRipple pButton type="button" label="Salva" [ngClass]="{'w-full fixed-bottom': true,'custom-p-button': true}"></button>
 </div>
