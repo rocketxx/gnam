@@ -11,10 +11,11 @@ import { Ingredient } from '../../models/Ingredient.model';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { OrderItemTypeService } from '../../services/order-item-type.service';
+import { CartCardComponent } from '../../components/cart-card/cart-card.component';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CardModule,CommonModule,ButtonModule,ToastModule,MessagesModule],
+  imports: [CartCardComponent,CardModule,CommonModule,ButtonModule,ToastModule,MessagesModule],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss'
 })
@@ -53,7 +54,9 @@ export class CartPageComponent implements OnInit {
 
   Save()
   {
-
+    // debugger
+    var tmp = this.orderItems;
+    debugger
   }
 
   getTitleCardCart(item : any)
@@ -63,10 +66,10 @@ export class CartPageComponent implements OnInit {
       return item.menuItem.name
     }
     else if(item.type=='BREAD')
-      return 'Panino personalizzato'
+      return 'Panino'
     else if(item.type=='PIZZA')
       return 'Pizza personalizzata'
-    return 'Prodotto personalizzato'
+    return 'Prodotto'
   }
 
   Delete(idItem: string) {
@@ -101,5 +104,9 @@ export class CartPageComponent implements OnInit {
     this.router.navigate(['/ristoranti/modifica-ordine', item.itemId, 'restaurant', item.restaurantId]);
   }
 
+  getImage(item : any)
+  {
+    return 'assets/pizza_default.png'
+  }
 
 }

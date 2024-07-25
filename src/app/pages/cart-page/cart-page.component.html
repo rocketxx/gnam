@@ -1,4 +1,4 @@
-<div *ngFor="let item of orderItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
+<!-- <div *ngFor="let item of orderItems; let first = first" class="card-wrapper" [ngClass]="{'first-card': first}">
   <p-card header={{getTitleCardCart(item)}}>
     <div *ngIf="item.menuItem.name!=''">
       <h4>Base:</h4>
@@ -25,4 +25,14 @@
 </div>
 <div class="card">
   <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+</div> -->
+
+<div *ngFor="let item of orderItems">
+  <app-cart-card [image]="getImage(item)" [name]="getTitleCardCart(item)"
+    [ingredients]="getListNameIngredients(item.customizations)" (delete)="Delete(item.itemId)" (edit)="Update(item)"
+    [item_quantity]="item.quantity">
+  </app-cart-card>
+</div>
+<div class="mymargin">
+  <button (click)="Save()" pRipple pButton type="button" label="Salva" class="w-full fixed-bottom"></button>
 </div>
